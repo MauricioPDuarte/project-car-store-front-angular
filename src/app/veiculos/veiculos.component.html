@@ -1,1 +1,5 @@
-<p>veiculos works!</p>
+<mat-list>
+    <mat-list-item *ngFor="let veiculo of veiculos">
+        <h3>{{veiculo.modelo.nome}}</h3>
+    </mat-list-item>
+</mat-list>
