@@ -1,7 +1,7 @@
-import { API_CONFIG } from './../../config/api.config';
-import { VeiculoService } from './../../services/domain/veiculo.service';
 import { Component, OnInit } from '@angular/core';
+import { VeiculoService } from 'src/services/domain/veiculo.service';
 import { VeiculoDTO } from 'src/models/veiculo.dto';
+import { API_CONFIG } from 'src/config/api.config';
 
 @Component({
   selector: 'app-veiculos',

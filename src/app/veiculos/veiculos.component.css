@@ -1,9 +1,30 @@
-mat-card {
-    margin: 20px;
-
+img {
+    width: 370px;
+    height: 280px;
 }
 
-.container-infocar {
-    margin-left: 120px;
-    margin-top: 140px;
+.card-veiculo {
+    height: 315px;
+    margin-bottom: 20px;
 }
+
+.card-title-veiculo{
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+}
+
+.card-subtitle-veiculo {
+    font-size:  30px;
+    color: red;
+    font-weight: 900;
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container-itens-veiculo {
+    margin-left: 40px;
+}
+
