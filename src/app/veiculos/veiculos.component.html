@@ -1,5 +1,23 @@
-<mat-list>
-    <mat-list-item *ngFor="let veiculo of veiculos">
-        <h3>{{veiculo.modelo.nome}}</h3>
-    </mat-list-item>
-</mat-list>
+
+
+<div>
+    <div fxLayout="column" fxLayoutAlign="space-around none">
+        <mat-card *ngFor="let veiculo of veiculos" style="width: 880px;">
+            <img [src]="veiculo.picture?.fileName || 'assets/images/car-default.png'" width="370" height="300" style="float: left;">
+
+            <mat-card-header >
+                <div style="margin-left: 90px;">
+                    <mat-card-title >{{veiculo.modelo.marca.nome}} {{veiculo.modelo.nome}}</mat-card-title>
+                    <mat-card-subtitle style="font-size: 30px;">{{veiculo.preco | currency:'BRL'}}</mat-card-subtitle>
+                </div>
+            </mat-card-header>
+
+            <mat-card-content>
+                <div class="container-infocar">
+                    <mat-icon aria-hidden="false" aria-label="Teste" color="accent">calendar_today</mat-icon>
+                </div>
+
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

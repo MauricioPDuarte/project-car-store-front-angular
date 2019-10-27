@@ -10,7 +10,7 @@ import { VeiculosComponent } from './veiculos/veiculos.component';
 @NgModule({
   declarations: [
     AppComponent,
-    VeiculosComponent
+    VeiculosComponent,
   ],
   imports: [
     BrowserModule,

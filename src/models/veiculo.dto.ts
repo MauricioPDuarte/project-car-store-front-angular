@@ -1,6 +1,7 @@
 import { Tipo } from './enum/tipo';
 import { Cor } from './enum/cor';
 import { Modelo } from './modelo.dto';
+import { Picture } from './picture';
 
 export interface VeiculoDTO {
     id: string;
@@ -9,6 +10,6 @@ export interface VeiculoDTO {
     tipo: Tipo;
     cor: Cor;
     modelo: Modelo;
-    picture: string;
+    picture: Picture;
     kmRodado: number;
 }
