@@ -1,4 +1,4 @@
-export interface Marca {
+export interface MarcaDTO {
     id: string;
     nome: string;
 }

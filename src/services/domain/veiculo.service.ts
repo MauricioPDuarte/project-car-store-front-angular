@@ -15,5 +15,11 @@ export class VeiculoService {
     return this.http.get<VeiculoDTO[]>(`${API_CONFIG.baseUrl}/veiculos`);
   }
 
+  findVeiculoByMarca(marca: string): Observable<VeiculoDTO[]> {
+    return this.http.get<VeiculoDTO[]>(`${API_CONFIG.baseUrl}/veiculos/buscar/${marca}`);
+  }
 
+  findVeiculoByModelo(marca: string, modelo: string) {
+    return this.http.get<VeiculoDTO[]>(`${API_CONFIG.baseUrl}/veiculos/buscar/${marca}/${modelo}`);
+  }
 }

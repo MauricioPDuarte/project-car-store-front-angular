@@ -8,6 +8,7 @@ import { MaterialModule } from './material.module';
 import { VeiculosComponent } from './veiculos/veiculos.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { FiltroVeiculosComponent } from './veiculos/filtro-veiculos/filtro-veiculos.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FiltroVeiculosComponent } from './veiculos/filtro-veiculos/filtro-veicu
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialModule,
-    ScrollingModule
+    ScrollingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

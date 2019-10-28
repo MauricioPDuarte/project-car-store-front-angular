@@ -2,9 +2,9 @@
     <div class="row">
 
         <div class="col-3">
-            <app-filtro-veiculos></app-filtro-veiculos>
+            <app-filtro-veiculos (veiculos)="receberVeiculosFiltro($event)"></app-filtro-veiculos>
         </div>
-        
+
         <div class="col-9">
             <div class="row" *ngFor="let veiculo of veiculos">
                 <div class="col">

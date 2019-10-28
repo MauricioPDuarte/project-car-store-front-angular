@@ -1,6 +1,7 @@
 import { MarcaDTO } from './marca.dto';
 
-export interface ModeloDTO {
+export interface Modelo {
     id: string;
     nome: string;
+    marca: MarcaDTO;
 }

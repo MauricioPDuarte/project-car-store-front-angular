@@ -1,6 +1,6 @@
 import { Tipo } from './enum/tipo';
 import { Cor } from './enum/cor';
-import { Modelo } from './modelo.dto';
+import { Modelo } from './modelo';
 import { Picture } from './picture';
 
 export interface VeiculoDTO {

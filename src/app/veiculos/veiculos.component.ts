@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { VeiculoService } from 'src/services/domain/veiculo.service';
 import { VeiculoDTO } from 'src/models/veiculo.dto';
 import { API_CONFIG } from 'src/config/api.config';
@@ -28,6 +28,11 @@ export class VeiculosComponent implements OnInit {
         veiculo.picture.fileName = `${API_CONFIG.baseUrl}/veiculos/picture/${veiculo.id}/${veiculo.picture.fileName}`;
       }
     }
+  }
+
+  receberVeiculosFiltro(veiculos) {
+    this.veiculos = veiculos;
+    this.carregarImagensVeiculo();
   }
 
 }

@@ -1,4 +1,5 @@
-<div class="row">
+<form [formGroup]="formGroup">
+    <div class="row">
         <div class="col">
             <mat-card class="card-filtro-avancado card-filtro">
                 <mat-card-header>
@@ -9,8 +10,9 @@
                         <div class="col">
                             <mat-form-field>
                                 <mat-label>Marca</mat-label>
-                                <mat-select>
-                                    <mat-option>teste</mat-option>
+                                <mat-select formControlName="marca" (blur)="buscarModelos()">
+                                    <mat-option *ngFor="let marca of marcas" [value]="marca">{{ marca.nome }}
+                                    </mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
@@ -19,8 +21,9 @@
                         <div class="col">
                             <mat-form-field>
                                 <mat-label>Modelo</mat-label>
-                                <mat-select>
-                                    <mat-option>teste</mat-option>
+                                <mat-select formControlName="modelo" (blur)="buscarVeiculosPorModelo()">
+                                    <mat-option *ngFor="let modelo of modelos" [value]="modelo">{{ modelo.nome }}
+                                    </mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
@@ -197,3 +200,4 @@
             </mat-card>
         </div>
     </div>
+</form>
