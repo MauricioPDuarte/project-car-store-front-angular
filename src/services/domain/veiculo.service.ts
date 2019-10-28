@@ -22,4 +22,8 @@ export class VeiculoService {
   findVeiculoByModelo(marca: string, modelo: string) {
     return this.http.get<VeiculoDTO[]>(`${API_CONFIG.baseUrl}/veiculos/buscar/${marca}/${modelo}`);
   }
+
+  findAllCarsPage(page: number = 0, pageSize: number = 24, sortDirection: string = "ASC"): Observable<VeiculoDTO[]> {
+    return this.http.get<VeiculoDTO[]>(`${API_CONFIG.baseUrl}/veiculos/page?page=${page}&linesPerPage=${pageSize}&direction=${sortDirection}`);
+  }
 }

@@ -22,7 +22,7 @@
                             <mat-form-field>
                                 <mat-label>Modelo</mat-label>
                                 <mat-select formControlName="modelo" (blur)="buscarVeiculosPorModelo()">
-                                    <mat-option *ngFor="let modelo of modelos" [value]="modelo">{{ modelo.nome }}
+                                    <mat-option *ngFor="let modelo of modelos" [value]="modelo" class="opcao-lista">{{ modelo.nome }}
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
