@@ -2,7 +2,11 @@
     <div class="row">
 
         <div class="col-3">
-            <app-filtro-veiculos (veiculos)="receberVeiculosFiltro($event)"></app-filtro-veiculos>
+            <app-filtro-veiculos
+             (veiculos)="receberVeiculosFiltro($event)"
+             (tamanhoLista)="receberTamanhoListaFiltro($event)"
+             [paginator]="paginator">
+            </app-filtro-veiculos>
         </div>
 
         <div class="col-9">
@@ -52,13 +56,16 @@
                                             </div>
                                         </mat-list>
                                     </mat-card-content>
+                                    <mat-card-footer>
+                                        <button mat-stroked-button color="primary" class="botao-mensagem">Enviar mensagem</button>
+                                    </mat-card-footer>
                                 </div>
                             </div>
                         </mat-card>
                     </a>
                 </div>
             </div>
-            <mat-paginator [length]="tamanhoLista" [pageSize]="5" [pageSizeOptions]="[3, 5, 10, 24]" style="margin-top: 5px"></mat-paginator>
+            <mat-paginator [length]="tamanhoLista" [pageSize]="24" [pageSizeOptions]="[3, 5, 10, 24]" style="margin-top: 5px"></mat-paginator>
         </div>
     </div>
 </div>

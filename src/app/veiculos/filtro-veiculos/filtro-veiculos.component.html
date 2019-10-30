@@ -10,8 +10,8 @@
                         <div class="col">
                             <mat-form-field>
                                 <mat-label>Marca</mat-label>
-                                <mat-select formControlName="marca" (blur)="buscarModelos()">
-                                    <mat-option *ngFor="let marca of marcas" [value]="marca">{{ marca.nome }}
+                                <mat-select formControlName="marca" (ngModelChange)="buscarVeiculosEModelosPorMarca()">
+                                    <mat-option *ngFor="let marca of marcas" [value]="marca">{{ marca.nome }} 
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
@@ -21,7 +21,7 @@
                         <div class="col">
                             <mat-form-field>
                                 <mat-label>Modelo</mat-label>
-                                <mat-select formControlName="modelo" (blur)="buscarVeiculosPorModelo()">
+                                <mat-select formControlName="modelo" (ngModelChange)="buscarVeiculosPorModelo()">
                                     <mat-option *ngFor="let modelo of modelos" [value]="modelo" class="opcao-lista">{{ modelo.nome }}
                                     </mat-option>
                                 </mat-select>
