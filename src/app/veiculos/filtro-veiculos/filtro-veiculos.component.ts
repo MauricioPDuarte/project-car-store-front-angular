@@ -26,6 +26,7 @@ export class FiltroVeiculosComponent implements OnInit {
   formGroup: FormGroup;
   @Input() paginator: MatPaginator;
   httpParams : URLSearchParams;
+  veiculoPesquisa: VeiculoPesquisa;
   
   constructor(
     private marcaService: MarcaService,
@@ -35,6 +36,7 @@ export class FiltroVeiculosComponent implements OnInit {
     private route: ActivatedRoute,
     private redirectService: RedirectService,
     ) {
+    this.veiculoPesquisa = new VeiculoPesquisa;
     this.httpParams = new URLSearchParams();
     this.formGroup = this.formBuilder.group({
       marca: [null, []],
@@ -43,11 +45,11 @@ export class FiltroVeiculosComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.veiculoPesquisa = new VeiculoPesquisa;
     this.buscarMarcas();
   }
 
-  //Buscar marca/modelo para preencher -selection-
-
+  //Buscar Marcas/Modelos
   buscarMarcas() {
     this.marcaService.findAll().subscribe((response) => {
       this.marcas = response;
@@ -62,55 +64,36 @@ export class FiltroVeiculosComponent implements OnInit {
         this.modelos = response;
       }, error => { });
     }
-
   }
 
+  //Buscar veiculos
   buscarVeiculosPorMarca() {
-    let marca = this.formGroup.value.marca;
-    if(marca != null){
-      this.httpParams.set('marca', marca.nome);
-      
-      this.router.navigate(
-        [], 
-        {
-          relativeTo: this.route,
-          queryParams: { marca: marca.nome },
-          queryParamsHandling: 'merge'
-        });
-        
-    }else{
-      this.httpParams.delete('marca');
-    }
+    this.veiculoPesquisa.marca = this.formGroup.value.marca.nome;
+    this.veiculoPesquisa.modelo = null;
     this.buscarVeiculosCustomPage();
   }
 
   buscarVeiculosPorModelo() {
-    let modelo = this.formGroup.value.modelo;
-
-    console.log('modelo', modelo)
-    if(modelo.nome != null && modelo.nome != ''){
-      this.httpParams.set('modelo', modelo.nome);
-      
-      this.router.navigate(
-        [], 
-        {
-          relativeTo: this.route,
-          queryParams: { modelo: modelo.nome },
-          queryParamsHandling: 'merge'
-        });
-        
-    }else{
-      console.log('AQUII')
-      this.httpParams.delete('modelo');
-    }
+    this.veiculoPesquisa.modelo = this.formGroup.value.modelo.nome;
     this.buscarVeiculosCustomPage();
   }
 
   buscarVeiculosCustomPage() {
-    this.veiculoService.findVeiculosCustomPage(this.paginator.pageIndex, this.paginator.pageSize, 'ASC').subscribe((response) => {
+    this.formarURL();
+    this.veiculoService.findVeiculosCustomPage(this.paginator.pageIndex, this.paginator.pageSize, 'ASC', this.veiculoPesquisa).subscribe((response) => {
       this.veiculos.emit(response['content']);
       this.tamanhoLista.emit(response['totalElements']);
     }, error => { });
+  }
+
+  formarURL() {
+    this.router.navigate(
+      ['/estoque'], 
+      {
+        relativeTo: this.route,
+        queryParams: this.veiculoPesquisa ,
+        queryParamsHandling: 'merge'
+      });
   }
 
 }

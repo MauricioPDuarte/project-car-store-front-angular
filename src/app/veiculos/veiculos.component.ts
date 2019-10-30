@@ -1,12 +1,12 @@
+import { VeiculoPesquisa } from './../../models/pesquisa/veiculo-pesquisa';
 
-import { Component, OnInit, Output, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { VeiculoService } from 'src/services/domain/veiculo.service';
 import { VeiculoDTO } from 'src/models/veiculo.dto';
 import { API_CONFIG } from 'src/config/api.config';
-import { MatSort, MatPaginator } from '@angular/material';
+import { MatPaginator } from '@angular/material';
 import { merge, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-veiculos',
@@ -21,10 +21,12 @@ export class VeiculosComponent implements OnInit {
 
   veiculos: VeiculoDTO[];
   tamanhoLista: number;
+  veiculoPesquisa: VeiculoPesquisa;
 
   @ViewChild(MatPaginator, null) paginator: MatPaginator;
 
   ngOnInit() {
+    this.veiculoPesquisa = new VeiculoPesquisa();
     this.findAllVeiculosPage();
   }
 
@@ -40,7 +42,7 @@ export class VeiculosComponent implements OnInit {
   }
 
   findAllVeiculosPage() {
-     this.veiculoService.findVeiculosCustomPage(this.paginator.pageIndex, this.paginator.pageSize, 'ASC').subscribe((response) => {
+     this.veiculoService.findVeiculosCustomPage(this.paginator.pageIndex, this.paginator.pageSize, 'ASC', this.veiculoPesquisa).subscribe((response) => {
        this.veiculos = response['content'];
        console.log(response);
        this.tamanhoLista = response['totalElements'];
