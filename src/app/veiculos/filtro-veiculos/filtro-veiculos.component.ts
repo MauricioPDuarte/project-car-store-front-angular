@@ -1,3 +1,5 @@
+import { OpcionalService } from './../../../services/domain/opcional.service';
+import { OpcionalDTO } from './../../../models/opcional.dto';
 import { VeiculoPesquisa } from './../../../models/pesquisa/veiculo-pesquisa';
 import { RedirectService } from './../../../services/redirect.service';
 import { MatPaginator } from '@angular/material';
@@ -25,8 +27,8 @@ export class FiltroVeiculosComponent implements OnInit {
   modelos: ModeloDTO[];
   formGroup: FormGroup;
   @Input() paginator: MatPaginator;
-  httpParams : URLSearchParams;
   veiculoPesquisa: VeiculoPesquisa;
+  opcionais: OpcionalDTO[];
   
   constructor(
     private marcaService: MarcaService,
@@ -34,22 +36,23 @@ export class FiltroVeiculosComponent implements OnInit {
     private veiculoService: VeiculoService,
     private router: Router,
     private route: ActivatedRoute,
-    private redirectService: RedirectService,
+    private opcionalService: OpcionalService,
     ) {
     this.veiculoPesquisa = new VeiculoPesquisa;
-    this.httpParams = new URLSearchParams();
     this.formGroup = this.formBuilder.group({
       marca: [null, []],
       modelo: [null, []],
+      opcionais: [null, []]
     })
   }
 
   ngOnInit() {
     this.veiculoPesquisa = new VeiculoPesquisa;
     this.buscarMarcas();
+    this.buscarOpcionais();
   }
 
-  //Buscar Marcas/Modelos
+  //Buscar para preencher filtro
   buscarMarcas() {
     this.marcaService.findAll().subscribe((response) => {
       this.marcas = response;
@@ -66,6 +69,12 @@ export class FiltroVeiculosComponent implements OnInit {
     }
   }
 
+  buscarOpcionais() {
+    this.opcionalService.findAll().subscribe((response) => {
+      this.opcionais = response;
+    }, error => {})
+  }
+
   //Buscar veiculos
   buscarVeiculosPorMarca() {
     this.veiculoPesquisa.marca = this.formGroup.value.marca.nome;
@@ -75,6 +84,12 @@ export class FiltroVeiculosComponent implements OnInit {
 
   buscarVeiculosPorModelo() {
     this.veiculoPesquisa.modelo = this.formGroup.value.modelo.nome;
+    this.buscarVeiculosCustomPage();
+  }
+
+  filtrarPorOpcionais() {
+    this.veiculoPesquisa.opcionais = this.formGroup.value.opcionais;
+    console.log('aqui', this.veiculoPesquisa.opcionais);
     this.buscarVeiculosCustomPage();
   }
 

@@ -188,10 +188,8 @@
                         <div class="col">
                             <mat-form-field>
                                 <mat-label>Opcionais</mat-label>
-                                <mat-select multiple>
-                                    <mat-option [value]="topping">Teste</mat-option>
-                                    <mat-option [value]="topping">Teste</mat-option>
-                                    <mat-option [value]="topping">Teste</mat-option>
+                                <mat-select multiple formControlName="opcionais" (ngModelChange)="filtrarPorOpcionais()">
+                                    <mat-option *ngFor="let opcional of opcionais" [value]="opcional.nome">{{ opcional.nome }}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>

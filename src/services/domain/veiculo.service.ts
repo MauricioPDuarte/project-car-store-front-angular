@@ -48,26 +48,18 @@ export class VeiculoService {
     veiculoPesquisa: VeiculoPesquisa
   ): Observable<VeiculoDTO[]> {
 
-    console.log(veiculoPesquisa)
+    let opcionaisString = '';
+    if(veiculoPesquisa.opcionais != null){
+      for(let opcional of veiculoPesquisa.opcionais) {
+        console.log('-->', opcional)
+        opcionaisString += `${opcional},`;
+      }
+    }
 
     let params = new HttpParams()
       .set("marca", veiculoPesquisa.marca != null ? veiculoPesquisa.marca : '')
       .set("modelo", veiculoPesquisa.modelo != null ? veiculoPesquisa.modelo : '')
-   
-
-    /*  
-    const parameters = new URLSearchParams(window.location.search);
-    let params: HttpParams = new HttpParams();
-    let pesquisaVeiculo: VeiculoPesquisa;
-
-    this.route.queryParams.subscribe((params) => {
-      pesquisaVeiculo = params as VeiculoPesquisa;
-    })
-    
-    params.set("marca=", pesquisaVeiculo.marca != null ? pesquisaVeiculo.marca : '');
-    params.set("modelo=", pesquisaVeiculo.modelo != null ? pesquisaVeiculo.modelo : '');
-    console.log(pesquisaVeiculo)
-    */
+      .set("opcionais", veiculoPesquisa.opcionais != null ? opcionaisString : '');
 
     let url = `${API_CONFIG.baseUrl}/veiculos/buscar/avancada`;
     return this.http.get<VeiculoDTO[]>(url, { params: params });

@@ -1,6 +1,6 @@
 import { VeiculoPesquisa } from './../../models/pesquisa/veiculo-pesquisa';
 
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild, Input} from '@angular/core';
 import { VeiculoService } from 'src/services/domain/veiculo.service';
 import { VeiculoDTO } from 'src/models/veiculo.dto';
 import { API_CONFIG } from 'src/config/api.config';
@@ -38,7 +38,6 @@ export class VeiculosComponent implements OnInit {
         this.findAllVeiculosPage();
       })
     ).subscribe();
-
   }
 
   findAllVeiculosPage() {
@@ -61,6 +60,10 @@ export class VeiculosComponent implements OnInit {
   receberVeiculosFiltro(veiculos) {
     this.veiculos = veiculos;
     this.carregarImagensVeiculo();
+  }
+
+  receberPesquisaVeiculo(veiculoPesquisa) {
+    this.veiculoPesquisa = veiculoPesquisa;
   }
 
   receberTamanhoListaFiltro(tamanhoLista) {
