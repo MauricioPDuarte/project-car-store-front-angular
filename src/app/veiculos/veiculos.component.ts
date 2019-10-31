@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { VeiculoPesquisa } from './../../models/pesquisa/veiculo-pesquisa';
 
 import { Component, OnInit, ViewChild, Input} from '@angular/core';
@@ -16,7 +17,8 @@ import { tap } from 'rxjs/operators';
 export class VeiculosComponent implements OnInit {
 
   constructor(
-    private veiculoService: VeiculoService
+    private veiculoService: VeiculoService,
+    private route: ActivatedRoute
     ) { }
 
   veiculos: VeiculoDTO[];

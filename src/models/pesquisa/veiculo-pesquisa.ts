@@ -16,6 +16,6 @@ export class VeiculoPesquisa {
     tipo: string[];
     cambio: string[];
     combustivel: string[];
-    adicionais: string[];
-    opcionais: string[];
+    adicionais: string;
+    opcionais: string;
 }

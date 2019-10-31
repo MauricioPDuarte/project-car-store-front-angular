@@ -176,10 +176,8 @@
                         <div class="col">
                             <mat-form-field>
                                 <mat-label>Adicionais</mat-label>
-                                <mat-select multiple>
-                                    <mat-option [value]="topping">Teste</mat-option>
-                                    <mat-option [value]="topping">Teste</mat-option>
-                                    <mat-option [value]="topping">Teste</mat-option>
+                                <mat-select multiple formControlName="adicionais" (ngModelChange)="filtrarPorAdicionais()">
+                                    <mat-option *ngFor="let adicional of adicionais" [value]="adicional.nome">{{ adicional.nome }}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>

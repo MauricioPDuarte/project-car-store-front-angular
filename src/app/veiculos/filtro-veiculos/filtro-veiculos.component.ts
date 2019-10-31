@@ -1,3 +1,5 @@
+import { AdicionalService } from './../../../services/domain/adicional.service';
+import { AdicionalDTO } from './../../../models/adicional.dto';
 import { OpcionalService } from './../../../services/domain/opcional.service';
 import { OpcionalDTO } from './../../../models/opcional.dto';
 import { VeiculoPesquisa } from './../../../models/pesquisa/veiculo-pesquisa';
@@ -11,7 +13,6 @@ import { MarcaDTO } from 'src/models/marca.dto';
 import { ModeloDTO } from 'src/models/modelo.dto';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { HttpParams } from '@angular/common/http';
 
 
 @Component({
@@ -29,6 +30,7 @@ export class FiltroVeiculosComponent implements OnInit {
   @Input() paginator: MatPaginator;
   veiculoPesquisa: VeiculoPesquisa;
   opcionais: OpcionalDTO[];
+  adicionais: AdicionalDTO[];
   
   constructor(
     private marcaService: MarcaService,
@@ -37,12 +39,14 @@ export class FiltroVeiculosComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private opcionalService: OpcionalService,
+    private adicionalService: AdicionalService
     ) {
     this.veiculoPesquisa = new VeiculoPesquisa;
     this.formGroup = this.formBuilder.group({
       marca: [null, []],
       modelo: [null, []],
-      opcionais: [null, []]
+      opcionais: [null, []],
+      adicionais: [null, []]
     })
   }
 
@@ -50,6 +54,7 @@ export class FiltroVeiculosComponent implements OnInit {
     this.veiculoPesquisa = new VeiculoPesquisa;
     this.buscarMarcas();
     this.buscarOpcionais();
+    this.buscarAdicionais();
   }
 
   //Buscar para preencher filtro
@@ -75,6 +80,12 @@ export class FiltroVeiculosComponent implements OnInit {
     }, error => {})
   }
 
+  buscarAdicionais(){
+    this.adicionalService.findAll().subscribe((response) => {
+      this.adicionais = response;
+    }, error => {});
+  }
+
   //Buscar veiculos
   buscarVeiculosPorMarca() {
     this.veiculoPesquisa.marca = this.formGroup.value.marca.nome;
@@ -88,8 +99,34 @@ export class FiltroVeiculosComponent implements OnInit {
   }
 
   filtrarPorOpcionais() {
-    this.veiculoPesquisa.opcionais = this.formGroup.value.opcionais;
-    console.log('aqui', this.veiculoPesquisa.opcionais);
+    let opcionais =  this.formGroup.value.opcionais;
+
+    let opcionaisString = '';
+    for(let opcional of opcionais){
+      opcionaisString += `${opcional},`;
+    }
+
+    if(opcionaisString == ''){
+      opcionaisString = null;
+    }
+
+    this.veiculoPesquisa.opcionais = opcionaisString;
+
+    this.buscarVeiculosCustomPage();
+  }
+
+  filtrarPorAdicionais() {
+    let adicionais = this.formGroup.value.adicionais;
+    let adicionaisString = '';
+    for(let adicional of adicionais){
+      adicionaisString += `${adicional},`;
+    }
+
+    if(adicionaisString == ''){
+      adicionaisString = null;
+    }
+
+    this.veiculoPesquisa.adicionais = adicionaisString;
     this.buscarVeiculosCustomPage();
   }
 
@@ -106,7 +143,7 @@ export class FiltroVeiculosComponent implements OnInit {
       ['/estoque'], 
       {
         relativeTo: this.route,
-        queryParams: this.veiculoPesquisa ,
+        queryParams: this.veiculoPesquisa,
         queryParamsHandling: 'merge'
       });
   }

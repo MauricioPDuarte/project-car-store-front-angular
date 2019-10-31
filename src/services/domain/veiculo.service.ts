@@ -48,18 +48,30 @@ export class VeiculoService {
     veiculoPesquisa: VeiculoPesquisa
   ): Observable<VeiculoDTO[]> {
 
+    /*
     let opcionaisString = '';
     if(veiculoPesquisa.opcionais != null){
       for(let opcional of veiculoPesquisa.opcionais) {
-        console.log('-->', opcional)
         opcionaisString += `${opcional},`;
       }
     }
+    */
+
+    /*
+    let adicionaisString = '';
+    if(veiculoPesquisa.adicionais != null){
+      for(let adicional of veiculoPesquisa.adicionais) {
+        adicionaisString += `${adicional},`;
+        console.log(adicionaisString);
+      }
+    }
+    */
 
     let params = new HttpParams()
       .set("marca", veiculoPesquisa.marca != null ? veiculoPesquisa.marca : '')
       .set("modelo", veiculoPesquisa.modelo != null ? veiculoPesquisa.modelo : '')
-      .set("opcionais", veiculoPesquisa.opcionais != null ? opcionaisString : '');
+      .set("opcionais", veiculoPesquisa.opcionais != null ? veiculoPesquisa.opcionais : '')
+      .set("adc", veiculoPesquisa.adicionais != null ? veiculoPesquisa.adicionais : '');
 
     let url = `${API_CONFIG.baseUrl}/veiculos/buscar/avancada`;
     return this.http.get<VeiculoDTO[]>(url, { params: params });
