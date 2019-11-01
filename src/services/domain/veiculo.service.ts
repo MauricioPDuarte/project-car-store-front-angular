@@ -71,7 +71,11 @@ export class VeiculoService {
       .set("marca", veiculoPesquisa.marca != null ? veiculoPesquisa.marca : '')
       .set("modelo", veiculoPesquisa.modelo != null ? veiculoPesquisa.modelo : '')
       .set("opcionais", veiculoPesquisa.opcionais != null ? veiculoPesquisa.opcionais : '')
-      .set("adc", veiculoPesquisa.adicionais != null ? veiculoPesquisa.adicionais : '');
+      .set("adc", veiculoPesquisa.adicionais != null ? veiculoPesquisa.adicionais : '')
+      .set("depreco", veiculoPesquisa.dePreco != null ? veiculoPesquisa.dePreco : '')
+      .set("atepreco", veiculoPesquisa.atePreco != null ? veiculoPesquisa.atePreco : '')
+      .set("deano", veiculoPesquisa.deAno != null ? veiculoPesquisa.deAno : '')
+      .set("ateano", veiculoPesquisa.ateAno != null ? veiculoPesquisa.ateAno : '')
 
     let url = `${API_CONFIG.baseUrl}/veiculos/buscar/avancada`;
     return this.http.get<VeiculoDTO[]>(url, { params: params });

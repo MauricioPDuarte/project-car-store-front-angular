@@ -11,6 +11,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import { FiltroVeiculosComponent } from './veiculos/filtro-veiculos/filtro-veiculos.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { NgxCurrencyModule } from "ngx-currency";
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AppRoutingModule } from './app-routing.module';
     ScrollingModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    NgxCurrencyModule,
     
   ],
   providers: [],

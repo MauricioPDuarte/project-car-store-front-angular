@@ -1,3 +1,4 @@
+import { Observable, Subject } from 'rxjs';
 import { AdicionalService } from './../../../services/domain/adicional.service';
 import { AdicionalDTO } from './../../../models/adicional.dto';
 import { OpcionalService } from './../../../services/domain/opcional.service';
@@ -13,6 +14,8 @@ import { MarcaDTO } from 'src/models/marca.dto';
 import { ModeloDTO } from 'src/models/modelo.dto';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { DeprecatedI18NPipesModule } from '@angular/common';
+import { debounceTime, tap, distinctUntilChanged } from 'rxjs/operators';
 
 
 @Component({
@@ -31,7 +34,7 @@ export class FiltroVeiculosComponent implements OnInit {
   veiculoPesquisa: VeiculoPesquisa;
   opcionais: OpcionalDTO[];
   adicionais: AdicionalDTO[];
-  
+
   constructor(
     private marcaService: MarcaService,
     private formBuilder: FormBuilder,
@@ -46,7 +49,9 @@ export class FiltroVeiculosComponent implements OnInit {
       marca: [null, []],
       modelo: [null, []],
       opcionais: [null, []],
-      adicionais: [null, []]
+      adicionais: [null, []],
+      depreco: [null, []],
+      atepreco: [null, []],
     })
   }
 
@@ -128,6 +133,44 @@ export class FiltroVeiculosComponent implements OnInit {
 
     this.veiculoPesquisa.adicionais = adicionaisString;
     this.buscarVeiculosCustomPage();
+  }
+
+  filtroPorPrecoDe(depreco: string) {
+    if(depreco == '') {
+      this.veiculoPesquisa.dePreco = null;
+    }else{
+      this.veiculoPesquisa.dePreco = depreco; 
+    }
+    this.buscarVeiculosCustomPage();
+  }
+
+  filtroPorPrecoAte(atepreco) {
+    if(atepreco == ''){
+      this.veiculoPesquisa.atePreco = null;
+    }else{
+      this.veiculoPesquisa.atePreco = atepreco;
+    }
+    this.buscarVeiculosCustomPage();
+  }
+
+  filtroPorAnoDe(deano: string){
+    if(deano.length == 4){
+      this.veiculoPesquisa.deAno = deano;
+      this.buscarVeiculosCustomPage();
+    }else {
+      this.veiculoPesquisa.deAno = null;
+      this.formarURL();
+    }
+  }
+
+  filtroPorAnoAte(ateano){
+    if(ateano.length == 4){
+      this.veiculoPesquisa.ateAno = ateano;
+      this.buscarVeiculosCustomPage();
+    }else {
+      this.veiculoPesquisa.ateAno = null;
+      this.formarURL();
+    }
   }
 
   buscarVeiculosCustomPage() {

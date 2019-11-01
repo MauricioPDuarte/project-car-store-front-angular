@@ -6,12 +6,12 @@ import { MarcaDTO } from '../marca.dto';
 export class VeiculoPesquisa {
     marca: string;
     modelo: string;
-    dePreco: number;
-    atePreco: number;
-    deAno: number;
-    ateAno: number;
-    deKm: number;
-    ateKm: number;
+    dePreco: string;
+    atePreco: string;
+    deAno: string;
+    ateAno: string;
+    deKm: string;
+    ateKm: string;
     cor: string[];
     tipo: string[];
     cambio: string[];
