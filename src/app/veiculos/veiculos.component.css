@@ -15,7 +15,7 @@ img {
 
 .card-subtitle-veiculo {
     font-size:  30px;
-    color: red;
+    color: #151C26;
     font-weight: 900;
     font-family: 'Roboto', sans-serif;
 }
@@ -35,7 +35,7 @@ a {
 }
 
 .menu-page {
-    background-color: #df0000;
+    background-color: #D9043D;
     margin: 20px 0 20px 0;
     height: 60px;
 }

@@ -16,6 +16,7 @@ import { DialogErrorComponent } from './dialog-error/dialog-error.component';
 import { ErrorInterceptorProvider } from 'src/interceptors/error-interceptor';
 import { LoginComponent } from './login/login.component';
 import { MenuAnuncioComponent } from './menu-anuncio/menu-anuncio.component';
+import { PainelColaboradorComponent } from './painel-colaborador/painel-colaborador.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MenuAnuncioComponent } from './menu-anuncio/menu-anuncio.component';
     DialogErrorComponent,
     LoginComponent,
     MenuAnuncioComponent,
+    PainelColaboradorComponent,
   ],
   imports: [
     BrowserModule,

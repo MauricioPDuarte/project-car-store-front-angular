@@ -1,0 +1,13 @@
+.opcao {
+    height: 200px;
+}
+
+img{
+    width: 200px;
+    height: 200px;
+}
+
+mat-card{
+    margin: 0;
+    height: 200px;
+}

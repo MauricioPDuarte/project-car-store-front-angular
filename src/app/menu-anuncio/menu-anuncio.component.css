@@ -7,11 +7,11 @@
 }
 
 img {
-     width: 220px;
-     height: 92px;
+     width: 227px;
+     height: 46px;
 }
 
 mat-toolbar {
     background-color: white;
-    margin: 20px;
+    margin: 25px 0 10px 0px;
 }

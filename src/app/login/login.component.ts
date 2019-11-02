@@ -26,13 +26,20 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.auth.refreshToken()
+    .subscribe((response) => {
+     this.auth.successfulLogin(response.headers.get("Authorization"));
+      this.router.navigate(['/painel-colaborador']);
+    }, error => {
+      this.error = "Login ou senha incorretos"
+    })
   }
 
   login() {
     this.auth.authenticate(this.creds)
       .subscribe((response) => {
        this.auth.successfulLogin(response.headers.get("Authorization"));
-        this.router.navigate(['/estoque']);
+        this.router.navigate(['/painel-colaborador']);
       }, error => {
         this.error = "Login ou senha incorretos"
       })

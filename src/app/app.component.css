@@ -1,11 +1,11 @@
 img {
      width: 220px;
-     height: 92px;
+     height: 93px;
 }
 
 .menu-superior {
-    background-color: #df0000;
-    height: 40px;
+    background-color: #151C26;
+    height: 38px;
 }
 
 .menu-superior a {
@@ -13,6 +13,8 @@ img {
     color: white;
     font-weight: 200;
     font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    
 }
 
 .estoque-link {
