@@ -14,6 +14,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgxCurrencyModule } from "ngx-currency";
 import { DialogErrorComponent } from './dialog-error/dialog-error.component';
 import { ErrorInterceptorProvider } from 'src/interceptors/error-interceptor';
+import { LoginComponent } from './login/login.component';
+import { MenuAnuncioComponent } from './menu-anuncio/menu-anuncio.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { ErrorInterceptorProvider } from 'src/interceptors/error-interceptor';
     VeiculosComponent,
     FiltroVeiculosComponent,
     DialogErrorComponent,
+    LoginComponent,
+    MenuAnuncioComponent,
   ],
   imports: [
     BrowserModule,

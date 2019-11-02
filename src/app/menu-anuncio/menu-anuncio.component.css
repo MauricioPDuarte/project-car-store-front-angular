@@ -1,0 +1,17 @@
+.divisor {
+    width: auto;
+    height: 2px;
+    background-color: red;
+    opacity: 20%;
+    margin-bottom: 20px;
+}
+
+img {
+     width: 220px;
+     height: 92px;
+}
+
+mat-toolbar {
+    background-color: white;
+    margin: 20px;
+}
