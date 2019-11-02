@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.auth.authenticate(this.creds)
       .subscribe((response) => {
-        console.log(response.headers.get("Authorization"))
+       this.auth.successfulLogin(response.headers.get("Authorization"));
         this.router.navigate(['/estoque']);
       }, error => {
         this.error = "Login ou senha incorretos"
