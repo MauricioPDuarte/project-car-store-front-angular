@@ -4,7 +4,6 @@ import { AdicionalDTO } from './../../../models/adicional.dto';
 import { OpcionalService } from './../../../services/domain/opcional.service';
 import { OpcionalDTO } from './../../../models/opcional.dto';
 import { VeiculoPesquisa } from './../../../models/pesquisa/veiculo-pesquisa';
-import { RedirectService } from './../../../services/redirect.service';
 import { MatPaginator } from '@angular/material';
 import { VeiculoService } from './../../../services/domain/veiculo.service';
 import { VeiculoDTO } from 'src/models/veiculo.dto';
@@ -14,9 +13,7 @@ import { MarcaDTO } from 'src/models/marca.dto';
 import { ModeloDTO } from 'src/models/modelo.dto';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DeprecatedI18NPipesModule } from '@angular/common';
 import { debounceTime, tap, distinctUntilChanged, last } from 'rxjs/operators';
-import { filter } from 'minimatch';
 
 
 @Component({

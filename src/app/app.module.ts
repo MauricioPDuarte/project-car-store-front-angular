@@ -9,7 +9,7 @@ import { MaterialModule } from './material.module';
 import { VeiculosComponent } from './veiculos/veiculos.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { FiltroVeiculosComponent } from './veiculos/filtro-veiculos/filtro-veiculos.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxCurrencyModule } from "ngx-currency";
 import { DialogErrorComponent } from './dialog-error/dialog-error.component';
@@ -35,6 +35,7 @@ import { MenuAnuncioComponent } from './menu-anuncio/menu-anuncio.component';
     ReactiveFormsModule,
     AppRoutingModule,
     NgxCurrencyModule,
+    FormsModule,
     
   ],
   providers: [

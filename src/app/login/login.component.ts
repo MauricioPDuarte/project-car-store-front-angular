@@ -1,5 +1,8 @@
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from './../../services/auth.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { CredenciaisDTO } from 'src/models/credenciais.dto';
 
 @Component({
   selector: 'app-login',
@@ -8,19 +11,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  formGroup: FormGroup;
+  creds: CredenciaisDTO = {
+    email: "",
+    senha: ""
+  }
+
   error: string;
 
   constructor(
-    private formBuilder: FormBuilder,
-    ) {
-      this.formGroup = this.formBuilder.group({
-        username: ['', []],
-        password: ['', []]
-      });
+    private auth: AuthService,
+    private router: Router,
+  ) {
+
   }
 
   ngOnInit() {
+  }
+
+  login() {
+    this.auth.authenticate(this.creds)
+      .subscribe((response) => {
+        console.log(response.headers.get("Authorization"))
+        this.router.navigate(['/estoque']);
+      }, error => {
+        this.error = "Login ou senha incorretos"
+      })
   }
 
 }
