@@ -28,6 +28,7 @@ export class FiltroVeiculosComponent implements OnInit {
 
   @Output() veiculos = new EventEmitter<VeiculoDTO[]>();
   @Output() tamanhoLista = new EventEmitter<number>();
+  @Output() vPesquisa = new EventEmitter<VeiculoPesquisa>();
   marcas: MarcaDTO[];
   modelos: ModeloDTO[];
   formGroup: FormGroup;
@@ -37,6 +38,8 @@ export class FiltroVeiculosComponent implements OnInit {
   adicionais: AdicionalDTO[];
   deAno= new Subject<string>();
   ateAno = new Subject<string>();
+  deKm= new Subject<string>();
+  ateKm = new Subject<string>();
 
   constructor(
     private marcaService: MarcaService,
@@ -178,6 +181,10 @@ export class FiltroVeiculosComponent implements OnInit {
       }
     })
   }
+  
+  filtroAteAno(ateano: string){
+    this.ateAno.next(ateano);
+  }
 
   procuraAteAno(){
     this.ateAno.pipe(
@@ -196,15 +203,30 @@ export class FiltroVeiculosComponent implements OnInit {
     })
   }
 
-  filtroAteAno(ateano: string){
-    this.ateAno.next(ateano);
+  filtroDeKm(dekm: string){
+    if(dekm == '') {
+      this.veiculoPesquisa.deKm = null;
+    }else{
+      this.veiculoPesquisa.deKm = dekm; 
+    }
+    this.buscarVeiculosCustomPage();
   }
 
+  filtroAteKm(ateKm: string){
+    if(ateKm == '') {
+      this.veiculoPesquisa.ateKm = null;
+    }else{
+      this.veiculoPesquisa.ateKm = ateKm; 
+    }
+    this.buscarVeiculosCustomPage();
+  }
+  
   buscarVeiculosCustomPage() {
     this.formarURL();
     this.veiculoService.findVeiculosCustomPage(this.paginator.pageIndex, this.paginator.pageSize, 'ASC', this.veiculoPesquisa).subscribe((response) => {
       this.veiculos.emit(response['content']);
       this.tamanhoLista.emit(response['totalElements']);
+      this.vPesquisa.emit(this.veiculoPesquisa);
     }, error => { });
   }
 

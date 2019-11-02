@@ -43,7 +43,8 @@ export class VeiculosComponent implements OnInit {
   }
 
   findAllVeiculosPage() {
-     this.veiculoService.findVeiculosCustomPage(this.paginator.pageIndex, this.paginator.pageSize, 'ASC', this.veiculoPesquisa).subscribe((response) => {
+     this.veiculoService.findVeiculosCustomPage(this.paginator.pageIndex, this.paginator.pageSize, 'ASC', this.veiculoPesquisa)
+     .subscribe((response) => {
        this.veiculos = response['content'];
        console.log(response);
        this.tamanhoLista = response['totalElements'];
@@ -70,5 +71,9 @@ export class VeiculosComponent implements OnInit {
 
   receberTamanhoListaFiltro(tamanhoLista) {
     this.tamanhoLista = tamanhoLista;
+  }
+
+  receberVeiculoPesquisa(veiculoPesquisa) {
+    this.veiculoPesquisa = veiculoPesquisa;
   }
 }

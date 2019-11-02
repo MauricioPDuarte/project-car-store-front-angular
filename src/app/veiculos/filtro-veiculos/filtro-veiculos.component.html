@@ -44,14 +44,16 @@
                     <div class="row">
                         <div class="col-6">
                             <mat-form-field class="example-full-width">
-                                <input matInput #dePreco name="depreco" placeholder="De" (input)="filtroPorPrecoDe(dePreco.value)">
+                                <input matInput #dePreco name="depreco" placeholder="De"
+                                    (input)="filtroPorPrecoDe(dePreco.value)">
                             </mat-form-field>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <mat-form-field class="example-full-width">
-                                <input matInput #atePreco name="atepreco" placeholder="Até" (input)="filtroPorPrecoAte(atePreco.value)">
+                                <input matInput #atePreco name="atepreco" placeholder="Até"
+                                    (input)="filtroPorPrecoAte(atePreco.value)">
                             </mat-form-field>
                         </div>
                     </div>
@@ -70,14 +72,16 @@
                     <div class="row">
                         <div class="col-6">
                             <mat-form-field class="example-full-width">
-                                <input matInput #deAno name="deano" maxlength="4" placeholder="De" (input)="filtroDeAno(deAno.value)">
+                                <input matInput #deAno name="deano" maxlength="4" placeholder="De"
+                                    (input)="filtroDeAno(deAno.value)">
                             </mat-form-field>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <mat-form-field class="example-full-width">
-                                <input matInput #ateAno name="ateano" maxlength="4" placeholder="Até" (input)="filtroAteAno(ateAno.value)">
+                                <input matInput #ateAno name="ateano" maxlength="4" placeholder="Até"
+                                    (input)="filtroAteAno(ateAno.value)">
                             </mat-form-field>
                         </div>
                     </div>
@@ -95,21 +99,15 @@
                 <mat-card-content>
                     <div class="row">
                         <div class="col-6">
-                            <mat-form-field>
-                                <mat-label>De</mat-label>
-                                <mat-select>
-                                    <mat-option>teste</mat-option>
-                                </mat-select>
+                            <mat-form-field class="example-full-width">
+                                <input matInput #deKm name="dekm" placeholder="De" (input)="filtroDeKm(deKm.value)">
                             </mat-form-field>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <mat-form-field>
-                                <mat-label>Até</mat-label>
-                                <mat-select>
-                                    <mat-option>teste</mat-option>
-                                </mat-select>
+                            <mat-form-field class="example-full-width">
+                                <input matInput #ateKm name="atekm" placeholder="Até" (input)="filtroAteKm(ateKm.value)">
                             </mat-form-field>
                         </div>
                     </div>

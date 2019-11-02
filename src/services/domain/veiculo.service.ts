@@ -41,7 +41,7 @@ export class VeiculoService {
     return this.http.get<VeiculoDTO[]>(`${API_CONFIG.baseUrl}/veiculos/buscar/page/${marca}?page=${page}&linesPerPage=${pageSize}&direction=${sortDirection}`);
   }
 
-  findVeiculosCustomPage(page: number = 0, linesPerPage: number = 24, orderBy: string = 'ASC', veiculoPesquisa: VeiculoPesquisa): Observable<VeiculoDTO[]> {
+  findVeiculosCustomPage(page, linesPerPage, orderBy: string = 'ASC', veiculoPesquisa: VeiculoPesquisa): Observable<VeiculoDTO[]> {
 
     let params = new HttpParams()
       .set("marca", veiculoPesquisa.marca != null ? veiculoPesquisa.marca : '')
@@ -52,6 +52,11 @@ export class VeiculoService {
       .set("atepreco", veiculoPesquisa.atePreco != null ? veiculoPesquisa.atePreco : '')
       .set("deano", veiculoPesquisa.deAno != null ? veiculoPesquisa.deAno : '')
       .set("ateano", veiculoPesquisa.ateAno != null ? veiculoPesquisa.ateAno : '')
+      .set("dekm", veiculoPesquisa.deKm != null ? veiculoPesquisa.deKm : '')
+      .set("atekm", veiculoPesquisa.ateKm != null ? veiculoPesquisa.ateKm : '')
+      .set("linesPerPage", linesPerPage != null ? linesPerPage : 24)
+      .set("page", page != null ? page : 0)
+      .set("direction", orderBy != null ? orderBy : 'ASC')
 
     let url = `${API_CONFIG.baseUrl}/veiculos/buscar/avancada`;
     return this.http.get<VeiculoDTO[]>(url, { params: params });
