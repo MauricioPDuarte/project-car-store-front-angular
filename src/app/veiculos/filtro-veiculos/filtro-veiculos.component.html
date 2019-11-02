@@ -70,14 +70,14 @@
                     <div class="row">
                         <div class="col-6">
                             <mat-form-field class="example-full-width">
-                                <input matInput #deAno name="deano" placeholder="De" (input)="filtroPorAnoDe(deAno.value)">
+                                <input matInput #deAno name="deano" maxlength="4" placeholder="De" (input)="filtroDeAno(deAno.value)">
                             </mat-form-field>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <mat-form-field class="example-full-width">
-                                <input matInput #ateAno name="ateano" placeholder="Até" (input)="filtroPorAnoAte(ateAno.value)">
+                                <input matInput #ateAno name="ateano" maxlength="4" placeholder="Até" (input)="filtroAteAno(ateAno.value)">
                             </mat-form-field>
                         </div>
                     </div>

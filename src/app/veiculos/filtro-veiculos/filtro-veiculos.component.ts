@@ -15,7 +15,8 @@ import { ModeloDTO } from 'src/models/modelo.dto';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DeprecatedI18NPipesModule } from '@angular/common';
-import { debounceTime, tap, distinctUntilChanged } from 'rxjs/operators';
+import { debounceTime, tap, distinctUntilChanged, last } from 'rxjs/operators';
+import { filter } from 'minimatch';
 
 
 @Component({
@@ -34,6 +35,8 @@ export class FiltroVeiculosComponent implements OnInit {
   veiculoPesquisa: VeiculoPesquisa;
   opcionais: OpcionalDTO[];
   adicionais: AdicionalDTO[];
+  deAno= new Subject<string>();
+  ateAno = new Subject<string>();
 
   constructor(
     private marcaService: MarcaService,
@@ -60,6 +63,8 @@ export class FiltroVeiculosComponent implements OnInit {
     this.buscarMarcas();
     this.buscarOpcionais();
     this.buscarAdicionais();
+    this.procuraDeAno();
+    this.procuraAteAno();
   }
 
   //Buscar para preencher filtro
@@ -153,24 +158,46 @@ export class FiltroVeiculosComponent implements OnInit {
     this.buscarVeiculosCustomPage();
   }
 
-  filtroPorAnoDe(deano: string){
-    if(deano.length == 4){
-      this.veiculoPesquisa.deAno = deano;
-      this.buscarVeiculosCustomPage();
-    }else {
-      this.veiculoPesquisa.deAno = null;
-      this.formarURL();
-    }
+  filtroDeAno(deano: string){
+   this.deAno.next(deano);
   }
 
-  filtroPorAnoAte(ateano){
-    if(ateano.length == 4){
-      this.veiculoPesquisa.ateAno = ateano;
-      this.buscarVeiculosCustomPage();
-    }else {
-      this.veiculoPesquisa.ateAno = null;
-      this.formarURL();
-    }
+  procuraDeAno(){
+    this.deAno.pipe(
+      debounceTime(500),
+      distinctUntilChanged()
+    
+    ).subscribe((res) => {
+      if(res.length == 4){
+        this.veiculoPesquisa.deAno = res;
+        this.buscarVeiculosCustomPage();
+      }
+      if(res.length < 4 && this.veiculoPesquisa.deAno != null){
+        this.veiculoPesquisa.deAno = null;
+        this.buscarVeiculosCustomPage();
+      }
+    })
+  }
+
+  procuraAteAno(){
+    this.ateAno.pipe(
+      debounceTime(500),
+      distinctUntilChanged()
+    
+    ).subscribe((res) => {
+      if(res.length == 4){
+        this.veiculoPesquisa.ateAno = res;
+        this.buscarVeiculosCustomPage();
+      }
+      if(res.length < 4 && this.veiculoPesquisa.ateAno != null){
+        this.veiculoPesquisa.ateAno = null;
+        this.buscarVeiculosCustomPage();
+      }
+    })
+  }
+
+  filtroAteAno(ateano: string){
+    this.ateAno.next(ateano);
   }
 
   buscarVeiculosCustomPage() {

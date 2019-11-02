@@ -41,31 +41,7 @@ export class VeiculoService {
     return this.http.get<VeiculoDTO[]>(`${API_CONFIG.baseUrl}/veiculos/buscar/page/${marca}?page=${page}&linesPerPage=${pageSize}&direction=${sortDirection}`);
   }
 
-  findVeiculosCustomPage(
-    page: number = 0,
-    linesPerPage: number = 24,
-    orderBy: string = 'ASC',
-    veiculoPesquisa: VeiculoPesquisa
-  ): Observable<VeiculoDTO[]> {
-
-    /*
-    let opcionaisString = '';
-    if(veiculoPesquisa.opcionais != null){
-      for(let opcional of veiculoPesquisa.opcionais) {
-        opcionaisString += `${opcional},`;
-      }
-    }
-    */
-
-    /*
-    let adicionaisString = '';
-    if(veiculoPesquisa.adicionais != null){
-      for(let adicional of veiculoPesquisa.adicionais) {
-        adicionaisString += `${adicional},`;
-        console.log(adicionaisString);
-      }
-    }
-    */
+  findVeiculosCustomPage(page: number = 0, linesPerPage: number = 24, orderBy: string = 'ASC', veiculoPesquisa: VeiculoPesquisa): Observable<VeiculoDTO[]> {
 
     let params = new HttpParams()
       .set("marca", veiculoPesquisa.marca != null ? veiculoPesquisa.marca : '')
