@@ -12,12 +12,15 @@ import { FiltroVeiculosComponent } from './veiculos/filtro-veiculos/filtro-veicu
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxCurrencyModule } from "ngx-currency";
+import { DialogErrorComponent } from './dialog-error/dialog-error.component';
+import { ErrorInterceptorProvider } from 'src/interceptors/error-interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     VeiculosComponent,
     FiltroVeiculosComponent,
+    DialogErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,10 @@ import { NgxCurrencyModule } from "ngx-currency";
     NgxCurrencyModule,
     
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    ErrorInterceptorProvider
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [DialogErrorComponent]
 })
 export class AppModule { }

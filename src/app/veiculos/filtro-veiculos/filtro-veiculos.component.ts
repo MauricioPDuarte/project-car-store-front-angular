@@ -1,4 +1,4 @@
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, throwError } from 'rxjs';
 import { AdicionalService } from './../../../services/domain/adicional.service';
 import { AdicionalDTO } from './../../../models/adicional.dto';
 import { OpcionalService } from './../../../services/domain/opcional.service';
