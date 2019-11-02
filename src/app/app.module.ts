@@ -1,3 +1,4 @@
+import { AuthInterceptorProvider } from './../interceptors/auth-interceptor';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -41,6 +42,7 @@ import { PainelColaboradorComponent } from './painel-colaborador/painel-colabora
     
   ],
   providers: [
+    AuthInterceptorProvider,
     ErrorInterceptorProvider
   ],
   bootstrap: [AppComponent],
