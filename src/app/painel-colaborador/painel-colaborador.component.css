@@ -2,12 +2,48 @@
     height: 200px;
 }
 
-img{
-    width: 200px;
-    height: 200px;
+.img-logo{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 210px;
+    height: 46px;
 }
+
 
 mat-card{
     margin: 0;
-    height: 200px;
+    height: 192px;
+}
+
+mat-card-content h1 {
+    display: flex;
+    justify-content: center;
+    color: #D9043D;
+    font-size: 60px;
+    margin-top: 20px;;
+}
+
+mat-card-content h3 {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;;
+}
+
+mat-card-header mat-card-title {
+    font-size: 17px;
+    margin-left: 15px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.scrollable-content {
+    overflow: auto;
+    box-sizing: border-box;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
 }

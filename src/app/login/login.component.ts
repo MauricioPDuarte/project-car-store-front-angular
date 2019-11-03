@@ -1,3 +1,4 @@
+import { StorageService } from './../../services/storage.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -21,18 +22,25 @@ export class LoginComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private router: Router,
+    private storage: StorageService
   ) {
 
   }
 
   ngOnInit() {
-    this.auth.refreshToken()
-    .subscribe((response) => {
-     this.auth.successfulLogin(response.headers.get("Authorization"));
-      this.router.navigate(['/painel-colaborador']);
-    }, error => {
-      this.auth.usuarioLogado.next(false);
-    })
+    this.refreshToken();
+  }
+
+  refreshToken() {
+    if(this.storage.getLocalUser() != null){
+      this.auth.refreshToken()
+      .subscribe((response) => {
+       this.auth.successfulLogin(response.headers.get("Authorization"));
+        this.router.navigate(['/painel-colaborador']);
+      }, error => {
+        this.auth.usuarioLogado.next(false);
+      })
+    }
   }
 
   login() {
