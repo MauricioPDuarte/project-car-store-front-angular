@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
      this.auth.successfulLogin(response.headers.get("Authorization"));
       this.router.navigate(['/painel-colaborador']);
     }, error => {
-      this.error = "Login ou senha incorretos"
     })
   }
 
@@ -41,7 +40,9 @@ export class LoginComponent implements OnInit {
        this.auth.successfulLogin(response.headers.get("Authorization"));
         this.router.navigate(['/painel-colaborador']);
       }, error => {
-        this.error = "Login ou senha incorretos"
+        if(error.status = 401){
+          this.error = "Login ou senha incorretos"
+        }
       })
   }
 

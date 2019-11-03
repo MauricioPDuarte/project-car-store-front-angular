@@ -1,3 +1,4 @@
+import { StorageService } from './../services/storage.service';
 import { DialogErrorComponent } from './../app/dialog-error/dialog-error.component';
 import { Injectable } from '@angular/core';
 import {
@@ -19,6 +20,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     constructor(
         public dialog: MatDialog,
+        private storage: StorageService
     ){}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -66,17 +68,7 @@ export class ErrorInterceptor implements HttpInterceptor {
       }
 
       handle403() {
-        const dialogConfig = new MatDialogConfig();
-    
-        dialogConfig.data = {
-            status: 403,
-            title: 'Acesso negado',
-            message: 'Acesso negado'
-        };
-
-        //dialogConfig.width = '320px';
-
-        this.dialog.open(DialogErrorComponent, dialogConfig);
+        this.storage.setLocalUser(null);
       }
 
 
