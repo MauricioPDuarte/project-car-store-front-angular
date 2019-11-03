@@ -16,6 +16,7 @@ export class PainelColaboradorComponent implements OnInit {
   colaboradores: ColaboradorDTO[];
   usuarioLogado: ColaboradorDTO;
   totalVeiculosCadastrados: number;
+  
 
   constructor(
     private colaboradorService: ColaboradorService,

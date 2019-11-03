@@ -1,5 +1,14 @@
 <div class="container">
-    <img class="img-logo" src="assets/images/logoNovaSem.png">
+    <div class="row">
+        <div class="col-9">
+            <img class="img-logo" src="assets/images/logoNovaSem.png">
+        </div>
+        <div class="col-3 bem-vindo">
+            <div *ngIf="usuarioLogado != null">
+                Olá, <span class="bem-vindo-texto">{{ usuarioLogado.nome }}</span>
+            </div>
+        </div>
+    </div>
     <!--
     <div *ngIf="usuarioLogado != null">
         <div *ngFor="let role of usuarioLogado.perfis">
@@ -9,7 +18,7 @@
     -->
     <div class="row">
         <div class="col-4">
-            <mat-list >
+            <mat-list>
                 <div class="scrollable-content">
                     <h3 mat-header>Colaboradores</h3>
                     <mat-list-item *ngFor="let colaborador of colaboradores">
@@ -21,7 +30,7 @@
                 </div>
             </mat-list>
         </div>
-        <div class="col-3">
+        <div class="col-3 offset-2">
             <mat-card>
                 <mat-card-header>
                     <mat-card-title>Veiculos cadastrados</mat-card-title>
@@ -35,7 +44,7 @@
                     <a href="#">
                         <mat-card style="height: 94px; width: 255px;" class="mt-2">
                             <mat-card-content>
-                                <h3>CADASTRAR NOVO</h3>
+                                <h3 class="titulo-botao">CADASTRAR NOVO</h3>
                             </mat-card-content>
                         </mat-card>
                     </a>
@@ -43,5 +52,27 @@
             </div>
         </div>
 
+        <div *ngIf="usuarioLogado != null && usuarioLogado.perfis.indexOf('ADMIN') !== -1">
+            <div class="col-3">
+                <a>
+                    <mat-card class="mat-card-marcas">
+                        <mat-card-content>
+                            <h3>CADASTRAR MARCA</h3>
+                        </mat-card-content>
+                    </mat-card>
+                </a>
+                <div class="row">
+                    <div class="col-3 mt-2">
+                        <a>
+                            <mat-card class="mat-card-modelos">
+                                <mat-card-content>
+                                    <h3>CADASTRAR MODELO</h3>
+                                </mat-card-content>
+                            </mat-card>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
