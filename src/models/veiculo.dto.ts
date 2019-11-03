@@ -1,5 +1,5 @@
+import { CorDTO } from './cor.dto';
 import { Tipo } from './enum/tipo';
-import { Cor } from './enum/cor';
 import { Modelo } from './modelo';
 import { Picture } from './picture';
 
@@ -8,7 +8,7 @@ export interface VeiculoDTO {
     preco: number;
     ano: number;
     tipo: Tipo;
-    cor: Cor;
+    cor: CorDTO;
     modelo: Modelo;
     picture: Picture;
     kmRodado: number;
