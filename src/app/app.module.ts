@@ -18,6 +18,7 @@ import { ErrorInterceptorProvider } from 'src/interceptors/error-interceptor';
 import { LoginComponent } from './login/login.component';
 import { MenuAnuncioComponent } from './menu-anuncio/menu-anuncio.component';
 import { PainelColaboradorComponent } from './painel-colaborador/painel-colaborador.component';
+import { CadastroVeiculoComponent } from './cadastro-veiculo/cadastro-veiculo.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { PainelColaboradorComponent } from './painel-colaborador/painel-colabora
     LoginComponent,
     MenuAnuncioComponent,
     PainelColaboradorComponent,
+    CadastroVeiculoComponent,
   ],
   imports: [
     BrowserModule,
