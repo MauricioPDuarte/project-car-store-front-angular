@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
      this.auth.successfulLogin(response.headers.get("Authorization"));
       this.router.navigate(['/painel-colaborador']);
     }, error => {
+      this.auth.usuarioLogado.next(false);
     })
   }
 

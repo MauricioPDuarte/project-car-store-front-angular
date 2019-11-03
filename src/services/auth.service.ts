@@ -4,14 +4,16 @@ import { API_CONFIG } from 'src/config/api.config';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CredenciaisDTO } from 'src/models/credenciais.dto';
-import { JwtHelperService  } from '@auth0/angular-jwt';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
 
-    jwtHelperService: JwtHelperService  = new JwtHelperService ();
+    jwtHelperService: JwtHelperService = new JwtHelperService();
+    usuarioLogado: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
     constructor(
         private http: HttpClient,
@@ -33,15 +35,17 @@ export class AuthService {
 
     successfulLogin(authorizationValue: string) {
         let tok = authorizationValue.substring(7);
-        let user : LocalUser = {
+        let user: LocalUser = {
             token: tok,
-            email:  this.jwtHelperService.decodeToken(tok).sub
+            email: this.jwtHelperService.decodeToken(tok).sub
         };
         this.storage.setLocalUser(user);
+        this.usuarioLogado.next(true);
     }
 
     logout() {
         this.storage.setLocalUser(null);
+        this.usuarioLogado.next(false);
     }
 
     refreshToken() {
@@ -53,5 +57,10 @@ export class AuthService {
                 responseType: 'text'
             }
         )
+        
+    }
+
+    isUserLoggedIn() {
+        return this.usuarioLogado.asObservable();
     }
 }
