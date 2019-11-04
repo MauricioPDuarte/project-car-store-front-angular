@@ -127,10 +127,8 @@
                         <div class="col">
                             <mat-form-field>
                                 <mat-label>Cor</mat-label>
-                                <mat-select multiple>
-                                    <mat-option [value]="topping">Teste</mat-option>
-                                    <mat-option [value]="topping">Teste</mat-option>
-                                    <mat-option [value]="topping">Teste</mat-option>
+                                <mat-select multiple formControlName="cores" (ngModelChange)="filtrarPorCores()">
+                                    <mat-option *ngFor="let cor of cores" [value]="cor">{{ cor.nome }}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>

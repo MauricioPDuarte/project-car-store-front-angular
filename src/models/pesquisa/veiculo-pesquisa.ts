@@ -12,7 +12,7 @@ export class VeiculoPesquisa {
     ateAno: string;
     deKm: string;
     ateKm: string;
-    cor: string[];
+    cor: string;
     tipo: string[];
     cambio: string[];
     combustivel: string[];

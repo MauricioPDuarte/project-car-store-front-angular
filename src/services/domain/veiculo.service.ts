@@ -54,9 +54,11 @@ export class VeiculoService {
       .set("ateano", veiculoPesquisa.ateAno != null ? veiculoPesquisa.ateAno : '')
       .set("dekm", veiculoPesquisa.deKm != null ? veiculoPesquisa.deKm : '')
       .set("atekm", veiculoPesquisa.ateKm != null ? veiculoPesquisa.ateKm : '')
+      .set("cores", veiculoPesquisa.cor != null ? veiculoPesquisa.cor: '')
       .set("linesPerPage", linesPerPage != null ? linesPerPage : 24)
       .set("page", page != null ? page : 0)
       .set("direction", orderBy != null ? orderBy : 'ASC')
+
 
     let url = `${API_CONFIG.baseUrl}/veiculos/buscar/avancada`;
     return this.http.get<VeiculoDTO[]>(url, { params: params });

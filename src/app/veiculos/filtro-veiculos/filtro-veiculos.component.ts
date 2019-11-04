@@ -1,3 +1,5 @@
+import { CorDTO } from './../../../models/cor.dto';
+import { CorService } from './../../../services/domain/cor.service';
 import { Observable, Subject, throwError } from 'rxjs';
 import { AdicionalService } from './../../../services/domain/adicional.service';
 import { AdicionalDTO } from './../../../models/adicional.dto';
@@ -37,6 +39,7 @@ export class FiltroVeiculosComponent implements OnInit {
   ateAno = new Subject<string>();
   deKm= new Subject<string>();
   ateKm = new Subject<string>();
+  cores: CorDTO[];
 
   constructor(
     private marcaService: MarcaService,
@@ -45,7 +48,8 @@ export class FiltroVeiculosComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private opcionalService: OpcionalService,
-    private adicionalService: AdicionalService
+    private adicionalService: AdicionalService,
+    private corService: CorService,
     ) {
     this.veiculoPesquisa = new VeiculoPesquisa;
     this.formGroup = this.formBuilder.group({
@@ -55,6 +59,7 @@ export class FiltroVeiculosComponent implements OnInit {
       adicionais: [null, []],
       depreco: [null, []],
       atepreco: [null, []],
+      cores: [null, []],
     })
   }
 
@@ -65,6 +70,7 @@ export class FiltroVeiculosComponent implements OnInit {
     this.buscarAdicionais();
     this.procuraDeAno();
     this.procuraAteAno();
+    this.buscarCores();
   }
 
   //Buscar para preencher filtro
@@ -94,6 +100,13 @@ export class FiltroVeiculosComponent implements OnInit {
     this.adicionalService.findAll().subscribe((response) => {
       this.adicionais = response;
     }, error => {});
+  }
+
+  buscarCores(){
+    this.corService.findAll()
+      .subscribe((response) => {
+        this.cores = response;
+      }, error => {});
   }
 
   //Buscar veiculos
@@ -137,6 +150,21 @@ export class FiltroVeiculosComponent implements OnInit {
     }
 
     this.veiculoPesquisa.adicionais = adicionaisString;
+    this.buscarVeiculosCustomPage();
+  }
+
+  filtrarPorCores() {
+    let cores = this.formGroup.value.cores;
+    let coresString = '';
+    for(let cor of cores){
+      coresString += `${cor.nome},`;
+    }
+
+    if(coresString == ''){
+      coresString = null;
+    }
+
+    this.veiculoPesquisa.cor = coresString;
     this.buscarVeiculosCustomPage();
   }
 
