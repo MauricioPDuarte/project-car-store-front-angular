@@ -147,16 +147,8 @@
                         <div class="col">
                             <mat-form-field>
                                 <mat-label>Combustivel</mat-label>
-                                <mat-select multiple>
-                                    <mat-option [value]="gasolina">Gasolina</mat-option>
-                                    <mat-option [value]="diesel">Diesel</mat-option>
-                                    <mat-option [value]="alcool">Alcool</mat-option>
-                                    <mat-option [value]="gasolinaealcool">Gasolina/Alcool</mat-option>
-                                    <mat-option [value]="eletrico">Elétrico</mat-option>
-                                    <mat-option [value]="gasolinaeeletrico">Gasolina/Elétrico</mat-option>
-                                    <mat-option [value]="gas">Gás</mat-option>
-                                    <mat-option [value]="gasolinaegas">Gasolina/Gás</mat-option>
-                                    <mat-option [value]="gasolinaalcoolegas">Gasolina/Alcool/Gás</mat-option>
+                                <mat-select multiple formControlName="combustiveis" (ngModelChange)="filtrarPorCombustiveis()">
+                                    <mat-option *ngFor="let comb of combustiveis" [value]="comb">{{ comb.nome }}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>

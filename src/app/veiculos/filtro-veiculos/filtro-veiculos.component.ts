@@ -1,3 +1,5 @@
+import { CombustivelDTO } from 'src/models/combustivel.dto';
+import { CombustivelService } from './../../../services/domain/combustivel.service';
 import { CambioDTO } from './../../../models/cambio.dto';
 import { CambioService } from './../../../services/domain/cambio.service';
 import { CorDTO } from './../../../models/cor.dto';
@@ -43,6 +45,7 @@ export class FiltroVeiculosComponent implements OnInit {
   ateKm = new Subject<string>();
   cores: CorDTO[];
   cambios: CambioDTO[];
+  combustiveis: CombustivelDTO[];
 
   constructor(
     private marcaService: MarcaService,
@@ -54,6 +57,7 @@ export class FiltroVeiculosComponent implements OnInit {
     private adicionalService: AdicionalService,
     private corService: CorService,
     private cambioService: CambioService,
+    private combustivelService: CombustivelService,
     ) {
     this.veiculoPesquisa = new VeiculoPesquisa;
     this.formGroup = this.formBuilder.group({
@@ -65,6 +69,7 @@ export class FiltroVeiculosComponent implements OnInit {
       atepreco: [null, []],
       cores: [null, []],
       cambios: [null, []],
+      combustiveis: [null, []],
     })
   }
 
@@ -77,6 +82,7 @@ export class FiltroVeiculosComponent implements OnInit {
     this.procuraAteAno();
     this.buscarCores();
     this.buscarCambios();
+    this.buscarCombustiveis();
   }
 
   //Buscar para preencher filtro
@@ -119,6 +125,13 @@ export class FiltroVeiculosComponent implements OnInit {
     this.cambioService.findAll()
       .subscribe((response) => {
         this.cambios = response;
+      }, error => {});
+  }
+
+  buscarCombustiveis() {
+    this.combustivelService.findAll()
+      .subscribe((response) => {
+        this.combustiveis = response;
       }, error => {});
   }
 
@@ -177,7 +190,7 @@ export class FiltroVeiculosComponent implements OnInit {
       coresString = null;
     }
 
-    this.veiculoPesquisa.cor = coresString;
+    this.veiculoPesquisa.cores = coresString;
     this.buscarVeiculosCustomPage();
   }
 
@@ -192,7 +205,22 @@ export class FiltroVeiculosComponent implements OnInit {
       cambiosString = null;
     }
 
-    this.veiculoPesquisa.cambio = cambiosString;
+    this.veiculoPesquisa.cambios = cambiosString;
+    this.buscarVeiculosCustomPage();
+  }
+
+  filtrarPorCombustiveis() {
+    let combustiveis = this.formGroup.value.combustiveis;
+    let combustiveisString = '';
+    for(let combustivel of combustiveis){
+      combustiveisString += `${combustivel.nome},`;
+    }
+
+    if(combustiveisString == ''){
+      combustiveisString = null;
+    }
+
+    this.veiculoPesquisa.combustiveis = combustiveisString;
     this.buscarVeiculosCustomPage();
   }
 

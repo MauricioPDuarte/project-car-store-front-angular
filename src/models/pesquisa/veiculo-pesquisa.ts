@@ -12,10 +12,10 @@ export class VeiculoPesquisa {
     ateAno: string;
     deKm: string;
     ateKm: string;
-    cor: string;
-    tipo: string[];
-    cambio: string;
-    combustivel: string[];
+    cores: string;
+    tipos: string;
+    cambios: string;
+    combustiveis: string;
     adicionais: string;
     opcionais: string;
 }
