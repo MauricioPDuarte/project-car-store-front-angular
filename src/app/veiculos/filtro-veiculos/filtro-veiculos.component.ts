@@ -1,3 +1,5 @@
+import { CambioDTO } from './../../../models/cambio.dto';
+import { CambioService } from './../../../services/domain/cambio.service';
 import { CorDTO } from './../../../models/cor.dto';
 import { CorService } from './../../../services/domain/cor.service';
 import { Observable, Subject, throwError } from 'rxjs';
@@ -40,6 +42,7 @@ export class FiltroVeiculosComponent implements OnInit {
   deKm= new Subject<string>();
   ateKm = new Subject<string>();
   cores: CorDTO[];
+  cambios: CambioDTO[];
 
   constructor(
     private marcaService: MarcaService,
@@ -50,6 +53,7 @@ export class FiltroVeiculosComponent implements OnInit {
     private opcionalService: OpcionalService,
     private adicionalService: AdicionalService,
     private corService: CorService,
+    private cambioService: CambioService,
     ) {
     this.veiculoPesquisa = new VeiculoPesquisa;
     this.formGroup = this.formBuilder.group({
@@ -60,6 +64,7 @@ export class FiltroVeiculosComponent implements OnInit {
       depreco: [null, []],
       atepreco: [null, []],
       cores: [null, []],
+      cambios: [null, []],
     })
   }
 
@@ -71,6 +76,7 @@ export class FiltroVeiculosComponent implements OnInit {
     this.procuraDeAno();
     this.procuraAteAno();
     this.buscarCores();
+    this.buscarCambios();
   }
 
   //Buscar para preencher filtro
@@ -106,6 +112,13 @@ export class FiltroVeiculosComponent implements OnInit {
     this.corService.findAll()
       .subscribe((response) => {
         this.cores = response;
+      }, error => {});
+  }
+
+  buscarCambios() {
+    this.cambioService.findAll()
+      .subscribe((response) => {
+        this.cambios = response;
       }, error => {});
   }
 
@@ -165,6 +178,21 @@ export class FiltroVeiculosComponent implements OnInit {
     }
 
     this.veiculoPesquisa.cor = coresString;
+    this.buscarVeiculosCustomPage();
+  }
+
+  filtrarPorCambios() {
+    let cambios = this.formGroup.value.cambios;
+    let cambiosString = '';
+    for(let cambio of cambios){
+      cambiosString += `${cambio.nome},`;
+    }
+
+    if(cambiosString == ''){
+      cambiosString = null;
+    }
+
+    this.veiculoPesquisa.cambio = cambiosString;
     this.buscarVeiculosCustomPage();
   }
 

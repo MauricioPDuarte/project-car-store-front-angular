@@ -137,10 +137,8 @@
                         <div class="col">
                             <mat-form-field>
                                 <mat-label>Cambio</mat-label>
-                                <mat-select multiple>
-                                    <mat-option [value]="automatica">Automática</mat-option>
-                                    <mat-option [value]="cvt">CVT</mat-option>
-                                    <mat-option [value]="manual">Manual</mat-option>
+                                <mat-select multiple formControlName="cambios" (ngModelChange)="filtrarPorCambios()">
+                                    <mat-option *ngFor="let cambio of cambios" [value]="cambio">{{ cambio.nome }}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>

@@ -14,7 +14,7 @@ export class VeiculoPesquisa {
     ateKm: string;
     cor: string;
     tipo: string[];
-    cambio: string[];
+    cambio: string;
     combustivel: string[];
     adicionais: string;
     opcionais: string;
