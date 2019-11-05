@@ -1,3 +1,5 @@
+import { TipoDTO } from './../../../models/tipo.dto';
+import { TipoService } from './../../../services/domain/tipo.service';
 import { CombustivelDTO } from 'src/models/combustivel.dto';
 import { CombustivelService } from './../../../services/domain/combustivel.service';
 import { CambioDTO } from './../../../models/cambio.dto';
@@ -39,13 +41,14 @@ export class FiltroVeiculosComponent implements OnInit {
   veiculoPesquisa: VeiculoPesquisa;
   opcionais: OpcionalDTO[];
   adicionais: AdicionalDTO[];
-  deAno= new Subject<string>();
+  deAno = new Subject<string>();
   ateAno = new Subject<string>();
-  deKm= new Subject<string>();
+  deKm = new Subject<string>();
   ateKm = new Subject<string>();
   cores: CorDTO[];
   cambios: CambioDTO[];
   combustiveis: CombustivelDTO[];
+  tipos: TipoDTO[];
 
   constructor(
     private marcaService: MarcaService,
@@ -58,7 +61,8 @@ export class FiltroVeiculosComponent implements OnInit {
     private corService: CorService,
     private cambioService: CambioService,
     private combustivelService: CombustivelService,
-    ) {
+    private tipoService: TipoService,
+  ) {
     this.veiculoPesquisa = new VeiculoPesquisa;
     this.formGroup = this.formBuilder.group({
       marca: [null, []],
@@ -70,6 +74,7 @@ export class FiltroVeiculosComponent implements OnInit {
       cores: [null, []],
       cambios: [null, []],
       combustiveis: [null, []],
+      tipos: [null, []]
     })
   }
 
@@ -83,6 +88,7 @@ export class FiltroVeiculosComponent implements OnInit {
     this.buscarCores();
     this.buscarCambios();
     this.buscarCombustiveis();
+    this.carregarTipos();
   }
 
   //Buscar para preencher filtro
@@ -105,34 +111,43 @@ export class FiltroVeiculosComponent implements OnInit {
   buscarOpcionais() {
     this.opcionalService.findAll().subscribe((response) => {
       this.opcionais = response;
-    }, error => {})
+    }, error => { })
   }
 
-  buscarAdicionais(){
+  buscarAdicionais() {
     this.adicionalService.findAll().subscribe((response) => {
       this.adicionais = response;
-    }, error => {});
+    }, error => { });
   }
 
-  buscarCores(){
+  buscarCores() {
     this.corService.findAll()
       .subscribe((response) => {
         this.cores = response;
-      }, error => {});
+      }, error => { });
   }
 
   buscarCambios() {
     this.cambioService.findAll()
       .subscribe((response) => {
         this.cambios = response;
-      }, error => {});
+      }, error => { });
   }
 
   buscarCombustiveis() {
     this.combustivelService.findAll()
       .subscribe((response) => {
         this.combustiveis = response;
-      }, error => {});
+      }, error => { });
+  }
+
+  carregarTipos() {
+    this.tipoService.findAll()
+      .subscribe((response) => {
+        this.tipos = response;
+      }, error => {
+
+      });
   }
 
   //Buscar veiculos
@@ -148,14 +163,14 @@ export class FiltroVeiculosComponent implements OnInit {
   }
 
   filtrarPorOpcionais() {
-    let opcionais =  this.formGroup.value.opcionais;
+    let opcionais = this.formGroup.value.opcionais;
 
     let opcionaisString = '';
-    for(let opcional of opcionais){
+    for (let opcional of opcionais) {
       opcionaisString += `${opcional},`;
     }
 
-    if(opcionaisString == ''){
+    if (opcionaisString == '') {
       opcionaisString = null;
     }
 
@@ -167,11 +182,11 @@ export class FiltroVeiculosComponent implements OnInit {
   filtrarPorAdicionais() {
     let adicionais = this.formGroup.value.adicionais;
     let adicionaisString = '';
-    for(let adicional of adicionais){
+    for (let adicional of adicionais) {
       adicionaisString += `${adicional},`;
     }
 
-    if(adicionaisString == ''){
+    if (adicionaisString == '') {
       adicionaisString = null;
     }
 
@@ -182,11 +197,11 @@ export class FiltroVeiculosComponent implements OnInit {
   filtrarPorCores() {
     let cores = this.formGroup.value.cores;
     let coresString = '';
-    for(let cor of cores){
+    for (let cor of cores) {
       coresString += `${cor.nome},`;
     }
 
-    if(coresString == ''){
+    if (coresString == '') {
       coresString = null;
     }
 
@@ -197,11 +212,11 @@ export class FiltroVeiculosComponent implements OnInit {
   filtrarPorCambios() {
     let cambios = this.formGroup.value.cambios;
     let cambiosString = '';
-    for(let cambio of cambios){
+    for (let cambio of cambios) {
       cambiosString += `${cambio.nome},`;
     }
 
-    if(cambiosString == ''){
+    if (cambiosString == '') {
       cambiosString = null;
     }
 
@@ -209,14 +224,29 @@ export class FiltroVeiculosComponent implements OnInit {
     this.buscarVeiculosCustomPage();
   }
 
+  filtrarPorTipos() {
+    let tipos = this.formGroup.value.tipos;
+    let tiposString = '';
+    for (let tipo of tipos) {
+      tiposString += `${tipo.nome},`;
+    }
+
+    if (tiposString == '') {
+      tiposString = null;
+    }
+
+    this.veiculoPesquisa.tipos = tiposString;
+    this.buscarVeiculosCustomPage();
+  }
+
   filtrarPorCombustiveis() {
     let combustiveis = this.formGroup.value.combustiveis;
     let combustiveisString = '';
-    for(let combustivel of combustiveis){
+    for (let combustivel of combustiveis) {
       combustiveisString += `${combustivel.nome},`;
     }
 
-    if(combustiveisString == ''){
+    if (combustiveisString == '') {
       combustiveisString = null;
     }
 
@@ -225,83 +255,83 @@ export class FiltroVeiculosComponent implements OnInit {
   }
 
   filtroPorPrecoDe(depreco: string) {
-    if(depreco == '') {
+    if (depreco == '') {
       this.veiculoPesquisa.dePreco = null;
-    }else{
-      this.veiculoPesquisa.dePreco = depreco; 
+    } else {
+      this.veiculoPesquisa.dePreco = depreco;
     }
     this.buscarVeiculosCustomPage();
   }
 
   filtroPorPrecoAte(atepreco) {
-    if(atepreco == ''){
+    if (atepreco == '') {
       this.veiculoPesquisa.atePreco = null;
-    }else{
+    } else {
       this.veiculoPesquisa.atePreco = atepreco;
     }
     this.buscarVeiculosCustomPage();
   }
 
-  filtroDeAno(deano: string){
-   this.deAno.next(deano);
+  filtroDeAno(deano: string) {
+    this.deAno.next(deano);
   }
 
-  procuraDeAno(){
+  procuraDeAno() {
     this.deAno.pipe(
       debounceTime(500),
       distinctUntilChanged()
-    
+
     ).subscribe((res) => {
-      if(res.length == 4){
+      if (res.length == 4) {
         this.veiculoPesquisa.deAno = res;
         this.buscarVeiculosCustomPage();
       }
-      if(res.length < 4 && this.veiculoPesquisa.deAno != null){
+      if (res.length < 4 && this.veiculoPesquisa.deAno != null) {
         this.veiculoPesquisa.deAno = null;
         this.buscarVeiculosCustomPage();
       }
     })
   }
-  
-  filtroAteAno(ateano: string){
+
+  filtroAteAno(ateano: string) {
     this.ateAno.next(ateano);
   }
 
-  procuraAteAno(){
+  procuraAteAno() {
     this.ateAno.pipe(
       debounceTime(500),
       distinctUntilChanged()
-    
+
     ).subscribe((res) => {
-      if(res.length == 4){
+      if (res.length == 4) {
         this.veiculoPesquisa.ateAno = res;
         this.buscarVeiculosCustomPage();
       }
-      if(res.length < 4 && this.veiculoPesquisa.ateAno != null){
+      if (res.length < 4 && this.veiculoPesquisa.ateAno != null) {
         this.veiculoPesquisa.ateAno = null;
         this.buscarVeiculosCustomPage();
       }
     })
   }
 
-  filtroDeKm(dekm: string){
-    if(dekm == '') {
+  filtroDeKm(dekm: string) {
+    if (dekm == '') {
       this.veiculoPesquisa.deKm = null;
-    }else{
-      this.veiculoPesquisa.deKm = dekm; 
+    } else {
+      this.veiculoPesquisa.deKm = dekm;
     }
     this.buscarVeiculosCustomPage();
   }
 
-  filtroAteKm(ateKm: string){
-    if(ateKm == '') {
+  filtroAteKm(ateKm: string) {
+    if (ateKm == '') {
       this.veiculoPesquisa.ateKm = null;
-    }else{
-      this.veiculoPesquisa.ateKm = ateKm; 
+    } else {
+      this.veiculoPesquisa.ateKm = ateKm;
     }
     this.buscarVeiculosCustomPage();
   }
-  
+
   buscarVeiculosCustomPage() {
     this.formarURL();
     this.veiculoService.findVeiculosCustomPage(this.paginator.pageIndex, this.paginator.pageSize, 'ASC', this.veiculoPesquisa).subscribe((response) => {
@@ -313,7 +343,7 @@ export class FiltroVeiculosComponent implements OnInit {
 
   formarURL() {
     this.router.navigate(
-      ['/estoque'], 
+      ['/estoque'],
       {
         relativeTo: this.route,
         queryParams: this.veiculoPesquisa,

@@ -57,6 +57,7 @@ export class VeiculoService {
       .set("cores", veiculoPesquisa.cores != null ? veiculoPesquisa.cores : '')
       .set("cambios", veiculoPesquisa.cambios != null ? veiculoPesquisa.cambios : '')
       .set("combustiveis", veiculoPesquisa.combustiveis != null ? veiculoPesquisa.combustiveis : '')
+      .set("tipos", veiculoPesquisa.tipos != null ?veiculoPesquisa.tipos : '')
       .set("linesPerPage", linesPerPage != null ? linesPerPage : 24)
       .set("page", page != null ? page : 0)
       .set("direction", orderBy != null ? orderBy : 'ASC')

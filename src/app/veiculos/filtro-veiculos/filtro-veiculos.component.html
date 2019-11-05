@@ -107,7 +107,8 @@
                     <div class="row">
                         <div class="col">
                             <mat-form-field class="example-full-width">
-                                <input matInput #ateKm name="atekm" placeholder="Até" (input)="filtroAteKm(ateKm.value)">
+                                <input matInput #ateKm name="atekm" placeholder="Até"
+                                    (input)="filtroAteKm(ateKm.value)">
                             </mat-form-field>
                         </div>
                     </div>
@@ -138,7 +139,8 @@
                             <mat-form-field>
                                 <mat-label>Cambio</mat-label>
                                 <mat-select multiple formControlName="cambios" (ngModelChange)="filtrarPorCambios()">
-                                    <mat-option *ngFor="let cambio of cambios" [value]="cambio">{{ cambio.nome }}</mat-option>
+                                    <mat-option *ngFor="let cambio of cambios" [value]="cambio">{{ cambio.nome }}
+                                    </mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
@@ -147,8 +149,10 @@
                         <div class="col">
                             <mat-form-field>
                                 <mat-label>Combustivel</mat-label>
-                                <mat-select multiple formControlName="combustiveis" (ngModelChange)="filtrarPorCombustiveis()">
-                                    <mat-option *ngFor="let comb of combustiveis" [value]="comb">{{ comb.nome }}</mat-option>
+                                <mat-select multiple formControlName="combustiveis"
+                                    (ngModelChange)="filtrarPorCombustiveis()">
+                                    <mat-option *ngFor="let comb of combustiveis" [value]="comb">{{ comb.nome }}
+                                    </mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
@@ -161,6 +165,18 @@
                                     (ngModelChange)="filtrarPorAdicionais()">
                                     <mat-option *ngFor="let adicional of adicionais" [value]="adicional.nome">
                                         {{ adicional.nome }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field>
+                                <mat-label>Tipo</mat-label>
+                                <mat-select multiple formControlName="tipos"
+                                    (ngModelChange)="filtrarPorTipos()">
+                                    <mat-option *ngFor="let tipo of tipos" [value]="tipo">
+                                        {{ tipo.nome }}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
