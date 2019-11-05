@@ -8,7 +8,7 @@
                 <mat-card-content>
                     <div class="row">
                         <div class="col">
-                            <mat-form-field>
+                            <mat-form-field class="mat-form-w100">
                                 <mat-label>Marca</mat-label>
                                 <mat-select formControlName="marca" (ngModelChange)="buscarVeiculosEModelosPorMarca()">
                                     <mat-option *ngFor="let marca of marcas" [value]="marca">{{ marca.nome }}
@@ -19,7 +19,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <mat-form-field>
+                            <mat-form-field class="mat-form-w100">
                                 <mat-label>Modelo</mat-label>
                                 <mat-select formControlName="modelo" (ngModelChange)="buscarVeiculosPorModelo()">
                                     <mat-option *ngFor="let modelo of modelos" [value]="modelo" class="opcao-lista">
@@ -42,8 +42,8 @@
                 </mat-card-header>
                 <mat-card-content>
                     <div class="row">
-                        <div class="col-6">
-                            <mat-form-field class="example-full-width">
+                        <div class="col">
+                            <mat-form-field class="mat-form-w100">
                                 <input matInput #dePreco name="depreco" placeholder="De"
                                     (input)="filtroPorPrecoDe(dePreco.value)">
                             </mat-form-field>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <mat-form-field class="example-full-width">
+                            <mat-form-field class="mat-form-w100">
                                 <input matInput #atePreco name="atepreco" placeholder="Até"
                                     (input)="filtroPorPrecoAte(atePreco.value)">
                             </mat-form-field>
@@ -70,8 +70,8 @@
                 </mat-card-header>
                 <mat-card-content>
                     <div class="row">
-                        <div class="col-6">
-                            <mat-form-field class="example-full-width">
+                        <div class="col">
+                            <mat-form-field class="mat-form-w100">
                                 <input matInput #deAno name="deano" maxlength="4" placeholder="De"
                                     (input)="filtroDeAno(deAno.value)">
                             </mat-form-field>
@@ -79,7 +79,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <mat-form-field class="example-full-width">
+                            <mat-form-field class="mat-form-w100">
                                 <input matInput #ateAno name="ateano" maxlength="4" placeholder="Até"
                                     (input)="filtroAteAno(ateAno.value)">
                             </mat-form-field>
@@ -98,15 +98,15 @@
                 </mat-card-header>
                 <mat-card-content>
                     <div class="row">
-                        <div class="col-6">
-                            <mat-form-field class="example-full-width">
+                        <div class="col">
+                            <mat-form-field class="mat-form-w100">
                                 <input matInput #deKm name="dekm" placeholder="De" (input)="filtroDeKm(deKm.value)">
                             </mat-form-field>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <mat-form-field class="example-full-width">
+                            <mat-form-field class="mat-form-w100">
                                 <input matInput #ateKm name="atekm" placeholder="Até"
                                     (input)="filtroAteKm(ateKm.value)">
                             </mat-form-field>
@@ -126,7 +126,7 @@
                 <mat-card-content>
                     <div class="row">
                         <div class="col">
-                            <mat-form-field>
+                            <mat-form-field class="mat-form-w100">
                                 <mat-label>Cor</mat-label>
                                 <mat-select multiple formControlName="cores" (ngModelChange)="filtrarPorCores()">
                                     <mat-option *ngFor="let cor of cores" [value]="cor">{{ cor.nome }}</mat-option>
@@ -136,8 +136,8 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <mat-form-field>
-                                <mat-label>Cambio</mat-label>
+                            <mat-form-field class="mat-form-w100">
+                                <mat-label>Câmbio</mat-label>
                                 <mat-select multiple formControlName="cambios" (ngModelChange)="filtrarPorCambios()">
                                     <mat-option *ngFor="let cambio of cambios" [value]="cambio">{{ cambio.nome }}
                                     </mat-option>
@@ -147,8 +147,8 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <mat-form-field>
-                                <mat-label>Combustivel</mat-label>
+                            <mat-form-field class="mat-form-w100">
+                                <mat-label>Combustível</mat-label>
                                 <mat-select multiple formControlName="combustiveis"
                                     (ngModelChange)="filtrarPorCombustiveis()">
                                     <mat-option *ngFor="let comb of combustiveis" [value]="comb">{{ comb.nome }}
@@ -159,7 +159,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <mat-form-field>
+                            <mat-form-field class="mat-form-w100">
                                 <mat-label>Adicionais</mat-label>
                                 <mat-select multiple formControlName="adicionais"
                                     (ngModelChange)="filtrarPorAdicionais()">
@@ -171,7 +171,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <mat-form-field>
+                            <mat-form-field class="mat-form-w100">
                                 <mat-label>Tipo</mat-label>
                                 <mat-select multiple formControlName="tipos"
                                     (ngModelChange)="filtrarPorTipos()">
@@ -183,7 +183,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <mat-form-field>
+                            <mat-form-field class="mat-form-w100">
                                 <mat-label>Opcionais</mat-label>
                                 <mat-select multiple formControlName="opcionais"
                                     (ngModelChange)="filtrarPorOpcionais()">
