@@ -88,11 +88,18 @@
                             </mat-select>
                         </mat-form-field>
 
-
                         <mat-form-field class="mat-form-field-w100">
                             <mat-label>Câmbio</mat-label>
                             <mat-select formControlName="cambioId">
                                 <mat-option *ngFor="let cambio of cambios" [value]="cambio.id"> {{ cambio.nome }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field class="mat-form-field-w100">
+                            <mat-label>Tipo</mat-label>
+                            <mat-select formControlName="tipoId">
+                                <mat-option *ngFor="let tipo of tipos" [value]="tipo.id"> {{ tipo.nome }}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>

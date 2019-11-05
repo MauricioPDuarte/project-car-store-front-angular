@@ -1,3 +1,5 @@
+import { TipoService } from './../../services/domain/tipo.service';
+import { TipoDTO } from './../../models/tipo.dto';
 import { CambioDTO } from './../../models/cambio.dto';
 import { CombustivelDTO } from 'src/models/combustivel.dto';
 import { CambioService } from './../../services/domain/cambio.service';
@@ -34,6 +36,7 @@ export class CadastroVeiculoComponent implements OnInit {
   cores: CorDTO[];
   combustiveis: CombustivelDTO[];
   cambios: CambioDTO[];
+  tipos: TipoDTO[];
 
   constructor(
     private storage: StorageService,
@@ -46,6 +49,7 @@ export class CadastroVeiculoComponent implements OnInit {
     private corService: CorService,
     private combustivelService: CombustivelService,
     private cambioService: CambioService,
+    private tipoService: TipoService,
   ) {
     this.cadastroVeiculo = this.formBuilder.group({
       id: ['', []],
@@ -74,6 +78,7 @@ export class CadastroVeiculoComponent implements OnInit {
     this.carregarCores();
     this.carregarCombustiveis();
     this.carregarCambios();
+    this.carregarTipos();
   }
 
   carregarColaborador() {
@@ -141,6 +146,13 @@ export class CadastroVeiculoComponent implements OnInit {
     this.cambioService.findAll()
       .subscribe((response) => {
         this.cambios = response;
+      }, error => {});
+  }
+
+  carregarTipos() {
+    this.tipoService.findAll()
+      .subscribe((response) => {
+        this.tipos = response;
       }, error => {});
   }
 
