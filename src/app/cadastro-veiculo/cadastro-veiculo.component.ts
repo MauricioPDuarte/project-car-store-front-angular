@@ -163,8 +163,9 @@ export class CadastroVeiculoComponent implements OnInit {
     this.veiculoService.saveCar(this.cadastroVeiculo.value)
       .subscribe((response) => {
         this.cadastroVeiculo.reset;
+        var veiculoId = response.headers.get('Location').substring(31);
       }, error => {
-        if(error.status == 401){
+        if(error.status == 403){
           this.router.navigate(['/colaborador/login'])
         }
       });
