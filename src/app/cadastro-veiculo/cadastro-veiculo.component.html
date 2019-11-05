@@ -81,21 +81,33 @@
                         </mat-form-field>
 
                         <mat-form-field class="mat-form-field-w100">
+                            <mat-label>Combustível</mat-label>
+                            <mat-select formControlName="combustivelId">
+                                <mat-option *ngFor="let comb of combustiveis" [value]="comb.id"> {{ comb.nome }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+
+                        <mat-form-field class="mat-form-field-w100">
+                            <mat-label>Câmbio</mat-label>
+                            <mat-select formControlName="cambioId">
+                                <mat-option *ngFor="let cambio of cambios" [value]="cambio.id"> {{ cambio.nome }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field class="mat-form-field-w100">
                             <input matInput placeholder="Preço" formControlName="preco" type="number">
+                        </mat-form-field>
+
+                        <mat-form-field class="mat-form-field-w100">
+                            <textarea matInput placeholder="Descrição" formControlName="descricao"></textarea>
                         </mat-form-field>
 
                         <button mat-stroked-button color="primary" (click)="teste()">Teste</button>
                     </form>
                 </mat-card-content>
-            </mat-card>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <mat-card class="mat-card-fotos">
-                <mat-card-header>
-                    <mat-card-title>Fotos</mat-card-title>
-                </mat-card-header>
             </mat-card>
         </div>
     </div>

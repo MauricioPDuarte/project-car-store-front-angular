@@ -1,3 +1,7 @@
+import { CambioDTO } from './../../models/cambio.dto';
+import { CombustivelDTO } from 'src/models/combustivel.dto';
+import { CambioService } from './../../services/domain/cambio.service';
+import { CombustivelService } from './../../services/domain/combustivel.service';
 import { CorDTO } from './../../models/cor.dto';
 import { CorService } from './../../services/domain/cor.service';
 import { AdicionalService } from './../../services/domain/adicional.service';
@@ -28,7 +32,8 @@ export class CadastroVeiculoComponent implements OnInit {
   opcionais: OpcionalDTO[];
   adicionais: AdicionalDTO[];
   cores: CorDTO[];
-
+  combustiveis: CombustivelDTO[];
+  cambios: CambioDTO[];
 
   constructor(
     private storage: StorageService,
@@ -39,6 +44,8 @@ export class CadastroVeiculoComponent implements OnInit {
     private opcionalService: OpcionalService,
     private adicionalService: AdicionalService,
     private corService: CorService,
+    private combustivelService: CombustivelService,
+    private cambioService: CambioService,
   ) {
     this.cadastroVeiculo = this.formBuilder.group({
       id: ['', []],
@@ -65,6 +72,8 @@ export class CadastroVeiculoComponent implements OnInit {
     this.carregarOpcionais();
     this.carregarAdicionais();
     this.carregarCores();
+    this.carregarCombustiveis();
+    this.carregarCambios();
   }
 
   carregarColaborador() {
@@ -111,17 +120,31 @@ export class CadastroVeiculoComponent implements OnInit {
     this.adicionalService.findAll()
       .subscribe((response) => {
         this.adicionais = response;
-      }, error => {});
+      }, error => { });
   }
 
   carregarCores() {
     this.corService.findAll()
       .subscribe((response) => {
         this.cores = response;
+      }, error => { });
+  }
+
+  carregarCombustiveis() {
+    this.combustivelService.findAll()
+      .subscribe((response) => {
+        this.combustiveis = response;
+      }, error => { })
+  }
+
+  carregarCambios() {
+    this.cambioService.findAll()
+      .subscribe((response) => {
+        this.cambios = response;
       }, error => {});
   }
 
-  teste(){
+  teste() {
     console.log(this.cadastroVeiculo.value);
   }
 
