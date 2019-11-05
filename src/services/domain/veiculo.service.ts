@@ -39,6 +39,10 @@ export class VeiculoService {
   }
   */
 
+  findById(id: number): Observable<VeiculoDTO> {
+    return this.http.get<VeiculoDTO>(`${API_CONFIG.baseUrl}/veiculos/${id}`);
+  }
+
   saveCar(veiculo: VeiculoNewDTO) {
     return this.http.post(`${API_CONFIG.baseUrl}/veiculos`, veiculo, {
       observe: 'response',

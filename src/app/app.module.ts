@@ -19,6 +19,7 @@ import { LoginComponent } from './login/login.component';
 import { MenuAnuncioComponent } from './menu-anuncio/menu-anuncio.component';
 import { PainelColaboradorComponent } from './painel-colaborador/painel-colaborador.component';
 import { CadastroVeiculoComponent } from './cadastro-veiculo/cadastro-veiculo.component';
+import { CadastroFotoVeiculoComponent } from './cadastro-foto-veiculo/cadastro-foto-veiculo.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CadastroVeiculoComponent } from './cadastro-veiculo/cadastro-veiculo.co
     MenuAnuncioComponent,
     PainelColaboradorComponent,
     CadastroVeiculoComponent,
+    CadastroFotoVeiculoComponent,
   ],
   imports: [
     BrowserModule,
