@@ -23,7 +23,7 @@
 
                         <mat-form-field class="mat-form-field-w100">
                             <mat-label>Marca</mat-label>
-                            <mat-select (ngModelChange)="buscarModelosPorMarca()" formControlName="marcaId">
+                            <mat-select (ngModelChange)="carregarModelosPorMarca()" formControlName="marcaId">
                                 <mat-option *ngFor="let marca of marcas" [value]="marca.id">
                                     {{ marca.nome }}
                                 </mat-option>
@@ -112,7 +112,7 @@
                             <textarea matInput placeholder="Descrição" formControlName="descricao"></textarea>
                         </mat-form-field>
 
-                        <button mat-stroked-button color="primary" (click)="teste()">Teste</button>
+                        <button mat-stroked-button color="primary" (click)="salvar()">Salvar</button>
                     </form>
                 </mat-card-content>
             </mat-card>

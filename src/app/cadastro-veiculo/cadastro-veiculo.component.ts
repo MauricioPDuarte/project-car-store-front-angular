@@ -1,3 +1,4 @@
+import { VeiculoDTO } from 'src/models/veiculo.dto';
 import { TipoService } from './../../services/domain/tipo.service';
 import { TipoDTO } from './../../models/tipo.dto';
 import { CambioDTO } from './../../models/cambio.dto';
@@ -13,12 +14,13 @@ import { OpcionalDTO } from './../../models/opcional.dto';
 import { MarcaService } from './../../services/domain/marca.service';
 import { ModeloDTO } from 'src/models/modelo.dto';
 import { MarcaDTO } from './../../models/marca.dto';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ColaboradorService } from './../../services/domain/colaborador.service';
 import { StorageService } from './../../services/storage.service';
 import { Component, OnInit } from '@angular/core';
 import { ColaboradorDTO } from 'src/models/colaborador.dto';
 import { Router } from '@angular/router';
+import { VeiculoService } from 'src/services/domain/veiculo.service';
 
 @Component({
   selector: 'app-cadastro-veiculo',
@@ -50,21 +52,22 @@ export class CadastroVeiculoComponent implements OnInit {
     private combustivelService: CombustivelService,
     private cambioService: CambioService,
     private tipoService: TipoService,
+    private veiculoService: VeiculoService,
   ) {
     this.cadastroVeiculo = this.formBuilder.group({
       id: ['', []],
-      modeloId: ['', []],
-      marcaId: ['', []],
-      ano: ['', []],
-      preco: ['', []],
-      tipoId: ['', []],
-      corId: ['', []],
-      combustivelId: ['', []],
-      cambioId: ['', []],
-      numPortas: ['', []],
-      placa: ['', []],
+      modeloId: ['', [Validators.required]],
+      marcaId: ['', [Validators.required]],
+      ano: ['', [Validators.required, Validators.max(4), Validators.min(4)]],
+      preco: ['', [Validators.required]],
+      tipoId: ['', [Validators.required]],
+      corId: ['', [Validators.required]],
+      combustivelId: ['', [Validators.required]],
+      cambioId: ['', [Validators.required]],
+      numPortas: ['', [Validators.required]],
+      placa: ['', [Validators.required]],
       descricao: ['', []],
-      kmRodado: ['', []],
+      kmRodado: ['', [Validators.required]],
       adicionais: [[''], []],
       opcionais: [[''], []]
     });
@@ -104,7 +107,7 @@ export class CadastroVeiculoComponent implements OnInit {
       }, error => { });
   }
 
-  buscarModelosPorMarca() {
+  carregarModelosPorMarca() {
     let marcaId = this.cadastroVeiculo.value.marcaId;
     if (marcaId != null) {
       this.marcaService.findModeloPorMarca(marcaId)
@@ -156,7 +159,15 @@ export class CadastroVeiculoComponent implements OnInit {
       }, error => {});
   }
 
-  teste() {
+  salvar() {
+    this.veiculoService.saveCar(this.cadastroVeiculo.value)
+      .subscribe((response) => {
+        this.cadastroVeiculo.reset;
+      }, error => {
+        if(error.status == 401){
+          this.router.navigate(['/colaborador/login'])
+        }
+      });
     console.log(this.cadastroVeiculo.value);
   }
 

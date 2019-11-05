@@ -1,3 +1,4 @@
+import { VeiculoNewDTO } from './../../models/veiculo.new.dto';
 import { ActivatedRoute } from '@angular/router';
 import { VeiculoPesquisa } from './../../models/pesquisa/veiculo-pesquisa';
 import { API_CONFIG } from './../../config/api.config';
@@ -16,6 +17,7 @@ export class VeiculoService {
     private route: ActivatedRoute,
   ) { }
 
+  /*
   findAll(): Observable<VeiculoDTO[]> {
     return this.http.get<VeiculoDTO[]>(`${API_CONFIG.baseUrl}/veiculos`);
   }
@@ -32,13 +34,20 @@ export class VeiculoService {
 
   //Buscar todos paginado
 
-  findAllCarsPage(page: number = 0, pageSize: number = 24, sortDirection: string = "ASC"): Observable<VeiculoDTO[]> {
-
-    return this.http.get<VeiculoDTO[]>(`${API_CONFIG.baseUrl}/veiculos/page?page=${page}&linesPerPage=${pageSize}&direction=${sortDirection}`);
-  }
-
   findVeiculoByMarcaPage(marca: string, page: number = 0, pageSize: number = 24, sortDirection: string = "ASC"): Observable<VeiculoDTO[]> {
     return this.http.get<VeiculoDTO[]>(`${API_CONFIG.baseUrl}/veiculos/buscar/page/${marca}?page=${page}&linesPerPage=${pageSize}&direction=${sortDirection}`);
+  }
+  */
+
+  saveCar(veiculo: VeiculoNewDTO) {
+    return this.http.post(`${API_CONFIG.baseUrl}/veiculos`, veiculo, {
+      observe: 'response',
+      responseType: 'text'
+    })
+  }
+
+  findAllCarsPage(page: number = 0, pageSize: number = 24, sortDirection: string = "ASC"): Observable<VeiculoDTO[]> {
+    return this.http.get<VeiculoDTO[]>(`${API_CONFIG.baseUrl}/veiculos/page?page=${page}&linesPerPage=${pageSize}&direction=${sortDirection}`);
   }
 
   findVeiculosCustomPage(page, linesPerPage, orderBy: string = 'ASC', veiculoPesquisa: VeiculoPesquisa): Observable<VeiculoDTO[]> {
@@ -57,7 +66,7 @@ export class VeiculoService {
       .set("cores", veiculoPesquisa.cores != null ? veiculoPesquisa.cores : '')
       .set("cambios", veiculoPesquisa.cambios != null ? veiculoPesquisa.cambios : '')
       .set("combustiveis", veiculoPesquisa.combustiveis != null ? veiculoPesquisa.combustiveis : '')
-      .set("tipos", veiculoPesquisa.tipos != null ?veiculoPesquisa.tipos : '')
+      .set("tipos", veiculoPesquisa.tipos != null ? veiculoPesquisa.tipos : '')
       .set("linesPerPage", linesPerPage != null ? linesPerPage : 24)
       .set("page", page != null ? page : 0)
       .set("direction", orderBy != null ? orderBy : 'ASC')
