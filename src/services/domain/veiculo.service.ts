@@ -1,11 +1,13 @@
+import { API_CONFIG } from 'src/config/api.config';
 import { VeiculoNewDTO } from './../../models/veiculo.new.dto';
 import { ActivatedRoute } from '@angular/router';
 import { VeiculoPesquisa } from './../../models/pesquisa/veiculo-pesquisa';
-import { API_CONFIG } from './../../config/api.config';
 import { VeiculoDTO } from './../../models/veiculo.dto';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Veiculo } from 'src/models/veiculo';
+import { Picture } from 'src/models/picture';
 
 @Injectable({
   providedIn: 'root'
@@ -39,8 +41,16 @@ export class VeiculoService {
   }
   */
 
-  findById(id: number): Observable<VeiculoDTO> {
-    return this.http.get<VeiculoDTO>(`${API_CONFIG.baseUrl}/veiculos/${id}`);
+  turnPictureThumb(vehicleId, pictureId) {
+    return this.http.post(`${API_CONFIG.baseUrl}/veiculos/${vehicleId}/picture/${pictureId}`, null);
+  }
+
+  savePicturesVehicle(vehicleId, files: FormData): Observable<Picture[]> {
+    return this.http.post<Picture[]>(`${API_CONFIG.baseUrl}/veiculos/picture/${vehicleId}`, files);
+  }
+
+  findById(id: string): Observable<Veiculo> {
+    return this.http.get<Veiculo>(`${API_CONFIG.baseUrl}/veiculos/${id}`);
   }
 
   saveCar(veiculo: VeiculoNewDTO) {

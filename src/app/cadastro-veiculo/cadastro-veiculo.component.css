@@ -3,25 +3,10 @@
     margin-top: 20px;
 }
 
-.img-logo{
-    margin-top: 7px;
-    width: 218px;
-    height: 46px;
-}
-
-.mar-card-info {
-    margin: 20px;
-    width: 100%;
-}
-
 .mat-form-field-w100 {
     width: 100%;
 }
 
-.mat-card-opcionais {
-    height: 200px;
-}
-
-.mat-card-fotos {
-    margin-top: 20px;
+.mat-card-fotos{
+    width: 100%;
 }

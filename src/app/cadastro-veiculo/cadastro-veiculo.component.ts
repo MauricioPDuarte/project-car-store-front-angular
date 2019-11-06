@@ -1,3 +1,4 @@
+import { Picture } from './../../models/picture';
 import { VeiculoDTO } from 'src/models/veiculo.dto';
 import { TipoService } from './../../services/domain/tipo.service';
 import { TipoDTO } from './../../models/tipo.dto';
@@ -39,6 +40,10 @@ export class CadastroVeiculoComponent implements OnInit {
   combustiveis: CombustivelDTO[];
   cambios: CambioDTO[];
   tipos: TipoDTO[];
+  urls = [];
+  picturesFiles: any = [];
+  fotosSalvasComSucesso: Picture[];
+  pictureIndexThumb: number;
 
   constructor(
     private storage: StorageService,
@@ -56,20 +61,20 @@ export class CadastroVeiculoComponent implements OnInit {
   ) {
     this.cadastroVeiculo = this.formBuilder.group({
       id: ['', []],
-      modeloId: ['', [Validators.required]],
-      marcaId: ['', [Validators.required]],
-      ano: ['', [Validators.required, Validators.max(4), Validators.min(4)]],
-      preco: ['', [Validators.required]],
-      tipoId: ['', [Validators.required]],
-      corId: ['', [Validators.required]],
-      combustivelId: ['', [Validators.required]],
-      cambioId: ['', [Validators.required]],
-      numPortas: ['', [Validators.required]],
-      placa: ['', [Validators.required]],
-      descricao: ['', []],
-      kmRodado: ['', [Validators.required]],
-      adicionais: [[''], []],
-      opcionais: [[''], []]
+      modeloId: ['2', [Validators.required]],
+      marcaId: ['1', [Validators.required]],
+      ano: ['2029', [Validators.required, Validators.max(4), Validators.min(4)]],
+      preco: ['30000', [Validators.required]],
+      tipoId: ['2', [Validators.required]],
+      corId: ['2', [Validators.required]],
+      combustivelId: ['2', [Validators.required]],
+      cambioId: ['2', [Validators.required]],
+      numPortas: ['2', [Validators.required]],
+      placa: ['HUY-2323', [Validators.required]],
+      descricao: ['sdasdasda', []],
+      kmRodado: ['232323', [Validators.required]],
+      adicionais: [[1,2,3,4], []],
+      opcionais: [[1,2,3,4], []]
     });
   }
 
@@ -149,23 +154,82 @@ export class CadastroVeiculoComponent implements OnInit {
     this.cambioService.findAll()
       .subscribe((response) => {
         this.cambios = response;
-      }, error => {});
+      }, error => { });
   }
 
   carregarTipos() {
     this.tipoService.findAll()
       .subscribe((response) => {
         this.tipos = response;
-      }, error => {});
+      }, error => { });
+  }
+
+  carregarArquivos(event) {
+    console.log(event);
+  }
+
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      var filesAmount = event.target.files.length;
+      for (let i = 0; i < filesAmount; i++) {
+        var reader = new FileReader();
+        this.picturesFiles.push(event.target.files[i]);
+        reader.onload = (event: any) => {
+          this.urls.push(event.target.result);
+        }
+        reader.readAsDataURL(event.target.files[i]);
+      }
+    }
+  }
+
+  gerarFormDataPictures(){
+    const filePhotos = new FormData();
+    if (this.picturesFiles != null) {
+      for (let file of this.picturesFiles) {
+        filePhotos.append('file', file);
+      }
+    }
+    return filePhotos;
+  }
+
+  tornarThumbnail(value) {
+    this.pictureIndexThumb = value;
+    console.log(value);
+  }
+
+  salvarFotosVeiculo(veiculoId: string){
+    const file: FormData = this.gerarFormDataPictures()
+
+    if(file != null){
+      this.veiculoService.savePicturesVehicle(veiculoId, file)
+        .subscribe((response) => {
+          this.fotosSalvasComSucesso = response;
+          this.tornarFotoPrincipal(veiculoId);
+        }, error => {})
+    }
+  }
+
+  tornarFotoPrincipal(veiculoId) {
+    for(let i = 0; i <= this.fotosSalvasComSucesso.length; i++){
+      if(i == this.pictureIndexThumb){
+        this.veiculoService.turnPictureThumb(veiculoId, this.fotosSalvasComSucesso[i].id)
+        .subscribe((response) => {
+          console.log("foi")
+        }, error => {});
+      }
+    }
   }
 
   salvar() {
+    const file: FormData = this.gerarFormDataPictures();
+
     this.veiculoService.saveCar(this.cadastroVeiculo.value)
       .subscribe((response) => {
         this.cadastroVeiculo.reset;
         var veiculoId = response.headers.get('Location').substring(31);
+        this.salvarFotosVeiculo(veiculoId);
       }, error => {
-        if(error.status == 403){
+        if (error.status == 403) {
           this.router.navigate(['/colaborador/login'])
         }
       });

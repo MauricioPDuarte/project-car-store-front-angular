@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: 'estoque', component: VeiculosComponent},
   {path: 'colaborador/login', component: LoginComponent},
   {path: 'painel-colaborador', component: PainelColaboradorComponent},
-  {path: 'colaborador/cadastrar-veiculo', component: CadastroVeiculoComponent}
+  {path: 'colaborador/cadastrar-veiculo', component: CadastroVeiculoComponent},
 ];
 
 @NgModule({

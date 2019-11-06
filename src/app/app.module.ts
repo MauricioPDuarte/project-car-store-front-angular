@@ -19,7 +19,8 @@ import { LoginComponent } from './login/login.component';
 import { MenuAnuncioComponent } from './menu-anuncio/menu-anuncio.component';
 import { PainelColaboradorComponent } from './painel-colaborador/painel-colaborador.component';
 import { CadastroVeiculoComponent } from './cadastro-veiculo/cadastro-veiculo.component';
-import { CadastroFotoVeiculoComponent } from './cadastro-foto-veiculo/cadastro-foto-veiculo.component';
+import { CadastroMenuComponent } from './cadastro-menu/cadastro-menu.component';
+import { CadastroSucessoComponent } from './cadastro-sucesso/cadastro-sucesso.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,9 @@ import { CadastroFotoVeiculoComponent } from './cadastro-foto-veiculo/cadastro-f
     MenuAnuncioComponent,
     PainelColaboradorComponent,
     CadastroVeiculoComponent,
-    CadastroFotoVeiculoComponent,
+    CadastroMenuComponent,
+    CadastroSucessoComponent,
+
   ],
   imports: [
     BrowserModule,
