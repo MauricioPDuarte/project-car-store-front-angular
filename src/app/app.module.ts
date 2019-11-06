@@ -53,6 +53,9 @@ import { CadastroSucessoComponent } from './cadastro-sucesso/cadastro-sucesso.co
     ErrorInterceptorProvider
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogErrorComponent]
+  entryComponents: [
+    DialogErrorComponent,
+    CadastroSucessoComponent,
+  ]
 })
 export class AppModule { }

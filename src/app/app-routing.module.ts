@@ -2,7 +2,6 @@ import { CadastroVeiculoComponent } from './cadastro-veiculo/cadastro-veiculo.co
 import { PainelColaboradorComponent } from './painel-colaborador/painel-colaborador.component';
 import { VeiculosComponent } from './veiculos/veiculos.component';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 

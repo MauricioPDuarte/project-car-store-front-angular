@@ -1,3 +1,4 @@
+import { API_CONFIG } from 'src/config/api.config';
 import { Picture } from './../../models/picture';
 import { VeiculoDTO } from 'src/models/veiculo.dto';
 import { TipoService } from './../../services/domain/tipo.service';
@@ -22,6 +23,8 @@ import { Component, OnInit } from '@angular/core';
 import { ColaboradorDTO } from 'src/models/colaborador.dto';
 import { Router } from '@angular/router';
 import { VeiculoService } from 'src/services/domain/veiculo.service';
+import { MatDialogConfig, MatDialog } from '@angular/material';
+import { CadastroSucessoComponent } from '../cadastro-sucesso/cadastro-sucesso.component';
 
 @Component({
   selector: 'app-cadastro-veiculo',
@@ -58,6 +61,7 @@ export class CadastroVeiculoComponent implements OnInit {
     private cambioService: CambioService,
     private tipoService: TipoService,
     private veiculoService: VeiculoService,
+    public dialog: MatDialog,
   ) {
     this.cadastroVeiculo = this.formBuilder.group({
       id: ['', []],
@@ -228,12 +232,28 @@ export class CadastroVeiculoComponent implements OnInit {
         this.cadastroVeiculo.reset;
         var veiculoId = response.headers.get('Location').substring(31);
         this.salvarFotosVeiculo(veiculoId);
+        this.abrirDialogoSucesso(veiculoId);
       }, error => {
         if (error.status == 403) {
           this.router.navigate(['/colaborador/login'])
         }
       });
     console.log(this.cadastroVeiculo.value);
+  }
+
+  abrirDialogoSucesso(veiculoId){
+    const dialogConfig = new MatDialogConfig();
+    
+    dialogConfig.data = {
+        title: 'Sucesso!',
+        message: 'Veículo cadastrado com sucesso...',
+        linkAnuncio: veiculoId
+    };
+
+   dialogConfig.width = '525px';
+   dialogConfig.height = '350px';
+
+    this.dialog.open(CadastroSucessoComponent, dialogConfig);
   }
 
 }
