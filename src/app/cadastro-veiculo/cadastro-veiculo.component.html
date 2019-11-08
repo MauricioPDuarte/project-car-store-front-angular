@@ -106,8 +106,9 @@
                 <br>
 
                 <input type="file" multiple (change)="onSelectFile($event)">
+                <!--
                 <div class="row">
-                    <mat-radio-group #radioThumb aria-label="Select an option" (change)="tornarThumbnail($event.value)">
+                  <mat-radio-group #radioThumb aria-label="Select an option" (change)="tornarThumbnail($event.value)">
                         
                         
                         <div class="col-2" *ngFor="let url of urls; let i = index">
@@ -117,6 +118,18 @@
                             </div>
                         </div>
                     </mat-radio-group>
+                </div>
+                -->
+
+                <div class="row">
+                    <label *ngFor="let url of urls; let i = index">
+                        <input type="radio" name="picture" class="card-input-element" (change)="tornarThumbnail(i)">
+                        <mat-card class="card-input">
+                            <mat-card-content>
+                                <img class="teste" mat-card-image alt="" [src]="url">
+                            </mat-card-content>
+                        </mat-card>
+                    </label>
                 </div>
 
                 <br>

@@ -45,8 +45,9 @@ export class CadastroVeiculoComponent implements OnInit {
   tipos: TipoDTO[];
   urls = [];
   picturesFiles: any = [];
-  fotosSalvasComSucesso: Picture[];
+  //fotosSalvasComSucesso: Picture[];
   pictureIndexThumb: number;
+  //valorPadraoImagemThumbnail = 0;
 
   constructor(
     private storage: StorageService,
@@ -65,14 +66,14 @@ export class CadastroVeiculoComponent implements OnInit {
   ) {
     this.cadastroVeiculo = this.formBuilder.group({
       id: ['', []],
-      modeloId: ['2', [Validators.required]],
-      marcaId: ['1', [Validators.required]],
+      modeloId: [2, [Validators.required]],
+      marcaId: [1, [Validators.required]],
       ano: ['2029', [Validators.required, Validators.max(4), Validators.min(4)]],
       preco: ['30000', [Validators.required]],
-      tipoId: ['2', [Validators.required]],
-      corId: ['2', [Validators.required]],
-      combustivelId: ['2', [Validators.required]],
-      cambioId: ['2', [Validators.required]],
+      tipoId: [2, [Validators.required]],
+      corId: [2, [Validators.required]],
+      combustivelId: [2, [Validators.required]],
+      cambioId: [2, [Validators.required]],
       numPortas: ['2', [Validators.required]],
       placa: ['HUY-2323', [Validators.required]],
       descricao: ['sdasdasda', []],
@@ -207,14 +208,16 @@ export class CadastroVeiculoComponent implements OnInit {
     if(file != null){
       this.veiculoService.savePicturesVehicle(veiculoId, file)
         .subscribe((response) => {
-          this.fotosSalvasComSucesso = response;
-          this.tornarFotoPrincipal(veiculoId);
+          //this.fotosSalvasComSucesso = response;
+          //this.tornarFotoPrincipal(veiculoId);
         }, error => {})
     }
   }
 
+  /*
   tornarFotoPrincipal(veiculoId) {
     for(let i = 0; i <= this.fotosSalvasComSucesso.length; i++){
+      console.log(this.pictureIndexThumb)
       if(i == this.pictureIndexThumb){
         this.veiculoService.turnPictureThumb(veiculoId, this.fotosSalvasComSucesso[i].id)
         .subscribe((response) => {
@@ -223,6 +226,7 @@ export class CadastroVeiculoComponent implements OnInit {
       }
     }
   }
+  */
 
   salvar() {
     const file: FormData = this.gerarFormDataPictures();
