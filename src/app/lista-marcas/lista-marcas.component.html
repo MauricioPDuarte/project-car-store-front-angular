@@ -1,0 +1,9 @@
+<mat-list>
+    <h3 mat-subheader>Marcas</h3>
+    <mat-list-item *ngFor="let marca of marcas">
+        <mat-icon mat-list-icon>folder</mat-icon>
+        <h4 mat-line>Código: {{marca.id}}</h4>
+        <p mat-line>Marca: <b>{{marca.nome}}</b> </p>
+        <a *ngIf="isUserAdmin" style="cursor: pointer;" (click)="deletarMarca(marca.id)"><mat-icon class="icon-delete">delete</mat-icon></a>
+    </mat-list-item>
+</mat-list>

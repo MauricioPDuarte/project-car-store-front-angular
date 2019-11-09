@@ -14,6 +14,7 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { MatDialog, MatDialogConfig } from '@angular/material';
+import { FieldMessage } from 'src/models/field-message';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -43,6 +44,10 @@ export class ErrorInterceptor implements HttpInterceptor {
                     case 403:
                         this.handle403();
                         break;
+
+                    case 422:
+                        this.handle422(errorObj);
+                        break;
                 
                     default:
                         this.handleDefault(errorObj);
@@ -67,6 +72,20 @@ export class ErrorInterceptor implements HttpInterceptor {
         this.dialog.open(DialogErrorComponent, dialogConfig);
       }
 
+      handle422(errorObj) {
+        const dialogConfig = new MatDialogConfig();
+    
+        dialogConfig.data = {
+            status: 422,
+            title: 'Erro de validação',
+            message: this.listErrors(errorObj.errors)
+        };
+
+       
+
+        this.dialog.open(DialogErrorComponent, dialogConfig);
+      }
+
       handle403() {
         this.storage.setLocalUser(null);
       }
@@ -83,7 +102,17 @@ export class ErrorInterceptor implements HttpInterceptor {
 
           this.dialog.open(DialogErrorComponent, dialogConfig);
       }
+
+      listErrors(messages: FieldMessage[]): string {
+        let s: string = '';
+        for (var i = 0; i < messages.length; i++) {
+            s = s + '<p><strong>' + messages[i].fieldName + "</strong>: " + messages[i].message + '</p>'
+        }
+        return "<div id='myDiv'>" + s + " </div>" 
+    }
 }
+
+
 
 export const ErrorInterceptorProvider = {
     provide: HTTP_INTERCEPTORS,

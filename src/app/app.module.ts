@@ -21,6 +21,8 @@ import { PainelColaboradorComponent } from './painel-colaborador/painel-colabora
 import { CadastroVeiculoComponent } from './cadastro-veiculo/cadastro-veiculo.component';
 import { CadastroMenuComponent } from './cadastro-menu/cadastro-menu.component';
 import { CadastroSucessoComponent } from './cadastro-sucesso/cadastro-sucesso.component';
+import { ListaMarcasComponent } from './lista-marcas/lista-marcas.component';
+import { CadastroMarcaComponent } from './cadastro-marca/cadastro-marca.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { CadastroSucessoComponent } from './cadastro-sucesso/cadastro-sucesso.co
     CadastroVeiculoComponent,
     CadastroMenuComponent,
     CadastroSucessoComponent,
+    ListaMarcasComponent,
+    CadastroMarcaComponent,
 
   ],
   imports: [

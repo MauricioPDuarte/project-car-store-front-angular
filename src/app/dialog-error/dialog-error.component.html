@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>Erro {{status}} : {{title}}</h2>
 
 <mat-dialog-content>
-{{message}}
+<div [innerHtml]="message"></div>
 </mat-dialog-content>
 
 <mat-dialog-actions>
