@@ -4,6 +4,7 @@
             <mat-card class="card-filtro-avancado card-filtro">
                 <mat-card-header>
                     <mat-card-title>Filtro</mat-card-title>
+                    <a class="limpar" (click)="limparFiltroMarcaModelo()">limpar</a>
                 </mat-card-header>
                 <mat-card-content>
                     <div class="row">
@@ -11,6 +12,7 @@
                             <mat-form-field class="mat-form-w100">
                                 <mat-label>Marca</mat-label>
                                 <mat-select formControlName="marca" (ngModelChange)="buscarVeiculosEModelosPorMarca()">
+                                    <mat-option>--selecionar--</mat-option>
                                     <mat-option *ngFor="let marca of marcas" [value]="marca">{{ marca.nome }}
                                     </mat-option>
                                 </mat-select>

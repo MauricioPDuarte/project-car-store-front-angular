@@ -13,3 +13,11 @@
 .mat-form-w100 {
     width: 100%;
 }
+
+.limpar {
+    margin-left: 90px;
+    font-size: 13px;
+    color: red;
+    cursor: pointer;
+    
+}

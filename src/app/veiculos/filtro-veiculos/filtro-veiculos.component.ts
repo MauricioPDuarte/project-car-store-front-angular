@@ -91,6 +91,14 @@ export class FiltroVeiculosComponent implements OnInit {
     this.carregarTipos();
   }
 
+  limparFiltroMarcaModelo(){
+    this.veiculoPesquisa.marca = null;
+    this.veiculoPesquisa.modelo = null;
+    this.formGroup.value.marca = null;
+    this.formGroup.value.modelo = null;
+    this.buscarVeiculosCustomPage();
+  }
+
   //Buscar para preencher filtro
   buscarMarcas() {
     this.marcaService.findAll().subscribe((response) => {
