@@ -7,7 +7,7 @@ export interface VeiculoNewDTO {
     combustivelId: number;
     cambioId: number;
     numPortas: number;
-    modeloId: number;
+    versaoId: number;
     placa: string;
     descricao: string;
     kmRodado: number;

@@ -29,6 +29,10 @@ a {
     text-decoration: none;
 }
 
+.versao{
+    margin-bottom: 6px;
+}
+
 .container-itens-veiculo {
     margin-left: 43px;
 }
@@ -55,6 +59,7 @@ mat-icon {
 }
 
 .mat-list .mat-list-item {
+    margin-top: 8px;
     height: 50px; /* default is 72px */
     
   }

@@ -6,6 +6,7 @@ import { CambioDTO } from './cambio.dto';
 import { CorDTO } from './cor.dto';
 import { AdicionalDTO } from 'src/models/adicional.dto';
 import { OpcionalDTO } from './opcional.dto';
+import { VersaoDTO } from './versao.dto';
 
 export interface Veiculo {
     id: string;
@@ -21,6 +22,7 @@ export interface Veiculo {
     cambio: CambioDTO;
     combustivel: CombustivelDTO;
     tipo: TipoDTO;
-    modelo: ModeloDTO;
+    //modelo: ModeloDTO;
+    versao: VersaoDTO;
     pictures: Picture[];
 }

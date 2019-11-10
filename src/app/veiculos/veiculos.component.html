@@ -41,10 +41,11 @@
 
                                 <div class="col-7">
                                     <mat-card-header class="ml-5">
-                                        <mat-card-title class="card-title-veiculo">{{veiculo.modelo.marca.nome}}
-                                            {{veiculo.modelo.nome}}</mat-card-title>
-                                        <mat-card-subtitle class="card-subtitle-veiculo ">
-                                            {{veiculo.preco | currency:'BRL'}}
+                                        <mat-card-title class="card-title-veiculo">{{veiculo.versao.modelo.marca.nome}}
+                                            {{veiculo.versao.modelo.nome}}</mat-card-title>
+                                        <mat-card-subtitle >
+                                            <p class="versao">{{ veiculo.versao.nome }}</p>
+                                            <span class="card-subtitle-veiculo">{{veiculo.preco | currency:'BRL'}}</span>
                                         </mat-card-subtitle>
                                     </mat-card-header>
                                     <mat-card-content>
@@ -88,8 +89,7 @@
                                         </div>
                                     </mat-card-content>
                                     <mat-card-footer>
-                                        <button mat-raised-button class="botao-mensagem">Enviar
-                                            mensagem</button>
+          
                                     </mat-card-footer>
                                 </div>
                             </div>

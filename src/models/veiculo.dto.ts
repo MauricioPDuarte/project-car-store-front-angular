@@ -1,7 +1,7 @@
+import { VersaoDTO } from './versao.dto';
 import { OpcionalDTO } from './opcional.dto';
 import { CorDTO } from './cor.dto';
 import { Tipo } from './enum/tipo';
-import { Modelo } from './modelo';
 import { Picture } from './picture';
 import { CambioDTO } from './cambio.dto';
 
@@ -11,7 +11,7 @@ export interface VeiculoDTO {
     ano: number;
     tipo: Tipo;
     cor: CorDTO;
-    modelo: Modelo;
+    versao: VersaoDTO;
     pictures: Picture[];
     kmRodado: number;
     cambio: CambioDTO;
