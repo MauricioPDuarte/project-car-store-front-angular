@@ -24,6 +24,8 @@ import { CadastroSucessoComponent } from './cadastro-sucesso/cadastro-sucesso.co
 import { ListaMarcasComponent } from './lista-marcas/lista-marcas.component';
 import { CadastroMarcaComponent } from './cadastro-marca/cadastro-marca.component';
 
+import { SwiperModule } from 'ngx-swiper-wrapper';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,11 +52,12 @@ import { CadastroMarcaComponent } from './cadastro-marca/cadastro-marca.componen
     AppRoutingModule,
     NgxCurrencyModule,
     FormsModule,
+    SwiperModule,
     
   ],
   providers: [
     AuthInterceptorProvider,
-    ErrorInterceptorProvider
+    ErrorInterceptorProvider,
   ],
   bootstrap: [AppComponent],
   entryComponents: [

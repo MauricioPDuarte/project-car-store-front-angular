@@ -11,7 +11,7 @@ export interface VeiculoDTO {
     tipo: Tipo;
     cor: CorDTO;
     modelo: Modelo;
-    picture: Picture;
+    pictures: Picture[];
     kmRodado: number;
     cambio: CambioDTO;
 }

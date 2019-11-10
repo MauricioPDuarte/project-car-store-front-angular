@@ -20,6 +20,11 @@ img {
     font-family: 'Roboto', sans-serif;
 }
 
+.swiper-container {
+    width: 370px;
+    height: 280px;
+}
+
 a {
     text-decoration: none;
 }

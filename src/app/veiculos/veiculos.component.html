@@ -1,28 +1,44 @@
 <app-menu-anuncio></app-menu-anuncio>
 <div class="container">
     <div class="menu-page">
-        
+
     </div>
     <div class="row">
 
         <div class="col-3">
-            <app-filtro-veiculos
-             (veiculos)="receberVeiculosFiltro($event)"
-             (tamanhoLista)="receberTamanhoListaFiltro($event)"
-             (vPesquisa)="receberVeiculoPesquisa($event)"
-             [paginator]="paginator">
+            <app-filtro-veiculos (veiculos)="receberVeiculosFiltro($event)"
+                (tamanhoLista)="receberTamanhoListaFiltro($event)" (vPesquisa)="receberVeiculoPesquisa($event)"
+                [paginator]="paginator">
             </app-filtro-veiculos>
         </div>
 
         <div class="col-9">
-            <div class="row" *ngFor="let veiculo of veiculos">
+            <div class="row" *ngFor="let veiculo of veiculos; let i = index">
                 <div class="col">
-                    <a href="#">
+                    <a>
                         <mat-card class="card-veiculo">
                             <div class="row">
                                 <div class="col-5">
-                                    <img [src]="veiculo.picture?.fileName || 'assets/images/car-default.png'">
+
+                                    <div *ngIf="veiculo.pictures.length == 0">
+                                        <img [src]="'assets/images/car-default.png'">
+                                    </div>
+
+                                    <div *ngIf="veiculo.pictures">
+                                        <div class="swiper-container" [swiper]="config">
+                                            <div class="swiper-wrapper">
+                                                <div *ngFor="let picture of veiculo.pictures" class="swiper-slide">
+                                                    <img [src]="picture?.fileName">
+                                                </div>
+                                            </div>
+                                            <div class="swiper-button-prev"></div>
+                                            <div class="swiper-button-next"></div>
+                                        </div>
+
+                                    </div>
+
                                 </div>
+
                                 <div class="col-7">
                                     <mat-card-header class="ml-5">
                                         <mat-card-title class="card-title-veiculo">{{veiculo.modelo.marca.nome}}
@@ -62,7 +78,8 @@
                                         </mat-list>
                                     </mat-card-content>
                                     <mat-card-footer>
-                                        <button mat-stroked-button color="primary" class="botao-mensagem">Enviar mensagem</button>
+                                        <button mat-stroked-button color="primary" class="botao-mensagem">Enviar
+                                            mensagem</button>
                                     </mat-card-footer>
                                 </div>
                             </div>
@@ -70,7 +87,8 @@
                     </a>
                 </div>
             </div>
-            <mat-paginator [length]="tamanhoLista" [pageSize]="24" [pageSizeOptions]="[3, 5, 10, 24]" style="margin-top: 5px"></mat-paginator>
+            <mat-paginator [length]="tamanhoLista" [pageSize]="24" [pageSizeOptions]="[3, 5, 10, 24]"
+                style="margin-top: 5px"></mat-paginator>
         </div>
     </div>
 </div>

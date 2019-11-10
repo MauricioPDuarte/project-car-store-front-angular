@@ -1,13 +1,14 @@
 import { ActivatedRoute } from '@angular/router';
 import { VeiculoPesquisa } from './../../models/pesquisa/veiculo-pesquisa';
 
-import { Component, OnInit, ViewChild, Input} from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { VeiculoService } from 'src/services/domain/veiculo.service';
 import { VeiculoDTO } from 'src/models/veiculo.dto';
 import { API_CONFIG } from 'src/config/api.config';
 import { MatPaginator } from '@angular/material';
 import { merge, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 @Component({
   selector: 'app-veiculos',
@@ -19,7 +20,9 @@ export class VeiculosComponent implements OnInit {
   constructor(
     private veiculoService: VeiculoService,
     private route: ActivatedRoute
-    ) { }
+  ) {
+    
+   }
 
   veiculos: VeiculoDTO[];
   tamanhoLista: number;
@@ -27,12 +30,22 @@ export class VeiculosComponent implements OnInit {
 
   @ViewChild(MatPaginator, null) paginator: MatPaginator;
 
+  public config: SwiperConfigInterface = {
+    direction: 'horizontal',
+    slidesPerView: 1,
+    keyboard: true,
+    mousewheel: true,
+    scrollbar: false,
+    navigation: true,
+    pagination: false
+  };
+
   ngOnInit() {
     this.veiculoPesquisa = new VeiculoPesquisa();
     this.findAllVeiculosPage();
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.paginator.initialized.subscribe(() => this.paginator.pageIndex = 0)
 
     merge(this.paginator.page).pipe(
@@ -43,21 +56,34 @@ export class VeiculosComponent implements OnInit {
   }
 
   findAllVeiculosPage() {
-     this.veiculoService.findVeiculosCustomPage(this.paginator.pageIndex, this.paginator.pageSize, 'ASC', this.veiculoPesquisa)
-     .subscribe((response) => {
-       this.veiculos = response['content'];
-       console.log(response);
-       this.tamanhoLista = response['totalElements'];
-       this.carregarImagensVeiculo();
-     })
+    this.veiculoService.findVeiculosCustomPage(this.paginator.pageIndex, this.paginator.pageSize, 'ASC', this.veiculoPesquisa)
+      .subscribe((response) => {
+        this.veiculos = response['content'];
+        console.log(response);
+        this.tamanhoLista = response['totalElements'];
+        this.carregarImagensVeiculo();
+      })
   }
 
   carregarImagensVeiculo() {
-    for(let veiculo of this.veiculos) {
-      if(veiculo.picture){
-        veiculo.picture.fileName = `${API_CONFIG.baseUrl}/veiculos/picture/${veiculo.id}/${veiculo.picture.fileName}`;
+    for (let veiculo of this.veiculos) {
+      if (veiculo.pictures.length > 0) {
+        for (let picture of veiculo.pictures) {
+          if (picture) {
+            picture.fileName = `${API_CONFIG.baseUrl}/veiculos/picture/${veiculo.id}/${picture.fileName}`;
+          }
+        }
       }
     }
+  }
+
+
+  proximaImagem() {
+
+  }
+
+  voltarImagem() {
+    console.log("Voltar")
   }
 
   receberVeiculosFiltro(veiculos) {
