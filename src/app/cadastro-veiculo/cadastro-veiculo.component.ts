@@ -66,20 +66,20 @@ export class CadastroVeiculoComponent implements OnInit {
   ) {
     this.cadastroVeiculo = this.formBuilder.group({
       id: ['', []],
-      modeloId: [2, [Validators.required]],
-      marcaId: [1, [Validators.required]],
-      ano: ['2029', [Validators.required, Validators.max(4), Validators.min(4)]],
-      preco: ['30000', [Validators.required]],
-      tipoId: [2, [Validators.required]],
-      corId: [2, [Validators.required]],
-      combustivelId: [2, [Validators.required]],
-      cambioId: [2, [Validators.required]],
-      numPortas: ['2', [Validators.required]],
-      placa: ['HUY-2323', [Validators.required]],
-      descricao: ['sdasdasda', []],
-      kmRodado: ['232323', [Validators.required]],
-      adicionais: [[1,2,3,4], []],
-      opcionais: [[1,2,3,4], []]
+      modeloId: ['', [Validators.required]],
+      marcaId: ['', [Validators.required]],
+      ano: ['', [Validators.required, Validators.max(4), Validators.min(4)]],
+      preco: ['', [Validators.required]],
+      tipoId: ['', [Validators.required]],
+      corId: ['', [Validators.required]],
+      combustivelId: ['', [Validators.required]],
+      cambioId: ['', [Validators.required]],
+      numPortas: ['', [Validators.required]],
+      placa: ['', [Validators.required]],
+      descricao: ['', []],
+      kmRodado: ['', [Validators.required]],
+      adicionais: [[], []],
+      opcionais: [[], []]
     });
   }
 

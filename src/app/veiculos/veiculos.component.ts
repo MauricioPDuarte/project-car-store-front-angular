@@ -42,7 +42,13 @@ export class VeiculosComponent implements OnInit {
 
   ngOnInit() {
     this.veiculoPesquisa = new VeiculoPesquisa();
-    this.findAllVeiculosPage();
+    this.route.queryParams
+      .subscribe((response) => {
+        if(response){
+          this.veiculoPesquisa = response as VeiculoPesquisa;
+        }
+        this.findAllVeiculosPage();
+    }, error => {})
   }
 
   ngAfterViewInit() {
