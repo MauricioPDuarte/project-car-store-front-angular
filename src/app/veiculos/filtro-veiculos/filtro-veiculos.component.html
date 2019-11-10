@@ -31,6 +31,18 @@
                             </mat-form-field>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field class="mat-form-w100">
+                                <mat-label>Versão</mat-label>
+                                <mat-select formControlName="versao" (ngModelChange)="buscarVeiculosPorVersao()">
+                                    <mat-option *ngFor="let versao of versoes" [value]="versao" class="opcao-lista">
+                                        {{ versao.nome }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
                 </mat-card-content>
             </mat-card>
         </div>
@@ -175,8 +187,7 @@
                         <div class="col">
                             <mat-form-field class="mat-form-w100">
                                 <mat-label>Tipo</mat-label>
-                                <mat-select multiple formControlName="tipos"
-                                    (ngModelChange)="filtrarPorTipos()">
+                                <mat-select multiple formControlName="tipos" (ngModelChange)="filtrarPorTipos()">
                                     <mat-option *ngFor="let tipo of tipos" [value]="tipo">
                                         {{ tipo.nome }}</mat-option>
                                 </mat-select>

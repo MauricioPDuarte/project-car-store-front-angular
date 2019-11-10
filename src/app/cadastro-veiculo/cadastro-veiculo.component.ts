@@ -1,3 +1,5 @@
+import { VersaoDTO } from './../../models/versao.dto';
+import { ModeloService } from './../../services/domain/modelo.service';
 import { API_CONFIG } from 'src/config/api.config';
 import { Picture } from './../../models/picture';
 import { VeiculoDTO } from 'src/models/veiculo.dto';
@@ -48,6 +50,7 @@ export class CadastroVeiculoComponent implements OnInit {
   //fotosSalvasComSucesso: Picture[];
   pictureIndexThumb: number;
   //valorPadraoImagemThumbnail = 0;
+  versoes: VersaoDTO[];
 
   constructor(
     private storage: StorageService,
@@ -63,11 +66,13 @@ export class CadastroVeiculoComponent implements OnInit {
     private tipoService: TipoService,
     private veiculoService: VeiculoService,
     public dialog: MatDialog,
+    private modeloService: ModeloService,
   ) {
     this.cadastroVeiculo = this.formBuilder.group({
       id: ['', []],
       modeloId: ['', [Validators.required]],
       marcaId: ['', [Validators.required]],
+      versaoId: ['', [Validators.required]],
       ano: ['', [Validators.required, Validators.max(4), Validators.min(4)]],
       preco: ['', [Validators.required]],
       tipoId: ['', [Validators.required]],
@@ -108,6 +113,14 @@ export class CadastroVeiculoComponent implements OnInit {
     } else {
       this.router.navigate(['/colaborador/login']);
     }
+  }
+
+  carregarVersoes() {
+    let modeloId = this.cadastroVeiculo.value.modeloId;
+    this.modeloService.findVersoesPorModelo(modeloId)
+      .subscribe((response) => {
+        this.versoes = response;
+      }, error => {});
   }
 
   carregarMarcas() {

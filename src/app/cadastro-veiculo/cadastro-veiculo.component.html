@@ -20,9 +20,18 @@
 
                     <mat-form-field class="mat-form-field-w100">
                         <mat-label>Modelo</mat-label>
-                        <mat-select formControlName="modeloId">
+                        <mat-select formControlName="modeloId" (ngModelChange)="carregarVersoes()">
                             <mat-option *ngFor="let modelo of modelos" [value]="modelo.id">
                                 {{ modelo.nome }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="mat-form-field-w100">
+                        <mat-label>Versão</mat-label>
+                        <mat-select formControlName="versaoId">
+                            <mat-option *ngFor="let versao of versoes" [value]="versao.id">
+                                {{ versao.nome }}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>

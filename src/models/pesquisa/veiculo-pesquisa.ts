@@ -6,6 +6,7 @@ import { MarcaDTO } from '../marca.dto';
 export class VeiculoPesquisa {
     marca: string;
     modelo: string;
+    versao: string;
     dePreco: string;
     atePreco: string;
     deAno: string;

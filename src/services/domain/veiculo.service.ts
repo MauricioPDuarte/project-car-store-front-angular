@@ -69,6 +69,7 @@ export class VeiculoService {
     let params = new HttpParams()
       .set("marca", veiculoPesquisa.marca != null ? veiculoPesquisa.marca : '')
       .set("modelo", veiculoPesquisa.modelo != null ? veiculoPesquisa.modelo : '')
+      .set("versao", veiculoPesquisa.versao != null ? veiculoPesquisa.versao : '')
       .set("opcionais", veiculoPesquisa.opcionais != null ? veiculoPesquisa.opcionais : '')
       .set("adc", veiculoPesquisa.adicionais != null ? veiculoPesquisa.adicionais : '')
       .set("depreco", veiculoPesquisa.dePreco != null ? veiculoPesquisa.dePreco : '')

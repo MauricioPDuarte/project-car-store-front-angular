@@ -1,3 +1,4 @@
+import { VersaoDTO } from './../../../models/versao.dto';
 import { TipoDTO } from './../../../models/tipo.dto';
 import { TipoService } from './../../../services/domain/tipo.service';
 import { CombustivelDTO } from 'src/models/combustivel.dto';
@@ -22,6 +23,7 @@ import { ModeloDTO } from 'src/models/modelo.dto';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { debounceTime, tap, distinctUntilChanged, last } from 'rxjs/operators';
+import { ModeloService } from 'src/services/domain/modelo.service';
 
 
 @Component({
@@ -49,6 +51,7 @@ export class FiltroVeiculosComponent implements OnInit {
   cambios: CambioDTO[];
   combustiveis: CombustivelDTO[];
   tipos: TipoDTO[];
+  versoes: VersaoDTO[];
 
   constructor(
     private marcaService: MarcaService,
@@ -62,11 +65,13 @@ export class FiltroVeiculosComponent implements OnInit {
     private cambioService: CambioService,
     private combustivelService: CombustivelService,
     private tipoService: TipoService,
+    private modeloService: ModeloService,
   ) {
     this.veiculoPesquisa = new VeiculoPesquisa;
     this.formGroup = this.formBuilder.group({
       marca: [null, []],
       modelo: [null, []],
+      versao: [null, []],
       opcionais: [null, []],
       adicionais: [null, []],
       depreco: [null, []],
@@ -158,6 +163,14 @@ export class FiltroVeiculosComponent implements OnInit {
       });
   }
 
+  carregarVersoesVeiculo(){
+    let modeloId = this.formGroup.value.modelo.id;
+    this.modeloService.findVersoesPorModelo(modeloId)
+      .subscribe((response) => {
+        this.versoes = response;
+      }, error => {});
+  }
+
   //Buscar veiculos
   buscarVeiculosPorMarca() {
     this.veiculoPesquisa.marca = this.formGroup.value.marca.nome;
@@ -166,7 +179,13 @@ export class FiltroVeiculosComponent implements OnInit {
   }
 
   buscarVeiculosPorModelo() {
+    this.carregarVersoesVeiculo();
     this.veiculoPesquisa.modelo = this.formGroup.value.modelo.nome;
+    this.buscarVeiculosCustomPage();
+  }
+
+  buscarVeiculosPorVersao(){
+    this.veiculoPesquisa.versao = this.formGroup.value.versao.nome;
     this.buscarVeiculosCustomPage();
   }
 
