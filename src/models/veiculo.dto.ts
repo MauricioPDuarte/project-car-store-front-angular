@@ -1,3 +1,4 @@
+import { OpcionalDTO } from './opcional.dto';
 import { CorDTO } from './cor.dto';
 import { Tipo } from './enum/tipo';
 import { Modelo } from './modelo';
@@ -14,4 +15,5 @@ export interface VeiculoDTO {
     pictures: Picture[];
     kmRodado: number;
     cambio: CambioDTO;
+    opcionais: OpcionalDTO[];
 }

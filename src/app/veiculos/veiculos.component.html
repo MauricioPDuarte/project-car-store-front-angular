@@ -76,9 +76,19 @@
                                                 </div>
                                             </div>
                                         </mat-list>
+                                        <div class="row">
+                                            <div class="col" style="height: 46px;">
+                                                <p style="margin-left: 64px; margin-top: 14px;">
+                                                    <ng-container *ngFor="let opc of veiculo.opcionais | slice:0:5;">
+                                                            <i class="fas fa-angle-right" style="color: rosybrown; margin-left: 5px;"></i>
+                                                            {{ opc.nome }}  
+                                                    </ng-container>
+                                                </p>
+                                            </div>
+                                        </div>
                                     </mat-card-content>
                                     <mat-card-footer>
-                                        <button mat-stroked-button color="primary" class="botao-mensagem">Enviar
+                                        <button mat-raised-button class="botao-mensagem">Enviar
                                             mensagem</button>
                                     </mat-card-footer>
                                 </div>

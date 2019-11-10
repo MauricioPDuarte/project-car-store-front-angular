@@ -30,13 +30,18 @@ a {
 }
 
 .container-itens-veiculo {
-    margin-left: 40px;
+    margin-left: 43px;
 }
 
 .botao-mensagem {
-    color: green;
+    color: white;
+    background-color:#34af23;
     margin-left: 323px;
     
+}
+
+b {
+    font-size: 15px;
 }
 
 .menu-page {
@@ -48,3 +53,8 @@ a {
 mat-icon {
     color: #151C26;
 }
+
+.mat-list .mat-list-item {
+    height: 50px; /* default is 72px */
+    
+  }
