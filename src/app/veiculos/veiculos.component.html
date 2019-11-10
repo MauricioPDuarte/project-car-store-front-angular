@@ -24,7 +24,7 @@
                                         <img [src]="'assets/images/car-default.png'">
                                     </div>
 
-                                    <div *ngIf="veiculo.pictures">
+                                    <div *ngIf="veiculo.pictures.length != 0">
                                         <div class="swiper-container" [swiper]="config">
                                             <div class="swiper-wrapper">
                                                 <div *ngFor="let picture of veiculo.pictures" class="swiper-slide">
