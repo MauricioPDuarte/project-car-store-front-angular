@@ -1,10 +1,10 @@
 img {
-    width: 370px;
-    height: 280px;
+    width: 400px;
+    height: 300px;
 }
 
 .card-veiculo {
-    height: 315px;
+    height: 350px;
     margin-bottom: 20px;
 }
 
@@ -18,11 +18,29 @@ img {
     color: #151C26;
     font-weight: 900;
     font-family: 'Roboto', sans-serif;
+    color: #373737;
 }
 
 .swiper-container {
-    width: 370px;
-    height: 280px;
+    width: 400px;
+    height: 300px;
+}
+
+.mat-card-header-anuncio {
+    margin-left: 69px;
+    margin-bottom: -14px;
+}
+
+.opcionais-veiculo{
+    margin-left: 84px;
+    margin-top: 14px;
+    font-size: 13px;
+}
+
+.opcionais-veiculo i {
+    color: rosybrown;
+    margin-left: 5px;
+    margin-top: 7px;
 }
 
 a {
@@ -34,7 +52,7 @@ a {
 }
 
 .container-itens-veiculo {
-    margin-left: 43px;
+    margin-left: 65px;
 }
 
 .botao-mensagem {
@@ -60,6 +78,6 @@ mat-icon {
 
 .mat-list .mat-list-item {
     margin-top: 8px;
-    height: 50px; /* default is 72px */
+    height: 43px; /* default is 72px */
     
   }

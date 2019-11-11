@@ -40,7 +40,7 @@
                                 </div>
 
                                 <div class="col-7">
-                                    <mat-card-header class="ml-5">
+                                    <mat-card-header class="mat-card-header-anuncio ">
                                         <mat-card-title class="card-title-veiculo">{{veiculo.versao.modelo.marca.nome}}
                                             {{veiculo.versao.modelo.nome}}</mat-card-title>
                                         <mat-card-subtitle >
@@ -53,35 +53,35 @@
                                             <div class="row">
                                                 <div class="col-4 container-itens-veiculo">
                                                     <mat-list-item>
-                                                        <mat-icon mat-list-icon>calendar_today</mat-icon>
-                                                        <h4 mat-line>Ano</h4>
-                                                        <p mat-line>{{ veiculo.ano }}</p>
+                                                        <mat-icon style="color: #D9043D;" mat-list-icon>today</mat-icon>
+                                                        <h4 mat-line style="font-size: 13px; font-family: 'Nunito', sans-serif;">Ano</h4>
+                                                        <p mat-line style="font-size: 13px; font-family: 'Nunito', sans-serif;">{{ veiculo.ano }}</p>
                                                     </mat-list-item>
                                                     <mat-list-item>
-                                                        <mat-icon mat-list-icon>color_lens</mat-icon>
-                                                        <h4 mat-line>Cor</h4>
-                                                        <p mat-line>{{ veiculo.cor.nome }}</p>
+                                                        <mat-icon  style="color: #D9043D;" mat-list-icon>money</mat-icon>
+                                                        <h4 mat-line style="font-size: 13px; font-family: 'Nunito', sans-serif;">Km</h4>
+                                                        <p mat-line style="font-size: 13px; font-family: 'Nunito', sans-serif;">{{ veiculo.kmRodado }}</p>
                                                     </mat-list-item>
                                                 </div>
                                                 <div class="col-6">
                                                     <mat-list-item>
-                                                        <mat-icon mat-list-icon>directions_car</mat-icon>
-                                                        <h4 mat-line>Câmbio</h4>
-                                                        <p mat-line>{{ veiculo.cambio.nome }}</p>
+                                                        <mat-icon style="color: #D9043D;" mat-list-icon>directions_car</mat-icon>
+                                                        <h4 mat-line style="font-size: 13px; font-family: 'Nunito', sans-serif;">Câmbio</h4>
+                                                        <p mat-line style="font-size: 13px; font-family: 'Nunito', sans-serif;">{{ veiculo.cambio.nome }}</p>
                                                     </mat-list-item>
                                                     <mat-list-item>
-                                                        <mat-icon mat-list-icon>money</mat-icon>
-                                                        <h4 mat-line>Kilometragem</h4>
-                                                        <p mat-line>{{ veiculo.kmRodado }}</p>
+                                                        <mat-icon style="color: #D9043D;" mat-list-icon>local_gas_station</mat-icon>
+                                                        <h4 mat-line style="font-size: 13px; font-family: 'Nunito', sans-serif;">Combustível</h4>
+                                                        <p mat-line style="font-size: 13px; font-family: 'Nunito', sans-serif;">{{ veiculo.combustivel.nome }}</p>
                                                     </mat-list-item>
                                                 </div>
                                             </div>
                                         </mat-list>
                                         <div class="row">
                                             <div class="col" style="height: 46px;">
-                                                <p style="margin-left: 64px; margin-top: 14px;">
+                                                <p class="opcionais-veiculo">
                                                     <ng-container *ngFor="let opc of veiculo.opcionais | slice:0:5;">
-                                                            <i class="fas fa-angle-right" style="color: rosybrown; margin-left: 5px;"></i>
+                                                            <i class="fas fa-angle-right"></i>
                                                             {{ opc.nome }}  
                                                     </ng-container>
                                                 </p>
@@ -89,7 +89,10 @@
                                         </div>
                                     </mat-card-content>
                                     <mat-card-footer>
-          
+                                        <button mat-flat-button class="botao-mensagem">
+                                            <i class="fab fa-whatsapp" style="margin-right: 3px;"></i>
+                                            MENSAGEM
+                                        </button>
                                     </mat-card-footer>
                                 </div>
                             </div>

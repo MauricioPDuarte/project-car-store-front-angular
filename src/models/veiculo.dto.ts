@@ -1,3 +1,4 @@
+import { CombustivelDTO } from './combustivel.dto';
 import { VersaoDTO } from './versao.dto';
 import { OpcionalDTO } from './opcional.dto';
 import { CorDTO } from './cor.dto';
@@ -10,7 +11,7 @@ export interface VeiculoDTO {
     preco: number;
     ano: number;
     tipo: Tipo;
-    cor: CorDTO;
+    combustivel: CombustivelDTO;
     versao: VersaoDTO;
     pictures: Picture[];
     kmRodado: number;
