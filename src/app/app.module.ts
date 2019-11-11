@@ -18,11 +18,11 @@ import { ErrorInterceptorProvider } from 'src/interceptors/error-interceptor';
 import { LoginComponent } from './login/login.component';
 import { MenuAnuncioComponent } from './menu-anuncio/menu-anuncio.component';
 import { PainelColaboradorComponent } from './painel-colaborador/painel-colaborador.component';
-import { CadastroVeiculoComponent } from './cadastro-veiculo/cadastro-veiculo.component';
-import { CadastroMenuComponent } from './cadastro-menu/cadastro-menu.component';
-import { CadastroSucessoComponent } from './cadastro-sucesso/cadastro-sucesso.component';
+import { CadastroVeiculoComponent } from './painel-colaborador/cadastro-veiculo/cadastro-veiculo.component';
+import { CadastroMenuComponent } from './painel-colaborador/cadastro-menu/cadastro-menu.component';
+import { CadastroSucessoComponent } from './painel-colaborador/cadastro-sucesso/cadastro-sucesso.component';
 import { ListaMarcasComponent } from './lista-marcas/lista-marcas.component';
-import { CadastroMarcaComponent } from './cadastro-marca/cadastro-marca.component';
+import { CadastroMarcaComponent } from './painel-colaborador/cadastro-marca/cadastro-marca.component';
 
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { DashboardComponent } from './painel-colaborador/dashboard/dashboard.component';

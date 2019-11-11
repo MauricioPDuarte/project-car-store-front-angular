@@ -1,10 +1,10 @@
-import { CadastroVeiculoComponent } from './cadastro-veiculo/cadastro-veiculo.component';
+import { CadastroVeiculoComponent } from './painel-colaborador/cadastro-veiculo/cadastro-veiculo.component';
 import { PainelColaboradorComponent } from './painel-colaborador/painel-colaborador.component';
 import { VeiculosComponent } from './veiculos/veiculos.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { CadastroMarcaComponent } from './cadastro-marca/cadastro-marca.component';
+import { CadastroMarcaComponent } from './painel-colaborador/cadastro-marca/cadastro-marca.component';
 
 const routes: Routes = [
   {path: 'estoque', component: VeiculosComponent},

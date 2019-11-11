@@ -1,10 +1,10 @@
-import { ColaboradorDTO } from './../../models/colaborador.dto';
-import { ColaboradorService } from './../../services/domain/colaborador.service';
-import { StorageService } from './../../services/storage.service';
-import { LocalUser } from './../../models/local_user';
+import { ColaboradorDTO } from '../../../models/colaborador.dto';
+import { ColaboradorService } from '../../../services/domain/colaborador.service';
+import { StorageService } from '../../../services/storage.service';
+import { LocalUser } from '../../../models/local_user';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { MarcaService } from './../../services/domain/marca.service';
+import { MarcaService } from '../../../services/domain/marca.service';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
