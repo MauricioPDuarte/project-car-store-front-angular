@@ -1,121 +1,120 @@
-<app-cadastro-menu></app-cadastro-menu>
-<div class="container">
-    <div class="row">
+<app-cadastro-menu [titulo]="'veiculos'"></app-cadastro-menu>
+<div class="row" style="margin-right: 20px; margin-left: 10px;">
 
-        <mat-card class="mat-card-cadastro">
-            <mat-card-header>
-                <mat-card-title>Informações</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <form [formGroup]="cadastroVeiculo">
+    <mat-card class="mat-card-cadastro">
+        <mat-card-header>
+            <mat-card-title>Informações</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="cadastroVeiculo">
 
-                    <mat-form-field class="mat-form-field-w100">
-                        <mat-label>Marca</mat-label>
-                        <mat-select (ngModelChange)="carregarModelosPorMarca()" formControlName="marcaId">
-                            <mat-option *ngFor="let marca of marcas" [value]="marca.id">
-                                {{ marca.nome }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                <mat-form-field class="mat-form-field-w100">
+                    <mat-label>Marca</mat-label>
+                    <mat-select (ngModelChange)="carregarModelosPorMarca()" formControlName="marcaId">
+                        <mat-option *ngFor="let marca of marcas" [value]="marca.id">
+                            {{ marca.nome }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
 
-                    <mat-form-field class="mat-form-field-w100">
-                        <mat-label>Modelo</mat-label>
-                        <mat-select formControlName="modeloId" (ngModelChange)="carregarVersoes()">
-                            <mat-option *ngFor="let modelo of modelos" [value]="modelo.id">
-                                {{ modelo.nome }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                <mat-form-field class="mat-form-field-w100">
+                    <mat-label>Modelo</mat-label>
+                    <mat-select formControlName="modeloId" (ngModelChange)="carregarVersoes()">
+                        <mat-option *ngFor="let modelo of modelos" [value]="modelo.id">
+                            {{ modelo.nome }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
 
-                    <mat-form-field class="mat-form-field-w100">
-                        <mat-label>Versão</mat-label>
-                        <mat-select formControlName="versaoId">
-                            <mat-option *ngFor="let versao of versoes" [value]="versao.id">
-                                {{ versao.nome }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                <mat-form-field class="mat-form-field-w100">
+                    <mat-label>Versão</mat-label>
+                    <mat-select formControlName="versaoId">
+                        <mat-option *ngFor="let versao of versoes" [value]="versao.id">
+                            {{ versao.nome }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
 
-                    <mat-form-field class="mat-form-field-w100">
-                        <input matInput placeholder="Ano" formControlName="ano" maxlength="4" type="number">
-                    </mat-form-field>
+                <mat-form-field class="mat-form-field-w100">
+                    <input matInput placeholder="Ano" formControlName="ano" maxlength="4" type="number">
+                </mat-form-field>
 
-                    <mat-form-field class="mat-form-field-w100">
-                        <input matInput placeholder="Placa" formControlName="placa">
-                    </mat-form-field>
+                <mat-form-field class="mat-form-field-w100">
+                    <input matInput placeholder="Placa" formControlName="placa">
+                </mat-form-field>
 
-                    <mat-form-field class="mat-form-field-w100">
-                        <input matInput placeholder="Número de portas" formControlName="numPortas" type="number">
-                    </mat-form-field>
+                <mat-form-field class="mat-form-field-w100">
+                    <input matInput placeholder="Número de portas" formControlName="numPortas" type="number">
+                </mat-form-field>
 
-                    <mat-form-field class="mat-form-field-w100">
-                        <input matInput placeholder="Kilometragem" formControlName="kmRodado" type="number">
-                    </mat-form-field>
+                <mat-form-field class="mat-form-field-w100">
+                    <input matInput placeholder="Kilometragem" formControlName="kmRodado" type="number">
+                </mat-form-field>
 
-                    <mat-form-field class="mat-form-field-w100">
-                        <mat-label>Cor</mat-label>
-                        <mat-select formControlName="corId">
-                            <mat-option *ngFor="let cor of cores" [value]="cor.id">
-                                {{ cor.nome }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                <mat-form-field class="mat-form-field-w100">
+                    <mat-label>Cor</mat-label>
+                    <mat-select formControlName="corId">
+                        <mat-option *ngFor="let cor of cores" [value]="cor.id">
+                            {{ cor.nome }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
 
-                    <mat-form-field class="mat-form-field-w100">
-                        <mat-label>Opcionais</mat-label>
-                        <mat-select formControlName="opcionais" multiple>
-                            <mat-option *ngFor="let opc of opcionais" [value]="opc.id"> {{ opc.nome }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                <mat-form-field class="mat-form-field-w100">
+                    <mat-label>Opcionais</mat-label>
+                    <mat-select formControlName="opcionais" multiple>
+                        <mat-option *ngFor="let opc of opcionais" [value]="opc.id"> {{ opc.nome }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
 
-                    <mat-form-field class="mat-form-field-w100">
-                        <mat-label>Adicionais</mat-label>
-                        <mat-select formControlName="adicionais" multiple>
-                            <mat-option *ngFor="let adc of adicionais" [value]="adc.id"> {{ adc.nome }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                <mat-form-field class="mat-form-field-w100">
+                    <mat-label>Adicionais</mat-label>
+                    <mat-select formControlName="adicionais" multiple>
+                        <mat-option *ngFor="let adc of adicionais" [value]="adc.id"> {{ adc.nome }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
 
-                    <mat-form-field class="mat-form-field-w100">
-                        <mat-label>Combustível</mat-label>
-                        <mat-select formControlName="combustivelId">
-                            <mat-option *ngFor="let comb of combustiveis" [value]="comb.id"> {{ comb.nome }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                <mat-form-field class="mat-form-field-w100">
+                    <mat-label>Combustível</mat-label>
+                    <mat-select formControlName="combustivelId">
+                        <mat-option *ngFor="let comb of combustiveis" [value]="comb.id"> {{ comb.nome }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
 
-                    <mat-form-field class="mat-form-field-w100">
-                        <mat-label>Câmbio</mat-label>
-                        <mat-select formControlName="cambioId">
-                            <mat-option *ngFor="let cambio of cambios" [value]="cambio.id"> {{ cambio.nome }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                <mat-form-field class="mat-form-field-w100">
+                    <mat-label>Câmbio</mat-label>
+                    <mat-select formControlName="cambioId">
+                        <mat-option *ngFor="let cambio of cambios" [value]="cambio.id"> {{ cambio.nome }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
 
-                    <mat-form-field class="mat-form-field-w100">
-                        <mat-label>Tipo</mat-label>
-                        <mat-select formControlName="tipoId">
-                            <mat-option *ngFor="let tipo of tipos" [value]="tipo.id"> {{ tipo.nome }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                <mat-form-field class="mat-form-field-w100">
+                    <mat-label>Tipo</mat-label>
+                    <mat-select formControlName="tipoId">
+                        <mat-option *ngFor="let tipo of tipos" [value]="tipo.id"> {{ tipo.nome }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
 
-                    <mat-form-field class="mat-form-field-w100">
-                        <input matInput placeholder="Preço" formControlName="preco" type="number">
-                    </mat-form-field>
+                <mat-form-field class="mat-form-field-w100">
+                    <input matInput placeholder="Preço" formControlName="preco" type="number">
+                </mat-form-field>
 
-                    <mat-form-field class="mat-form-field-w100">
-                        <textarea matInput placeholder="Descrição" formControlName="descricao"></textarea>
-                    </mat-form-field>
+                <mat-form-field class="mat-form-field-w100">
+                    <textarea matInput placeholder="Descrição" formControlName="descricao"></textarea>
+                </mat-form-field>
 
-                </form>
+            </form>
 
-                <br>
-                <br>
+            <br>
+            <br>
 
-                <input type="file" multiple (change)="onSelectFile($event)">
-                <!--
+            <input type="file" multiple (change)="onSelectFile($event)">
+            <!--
                 <div class="row">
                   <mat-radio-group #radioThumb aria-label="Select an option" (change)="tornarThumbnail($event.value)">
                         
@@ -130,22 +129,21 @@
                 </div>
                 -->
 
-                <div class="row">
-                    <label *ngFor="let url of urls; let i = index">
-                        <input type="radio" name="picture" class="card-input-element" (change)="tornarThumbnail(i)">
-                        <mat-card class="card-input">
-                            <mat-card-content>
-                                <img class="teste" mat-card-image alt="" [src]="url">
-                            </mat-card-content>
-                        </mat-card>
-                    </label>
-                </div>
+            <div class="row">
+                <label *ngFor="let url of urls; let i = index">
+                    <input type="radio" name="picture" class="card-input-element" (change)="tornarThumbnail(i)">
+                    <mat-card class="card-input">
+                        <mat-card-content>
+                            <img class="teste" mat-card-image alt="" [src]="url">
+                        </mat-card-content>
+                    </mat-card>
+                </label>
+            </div>
 
-                <br>
-                <br>
+            <br>
+            <br>
 
-                <button mat-stroked-button color="primary" (click)="salvar()">Salvar</button>
-            </mat-card-content>
-        </mat-card>
-    </div>
+            <button mat-stroked-button color="primary" (click)="salvar()">Salvar</button>
+        </mat-card-content>
+    </mat-card>
 </div>

@@ -15,14 +15,13 @@ export class PainelColaboradorComponent implements OnInit {
 
   colaboradores: ColaboradorDTO[];
   usuarioLogado: ColaboradorDTO;
-  totalVeiculosCadastrados: number;
+  selecaoMenu: string = 'dashboard';
   
 
   constructor(
     private colaboradorService: ColaboradorService,
     private router: Router,
     private storage: StorageService,
-    private veiculoService: VeiculoService,
   ) { 
     
   }
@@ -30,7 +29,11 @@ export class PainelColaboradorComponent implements OnInit {
   ngOnInit() {
     this.buscarPorEmail();
     this.buscarColaboradores();
-    this.buscarTotalDeVeiculosCadastrados();
+   
+  }
+
+  trocarPagina(pagina) {
+    this.selecaoMenu = pagina;
   }
 
   buscarColaboradores() {
@@ -60,11 +63,6 @@ export class PainelColaboradorComponent implements OnInit {
     }
   }
 
-  buscarTotalDeVeiculosCadastrados() {
-    this.veiculoService.findAllCarsPage(0, 1, 'ASC')
-    .subscribe((response) => {
-      this.totalVeiculosCadastrados = response['totalElements'];
-    })
-  }
+
 
 }

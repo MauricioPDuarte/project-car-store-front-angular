@@ -1,0 +1,11 @@
+.container-lateral {
+         box-shadow: 5px 5px 5px 10px rgba(0,0,0,0.1);
+        
+}
+
+.container-contador {
+        height: 180px;
+        margin-left: 20px;
+        margin-top: 20px;
+        box-shadow: 5px 3px 4px 0.2px rgba(0,0,0,0.1);
+}

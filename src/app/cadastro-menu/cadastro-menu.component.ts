@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-cadastro-menu',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cadastro-menu.component.css']
 })
 export class CadastroMenuComponent implements OnInit {
+
+  @Input() titulo: string;
 
   constructor() { }
 

@@ -1,3 +1,4 @@
+<!--
 <div class="container">
     <div class="row">
         <div class="col-9">
@@ -9,13 +10,7 @@
             </div>
         </div>
     </div>
-    <!--
-    <div *ngIf="usuarioLogado != null">
-        <div *ngFor="let role of usuarioLogado.perfis">
-            <h4 *ngIf="role == 'ADMIN'">Olá Administrador</h4>
-        </div>
-    </div>
-    -->
+    --
     <div class="row">
         <div class="col-4">
             <mat-list>
@@ -75,4 +70,109 @@
             </div>
         </div>
     </div>
+</div>
+-->
+
+<div class="row" style="height: 100%;">
+    <div class="col-2 container-menu-lateral">
+        <div class="row">
+            <button class="novo-veiculo" (click)="trocarPagina('cadastro-veiculo')">
+                <i class="fas fa-car icon-menu"></i>
+                <span class="opcao-menu">Novo veículo</span>
+            </button>
+        </div>
+
+        <span class="titulo-menu">Painel</span>
+        <div class="textos-menu">
+            <div class="row">
+                <div *ngIf="selecaoMenu == 'dashboard'">
+                    <i class="fas fa-dot-circle" style="color: blueviolet; margin-right: 6px;"></i>
+                </div>
+                <a class="opcao-menu" (click)="trocarPagina('dashboard')">
+                    Menu principal
+                </a>
+            </div>
+        </div>
+        <span class="titulo-menu">VEÍCULO</span>
+        <div class="textos-menu">
+
+            <div class="row">
+                <div *ngIf="selecaoMenu == 'cadastro-veiculo'">
+                    <i class="fas fa-dot-circle" style="color: blueviolet; margin-right: 6px;"></i>
+                </div>
+                <i class="fas fa-car icon-menu"></i>
+                <a class="opcao-menu" (click)="trocarPagina('cadastro-veiculo')">
+                    Cadastrar veículo
+                </a>
+            </div>
+            <div class="row">
+                <div *ngIf="selecaoMenu == 'cadastro-marca'">
+                    <i class="fas fa-dot-circle" style="color: blueviolet; margin-right: 6px;"></i>
+                </div>
+                <i class="fas fa-car icon-menu"></i>
+                <a class="opcao-menu" (click)="trocarPagina('cadastro-marca')">
+                    Cadastrar marca
+                </a>
+            </div>
+            <div class="row">
+                <div *ngIf="selecaoMenu == 'cadastro-modelo'">
+                    <i class="fas fa-dot-circle" style="color: blueviolet; margin-right: 6px;"></i>
+                </div>
+                <i class="fas fa-car icon-menu"></i>
+                <span class="opcao-menu">Cadastrar modelo</span>
+            </div>
+            <div class="row">
+                <i class="fas fa-car icon-menu"></i>
+                <span class="opcao-menu">Cadastrar versão</span>
+            </div>
+            <div class="row">
+                <i class="fas fa-truck icon-menu"></i>
+                <span class="opcao-menu">Cadastrar cor</span>
+            </div>
+            <div class="row">
+                <i class="fas fa-truck icon-menu"></i>
+                <span class="opcao-menu">Cadastrar combustivel</span>
+            </div>
+            <div class="row">
+                <i class="fas fa-truck icon-menu"></i>
+                <span class="opcao-menu">Cadastrar opcional</span>
+            </div>
+            <div class="row">
+                <i class="fas fa-truck icon-menu"></i>
+                <span class="opcao-menu">Cadastrar tipo</span>
+            </div>
+            <div class="row">
+                <i class="fas fa-cogs icon-menu"></i>
+                <span class="opcao-menu">Cadastrar câmbio</span>
+            </div>
+            <div class="row">
+                <i class="fas fa-truck icon-menu"></i>
+                <span class="opcao-menu">Cadastrar adicional</span>
+            </div>
+        </div>
+        <span class="titulo-menu">Colaborador</span>
+        <div class="textos-menu">
+            <div class="row">
+                <i class="fas fa-user-edit icon-menu"></i>
+                <span class="opcao-menu">Cadastrar colaborador</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col container-conteudo">
+
+        <div [ngSwitch]="selecaoMenu">
+            <div *ngSwitchCase="'dashboard'">
+                <app-dashboard></app-dashboard>
+            </div>
+            <div *ngSwitchCase="'cadastro-veiculo'">
+                <app-cadastro-veiculo></app-cadastro-veiculo>
+            </div>
+            <div *ngSwitchCase="'cadastro-marca'">
+                <app-cadastro-marca></app-cadastro-marca>
+            </div>
+        </div>
+
+    </div>
+
 </div>

@@ -1,3 +1,4 @@
+/*
 .opcao {
     height: 200px;
 }
@@ -68,4 +69,49 @@ a {
 .bem-vindo-texto {
     
     font-weight: 900;
+}
+*/
+
+.container-menu-lateral {
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
+    opacity: 10;
+}
+
+.textos-menu {
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+.icon-menu {
+    margin-right: 7px;
+}
+
+.opcao-menu {
+    font-family: 'Raleway', sans-serif;
+    font-stretch: 400;
+    margin-bottom: 25px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.titulo-menu{
+    margin: 10px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+
+}
+
+.novo-veiculo{
+    color: #fff;
+    border-radius: 4px;
+    background: #eeb711;
+    text-decoration: none;
+    transition: all 0.4s;
+    line-height: normal;
+    border-radius: 30px;
+    padding: 6px 20px;
+    border: none;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-left: 50px;
 }

@@ -17,6 +17,7 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 })
 export class VeiculosComponent implements OnInit {
 
+  pageSize: number = 24;
   veiculos: VeiculoDTO[];
   tamanhoLista: number;
   veiculoPesquisa: VeiculoPesquisa;
