@@ -25,7 +25,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { debounceTime, tap, distinctUntilChanged, last } from 'rxjs/operators';
 import { ModeloService } from 'src/services/domain/modelo.service';
 
-
 @Component({
   selector: 'app-filtro-veiculos',
   templateUrl: './filtro-veiculos.component.html',
@@ -36,10 +35,10 @@ export class FiltroVeiculosComponent implements OnInit {
   @Output() veiculos = new EventEmitter<VeiculoDTO[]>();
   @Output() tamanhoLista = new EventEmitter<number>();
   @Output() vPesquisa = new EventEmitter<VeiculoPesquisa>();
+  @Input() paginator: MatPaginator;
   marcas: MarcaDTO[];
   modelos: ModeloDTO[];
   formGroup: FormGroup;
-  @Input() paginator: MatPaginator;
   veiculoPesquisa: VeiculoPesquisa;
   opcionais: OpcionalDTO[];
   adicionais: AdicionalDTO[];
@@ -85,69 +84,50 @@ export class FiltroVeiculosComponent implements OnInit {
 
   ngOnInit() {
     this.veiculoPesquisa = new VeiculoPesquisa;
-    this.buscarMarcas();
-    this.buscarOpcionais();
-    this.buscarAdicionais();
-    this.procuraDeAno();
-    this.procuraAteAno();
-    this.buscarCores();
-    this.buscarCambios();
-    this.buscarCombustiveis();
+    this.carregarMarcas();
+    this.carregarOpcionais();
+    this.carregarAdicionais();
+    this.carregarCores();
+    this.carregarCambios();
+    this.carregarCombustiveis();
     this.carregarTipos();
+    this.buscaDeAno();
+    this.buscaAteAno();
   }
 
-  limparFiltroMarcaModelo(){
-    this.veiculoPesquisa.marca = null;
-    this.veiculoPesquisa.modelo = null;
-    this.formGroup.value.marca = null;
-    this.formGroup.value.modelo = null;
-    this.buscarVeiculosCustomPage();
-  }
-
-  //Buscar para preencher filtro
-  buscarMarcas() {
+  carregarMarcas() {
     this.marcaService.findAll().subscribe((response) => {
       this.marcas = response;
     }, error => { });
   }
 
-  buscarVeiculosEModelosPorMarca() {
-    let marca = this.formGroup.value.marca;
-    if (marca != null) {
-      this.buscarVeiculosPorMarca();
-      this.marcaService.findModeloPorMarca(marca.id).subscribe((response) => {
-        this.modelos = response;
-      }, error => { });
-    }
-  }
-
-  buscarOpcionais() {
+  carregarOpcionais() {
     this.opcionalService.findAll().subscribe((response) => {
       this.opcionais = response;
     }, error => { })
   }
 
-  buscarAdicionais() {
+  carregarAdicionais() {
     this.adicionalService.findAll().subscribe((response) => {
       this.adicionais = response;
     }, error => { });
   }
 
-  buscarCores() {
+  carregarCores() {
     this.corService.findAll()
       .subscribe((response) => {
         this.cores = response;
       }, error => { });
   }
 
-  buscarCambios() {
+  carregarCambios() {
     this.cambioService.findAll()
       .subscribe((response) => {
         this.cambios = response;
       }, error => { });
   }
 
-  buscarCombustiveis() {
+  carregarCombustiveis() {
     this.combustivelService.findAll()
       .subscribe((response) => {
         this.combustiveis = response;
@@ -158,35 +138,43 @@ export class FiltroVeiculosComponent implements OnInit {
     this.tipoService.findAll()
       .subscribe((response) => {
         this.tipos = response;
-      }, error => {
-
-      });
+      }, error => { });
   }
 
-  carregarVersoesVeiculo(){
+  carregarVersoes() {
     let modeloId = this.formGroup.value.modelo.id;
     this.modeloService.findVersoesPorModelo(modeloId)
       .subscribe((response) => {
         this.versoes = response;
-      }, error => {});
+      }, error => { });
   }
 
   //Buscar veiculos
-  buscarVeiculosPorMarca() {
+  buscarVeiculosEModelosPorMarca() {
+    let marca = this.formGroup.value.marca;
+    if (marca != null) {
+      this.filtrarVeiculosPorMarca();
+      this.marcaService.findModeloPorMarca(marca.id).subscribe((response) => {
+        this.modelos = response;
+      }, error => { });
+    }
+  }
+
+  filtrarVeiculosPorMarca() {
     this.veiculoPesquisa.marca = this.formGroup.value.marca.nome;
     this.veiculoPesquisa.modelo = null;
-    this.buscarVeiculosCustomPage();
+    this.buscarVeiculosComFiltro();
   }
 
-  buscarVeiculosPorModelo() {
-    this.carregarVersoesVeiculo();
+  filtrarVeiculosPorModelo() {
+    this.carregarVersoes();
     this.veiculoPesquisa.modelo = this.formGroup.value.modelo.nome;
-    this.buscarVeiculosCustomPage();
+    this.buscarVeiculosComFiltro();
   }
 
-  buscarVeiculosPorVersao(){
+  filtrarVeiculosPorVersao() {
     this.veiculoPesquisa.versao = this.formGroup.value.versao.nome;
-    this.buscarVeiculosCustomPage();
+    this.buscarVeiculosComFiltro();
   }
 
   filtrarPorOpcionais() {
@@ -203,7 +191,7 @@ export class FiltroVeiculosComponent implements OnInit {
 
     this.veiculoPesquisa.opcionais = opcionaisString;
 
-    this.buscarVeiculosCustomPage();
+    this.buscarVeiculosComFiltro();
   }
 
   filtrarPorAdicionais() {
@@ -218,7 +206,7 @@ export class FiltroVeiculosComponent implements OnInit {
     }
 
     this.veiculoPesquisa.adicionais = adicionaisString;
-    this.buscarVeiculosCustomPage();
+    this.buscarVeiculosComFiltro();
   }
 
   filtrarPorCores() {
@@ -233,7 +221,7 @@ export class FiltroVeiculosComponent implements OnInit {
     }
 
     this.veiculoPesquisa.cores = coresString;
-    this.buscarVeiculosCustomPage();
+    this.buscarVeiculosComFiltro();
   }
 
   filtrarPorCambios() {
@@ -248,7 +236,7 @@ export class FiltroVeiculosComponent implements OnInit {
     }
 
     this.veiculoPesquisa.cambios = cambiosString;
-    this.buscarVeiculosCustomPage();
+    this.buscarVeiculosComFiltro();
   }
 
   filtrarPorTipos() {
@@ -263,7 +251,7 @@ export class FiltroVeiculosComponent implements OnInit {
     }
 
     this.veiculoPesquisa.tipos = tiposString;
-    this.buscarVeiculosCustomPage();
+    this.buscarVeiculosComFiltro();
   }
 
   filtrarPorCombustiveis() {
@@ -278,32 +266,32 @@ export class FiltroVeiculosComponent implements OnInit {
     }
 
     this.veiculoPesquisa.combustiveis = combustiveisString;
-    this.buscarVeiculosCustomPage();
+    this.buscarVeiculosComFiltro();
   }
 
-  filtroPorPrecoDe(depreco: string) {
+  filtrarPorPrecoDe(depreco: string) {
     if (depreco == '') {
       this.veiculoPesquisa.dePreco = null;
     } else {
       this.veiculoPesquisa.dePreco = depreco;
     }
-    this.buscarVeiculosCustomPage();
+    this.buscarVeiculosComFiltro();
   }
 
-  filtroPorPrecoAte(atepreco) {
+  filtrarPorPrecoAte(atepreco) {
     if (atepreco == '') {
       this.veiculoPesquisa.atePreco = null;
     } else {
       this.veiculoPesquisa.atePreco = atepreco;
     }
-    this.buscarVeiculosCustomPage();
+    this.buscarVeiculosComFiltro();
   }
 
-  filtroDeAno(deano: string) {
+  filtrarDeAno(deano: string) {
     this.deAno.next(deano);
   }
 
-  procuraDeAno() {
+  buscaDeAno() {
     this.deAno.pipe(
       debounceTime(500),
       distinctUntilChanged()
@@ -311,20 +299,20 @@ export class FiltroVeiculosComponent implements OnInit {
     ).subscribe((res) => {
       if (res.length == 4) {
         this.veiculoPesquisa.deAno = res;
-        this.buscarVeiculosCustomPage();
+        this.buscarVeiculosComFiltro();
       }
       if (res.length < 4 && this.veiculoPesquisa.deAno != null) {
         this.veiculoPesquisa.deAno = null;
-        this.buscarVeiculosCustomPage();
+        this.buscarVeiculosComFiltro();
       }
     })
   }
 
-  filtroAteAno(ateano: string) {
+  filtrarAteAno(ateano: string) {
     this.ateAno.next(ateano);
   }
 
-  procuraAteAno() {
+  buscaAteAno() {
     this.ateAno.pipe(
       debounceTime(500),
       distinctUntilChanged()
@@ -332,34 +320,34 @@ export class FiltroVeiculosComponent implements OnInit {
     ).subscribe((res) => {
       if (res.length == 4) {
         this.veiculoPesquisa.ateAno = res;
-        this.buscarVeiculosCustomPage();
+        this.buscarVeiculosComFiltro();
       }
       if (res.length < 4 && this.veiculoPesquisa.ateAno != null) {
         this.veiculoPesquisa.ateAno = null;
-        this.buscarVeiculosCustomPage();
+        this.buscarVeiculosComFiltro();
       }
     })
   }
 
-  filtroDeKm(dekm: string) {
+  filtrarDeKm(dekm: string) {
     if (dekm == '') {
       this.veiculoPesquisa.deKm = null;
     } else {
       this.veiculoPesquisa.deKm = dekm;
     }
-    this.buscarVeiculosCustomPage();
+    this.buscarVeiculosComFiltro();
   }
 
-  filtroAteKm(ateKm: string) {
+  filtrarAteKm(ateKm: string) {
     if (ateKm == '') {
       this.veiculoPesquisa.ateKm = null;
     } else {
       this.veiculoPesquisa.ateKm = ateKm;
     }
-    this.buscarVeiculosCustomPage();
+    this.buscarVeiculosComFiltro();
   }
 
-  buscarVeiculosCustomPage() {
+  buscarVeiculosComFiltro() {
     this.formarURL();
     this.veiculoService.findVeiculosCustomPage(this.paginator.pageIndex, this.paginator.pageSize, 'ASC', this.veiculoPesquisa).subscribe((response) => {
       this.veiculos.emit(response['content']);
@@ -376,6 +364,14 @@ export class FiltroVeiculosComponent implements OnInit {
         queryParams: this.veiculoPesquisa,
         queryParamsHandling: 'merge'
       });
+  }
+
+  limparFiltroMarcaModelo() {
+    this.veiculoPesquisa.marca = null;
+    this.veiculoPesquisa.modelo = null;
+    this.formGroup.value.marca = null;
+    this.formGroup.value.modelo = null;
+    this.buscarVeiculosComFiltro();
   }
 
 }

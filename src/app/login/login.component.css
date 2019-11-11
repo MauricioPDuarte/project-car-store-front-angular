@@ -4,6 +4,10 @@
     min-width: 300px;
   }
 
+  mat-card{
+    margin-top: 30px;
+  }
+
   mat-card-title,
   mat-card-content {
     display: flex;

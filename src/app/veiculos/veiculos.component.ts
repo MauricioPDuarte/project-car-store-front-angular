@@ -17,18 +17,17 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 })
 export class VeiculosComponent implements OnInit {
 
+  veiculos: VeiculoDTO[];
+  tamanhoLista: number;
+  veiculoPesquisa: VeiculoPesquisa;
+  @ViewChild(MatPaginator, null) paginator: MatPaginator;
+
   constructor(
     private veiculoService: VeiculoService,
     private route: ActivatedRoute
   ) {
-    
-   }
 
-  veiculos: VeiculoDTO[];
-  tamanhoLista: number;
-  veiculoPesquisa: VeiculoPesquisa;
-
-  @ViewChild(MatPaginator, null) paginator: MatPaginator;
+  }
 
   public config: SwiperConfigInterface = {
     direction: 'horizontal',
@@ -44,11 +43,11 @@ export class VeiculosComponent implements OnInit {
     this.veiculoPesquisa = new VeiculoPesquisa();
     this.route.queryParams
       .subscribe((response) => {
-        if(response){
+        if (response) {
           this.veiculoPesquisa = response as VeiculoPesquisa;
         }
         this.findAllVeiculosPage();
-    }, error => {})
+      }, error => { })
   }
 
   ngAfterViewInit() {
@@ -65,7 +64,6 @@ export class VeiculosComponent implements OnInit {
     this.veiculoService.findVeiculosCustomPage(this.paginator.pageIndex, this.paginator.pageSize, 'ASC', this.veiculoPesquisa)
       .subscribe((response) => {
         this.veiculos = response['content'];
-        console.log(response);
         this.tamanhoLista = response['totalElements'];
         this.carregarImagensVeiculo();
       })
@@ -83,19 +81,12 @@ export class VeiculosComponent implements OnInit {
     }
   }
 
-
-  proximaImagem() {
-
-  }
-
-  voltarImagem() {
-    console.log("Voltar")
-  }
-
+  /*
   receberVeiculosFiltro(veiculos) {
     this.veiculos = veiculos;
     this.carregarImagensVeiculo();
   }
+  */
 
   receberPesquisaVeiculo(veiculoPesquisa) {
     this.veiculoPesquisa = veiculoPesquisa;

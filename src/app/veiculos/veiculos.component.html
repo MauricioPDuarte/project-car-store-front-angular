@@ -4,9 +4,10 @@
 
     </div>
     <div class="row">
-
+        
         <div class="col-3">
-            <app-filtro-veiculos (veiculos)="receberVeiculosFiltro($event)"
+             <!--(veiculos)="receberVeiculosFiltro($event)"-->
+            <app-filtro-veiculos
                 (tamanhoLista)="receberTamanhoListaFiltro($event)" (vPesquisa)="receberVeiculoPesquisa($event)"
                 [paginator]="paginator">
             </app-filtro-veiculos>

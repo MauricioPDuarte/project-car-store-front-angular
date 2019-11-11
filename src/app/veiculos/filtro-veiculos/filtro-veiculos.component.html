@@ -23,7 +23,7 @@
                         <div class="col">
                             <mat-form-field class="mat-form-w100">
                                 <mat-label>Modelo</mat-label>
-                                <mat-select formControlName="modelo" (ngModelChange)="buscarVeiculosPorModelo()">
+                                <mat-select formControlName="modelo" (ngModelChange)="filtrarVeiculosPorModelo()">
                                     <mat-option *ngFor="let modelo of modelos" [value]="modelo" class="opcao-lista">
                                         {{ modelo.nome }}
                                     </mat-option>
@@ -35,7 +35,7 @@
                         <div class="col">
                             <mat-form-field class="mat-form-w100">
                                 <mat-label>Versão</mat-label>
-                                <mat-select formControlName="versao" (ngModelChange)="buscarVeiculosPorVersao()">
+                                <mat-select formControlName="versao" (ngModelChange)="filtrarVeiculosPorVersao()">
                                     <mat-option *ngFor="let versao of versoes" [value]="versao" class="opcao-lista">
                                         {{ versao.nome }}
                                     </mat-option>
@@ -59,7 +59,7 @@
                         <div class="col">
                             <mat-form-field class="mat-form-w100">
                                 <input matInput #dePreco name="depreco" placeholder="De"
-                                    (input)="filtroPorPrecoDe(dePreco.value)">
+                                    (input)="filtrarPorPrecoDe(dePreco.value)">
                             </mat-form-field>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                         <div class="col">
                             <mat-form-field class="mat-form-w100">
                                 <input matInput #atePreco name="atepreco" placeholder="Até"
-                                    (input)="filtroPorPrecoAte(atePreco.value)">
+                                    (input)="filtrarPorPrecoAte(atePreco.value)">
                             </mat-form-field>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                         <div class="col">
                             <mat-form-field class="mat-form-w100">
                                 <input matInput #deAno name="deano" maxlength="4" placeholder="De"
-                                    (input)="filtroDeAno(deAno.value)">
+                                    (input)="filtrarDeAno(deAno.value)">
                             </mat-form-field>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                         <div class="col">
                             <mat-form-field class="mat-form-w100">
                                 <input matInput #ateAno name="ateano" maxlength="4" placeholder="Até"
-                                    (input)="filtroAteAno(ateAno.value)">
+                                    (input)="filtrarAteAno(ateAno.value)">
                             </mat-form-field>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                     <div class="row">
                         <div class="col">
                             <mat-form-field class="mat-form-w100">
-                                <input matInput #deKm name="dekm" placeholder="De" (input)="filtroDeKm(deKm.value)">
+                                <input matInput #deKm name="dekm" placeholder="De" (input)="filtrarDeKm(deKm.value)">
                             </mat-form-field>
                         </div>
                     </div>
@@ -122,7 +122,7 @@
                         <div class="col">
                             <mat-form-field class="mat-form-w100">
                                 <input matInput #ateKm name="atekm" placeholder="Até"
-                                    (input)="filtroAteKm(ateKm.value)">
+                                    (input)="filtrarAteKm(ateKm.value)">
                             </mat-form-field>
                         </div>
                     </div>
