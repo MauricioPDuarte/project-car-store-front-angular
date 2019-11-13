@@ -221,9 +221,12 @@ export class CadastroVeiculoComponent implements OnInit {
     if(file != null){
       this.veiculoService.savePicturesVehicle(veiculoId, file)
         .subscribe((response) => {
+          console.log(response);
           //this.fotosSalvasComSucesso = response;
           //this.tornarFotoPrincipal(veiculoId);
-        }, error => {})
+        }, error => {
+          console.log(error)
+        })
     }
   }
 
@@ -247,7 +250,9 @@ export class CadastroVeiculoComponent implements OnInit {
     this.veiculoService.saveCar(this.cadastroVeiculo.value)
       .subscribe((response) => {
         this.cadastroVeiculo.reset;
-        var veiculoId = response.headers.get('Location').substring(31);
+        //31 para localHost
+        var veiculoId = response.headers.get('Location').substring(54);
+        console.log(veiculoId);
         this.salvarFotosVeiculo(veiculoId);
         this.abrirDialogoSucesso(veiculoId);
       }, error => {

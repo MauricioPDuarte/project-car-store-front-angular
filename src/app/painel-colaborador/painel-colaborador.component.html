@@ -105,58 +105,90 @@
                     Cadastrar veículo
                 </a>
             </div>
-            <div class="row">
-                <div *ngIf="selecaoMenu == 'cadastro-marca'">
-                    <i class="fas fa-dot-circle" style="color: blueviolet; margin-right: 6px;"></i>
+
+            <div *ngIf="usuarioLogado != null && usuarioLogado.perfis.indexOf('ADMIN') !== -1">
+                <div class="row">
+                    <div *ngIf="selecaoMenu == 'cadastro-marca'">
+                        <i class="fas fa-dot-circle" style="color: blueviolet; margin-right: 6px;"></i>
+                    </div>
+                    <i class="fas fa-car icon-menu"></i>
+                    <a class="opcao-menu" (click)="trocarPagina('cadastro-marca')">
+                        Cadastrar marca
+                    </a>
                 </div>
-                <i class="fas fa-car icon-menu"></i>
-                <a class="opcao-menu" (click)="trocarPagina('cadastro-marca')">
-                    Cadastrar marca
-                </a>
             </div>
-            <div class="row">
-                <div *ngIf="selecaoMenu == 'cadastro-modelo'">
-                    <i class="fas fa-dot-circle" style="color: blueviolet; margin-right: 6px;"></i>
+
+            <div *ngIf="usuarioLogado != null && usuarioLogado.perfis.indexOf('ADMIN') !== -1">
+                <div class="row">
+                    <div *ngIf="selecaoMenu == 'cadastro-modelo'">
+                        <i class="fas fa-dot-circle" style="color: blueviolet; margin-right: 6px;"></i>
+                    </div>
+                    <i class="fas fa-car icon-menu"></i>
+                    <span class="opcao-menu">Cadastrar modelo</span>
                 </div>
-                <i class="fas fa-car icon-menu"></i>
-                <span class="opcao-menu">Cadastrar modelo</span>
             </div>
-            <div class="row">
-                <i class="fas fa-car icon-menu"></i>
-                <span class="opcao-menu">Cadastrar versão</span>
+
+            <div *ngIf="usuarioLogado != null && usuarioLogado.perfis.indexOf('ADMIN') !== -1">
+                <div class="row">
+                    <i class="fas fa-car icon-menu"></i>
+                    <span class="opcao-menu">Cadastrar versão</span>
+                </div>
             </div>
-            <div class="row">
-                <i class="fas fa-truck icon-menu"></i>
-                <span class="opcao-menu">Cadastrar cor</span>
+
+            <div *ngIf="usuarioLogado != null && usuarioLogado.perfis.indexOf('ADMIN') !== -1">
+                <div class="row">
+                    <i class="fas fa-truck icon-menu"></i>
+                    <span class="opcao-menu">Cadastrar cor</span>
+                </div>
             </div>
-            <div class="row">
-                <i class="fas fa-truck icon-menu"></i>
-                <span class="opcao-menu">Cadastrar combustivel</span>
+
+            <div *ngIf="usuarioLogado != null && usuarioLogado.perfis.indexOf('ADMIN') !== -1">
+                <div class="row">
+                    <i class="fas fa-truck icon-menu"></i>
+                    <span class="opcao-menu">Cadastrar combustivel</span>
+                </div>
             </div>
-            <div class="row">
-                <i class="fas fa-truck icon-menu"></i>
-                <span class="opcao-menu">Cadastrar opcional</span>
+
+            <div *ngIf="usuarioLogado != null && usuarioLogado.perfis.indexOf('ADMIN') !== -1">
+                <div class="row">
+                    <i class="fas fa-truck icon-menu"></i>
+                    <span class="opcao-menu">Cadastrar opcional</span>
+                </div>
             </div>
-            <div class="row">
-                <i class="fas fa-truck icon-menu"></i>
-                <span class="opcao-menu">Cadastrar tipo</span>
+
+            <div *ngIf="usuarioLogado != null && usuarioLogado.perfis.indexOf('ADMIN') !== -1">
+                <div class="row">
+                    <i class="fas fa-truck icon-menu"></i>
+                    <span class="opcao-menu">Cadastrar tipo</span>
+                </div>
             </div>
-            <div class="row">
-                <i class="fas fa-cogs icon-menu"></i>
-                <span class="opcao-menu">Cadastrar câmbio</span>
+
+            <div *ngIf="usuarioLogado != null && usuarioLogado.perfis.indexOf('ADMIN') !== -1">
+                <div class="row">
+                    <i class="fas fa-cogs icon-menu"></i>
+                    <span class="opcao-menu">Cadastrar câmbio</span>
+                </div>
             </div>
-            <div class="row">
-                <i class="fas fa-truck icon-menu"></i>
-                <span class="opcao-menu">Cadastrar adicional</span>
+
+            <div *ngIf="usuarioLogado != null && usuarioLogado.perfis.indexOf('ADMIN') !== -1">
+                <div class="row">
+                    <i class="fas fa-truck icon-menu"></i>
+                    <span class="opcao-menu">Cadastrar adicional</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div *ngIf="usuarioLogado != null && usuarioLogado.perfis.indexOf('ADMIN') !== -1">
+            <span class="titulo-menu">Colaborador</span>
+            <div class="textos-menu">
+                <div class="row">
+                    <i class="fas fa-user-edit icon-menu"></i>
+                    <span class="opcao-menu">Cadastrar colaborador</span>
+                </div>
             </div>
         </div>
-        <span class="titulo-menu">Colaborador</span>
-        <div class="textos-menu">
-            <div class="row">
-                <i class="fas fa-user-edit icon-menu"></i>
-                <span class="opcao-menu">Cadastrar colaborador</span>
-            </div>
-        </div>
+
     </div>
 
     <div class="col container-conteudo">

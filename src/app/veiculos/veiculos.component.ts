@@ -66,7 +66,7 @@ export class VeiculosComponent implements OnInit {
       .subscribe((response) => {
         this.veiculos = response['content'];
         this.tamanhoLista = response['totalElements'];
-        this.carregarImagensVeiculo();
+        //this.carregarImagensVeiculo();
       })
   }
 
