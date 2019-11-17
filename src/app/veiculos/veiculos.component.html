@@ -29,7 +29,7 @@
                                         <div class="swiper-container" [swiper]="config">
                                             <div class="swiper-wrapper">
                                                 <div *ngFor="let picture of veiculo.pictures" class="swiper-slide">
-                                                    <img [src]="picture?.fileName">
+                                                    <img [src]="picture?.fileDownloadUri">
                                                 </div>
                                             </div>
                                             <div class="swiper-button-prev"></div>

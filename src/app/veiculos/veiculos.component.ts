@@ -70,6 +70,7 @@ export class VeiculosComponent implements OnInit {
       })
   }
 
+  /*
   carregarImagensVeiculo() {
     for (let veiculo of this.veiculos) {
       if (veiculo.pictures.length > 0) {
@@ -81,6 +82,7 @@ export class VeiculosComponent implements OnInit {
       }
     }
   }
+  */
 
   /*
   receberVeiculosFiltro(veiculos) {

@@ -250,8 +250,7 @@ export class CadastroVeiculoComponent implements OnInit {
     this.veiculoService.saveCar(this.cadastroVeiculo.value)
       .subscribe((response) => {
         this.cadastroVeiculo.reset;
-        //31 para localHost
-        var veiculoId = response.headers.get('Location').substring(54);
+        var veiculoId = response.headers.get('Location').substring(API_CONFIG.pegarIdVeiculoURI);
         console.log(veiculoId);
         this.salvarFotosVeiculo(veiculoId);
         this.abrirDialogoSucesso(veiculoId);
