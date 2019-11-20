@@ -325,9 +325,18 @@ mat-icon {
 		height: 80px;
 	}
 
-	.elementos ul li a{
-		line-height: 18px;
+	.elementos {
 		text-align: center;
+	}
+
+	.elementos ul {
+		width: 245px;
+		display: inline-block;
+		text-align: center;
+	}
+
+	.elementos ul li a{
+		line-height: 10px;
 	}
 
 }
