@@ -110,19 +110,8 @@
 
 <!-- PAGINACAO -->
 <div class="container">
+
     <div class="paginacao">
-        <ul>
-            <li>
-                <a class="next">
-                    PROXIMA PÁGINA
-                </a>
-            </li>
-            <li>
-                <a class="prev">
-                    PÁGINA ANTERIOR
-                </a>
-            </li>
-        </ul>
         <div class="ordem-pesquisa">
             <select name="ordem-pesquisa">
                 <option value="maior-preco">Maior Preço</option>
@@ -131,11 +120,25 @@
                 <option value="menor-ano">Menor Ano</option>
             </select>
         </div>
+        <div class="elementos">
+            <ul>
+                <li>
+                    <a class="next">
+                        PROXIMA PÁGINA
+                    </a>
+                </li>
+                <li>
+                    <a class="prev">
+                        PÁGINA ANTERIOR
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 
-<app-filtro-veiculos (tamanhoLista)="receberTamanhoListaFiltro($event)" (vPesquisa)="receberVeiculoPesquisa($event)"
-[paginator]="paginator"></app-filtro-veiculos>
+<app-filtro-veiculos #filtroVeiculos (tamanhoLista)="receberTamanhoListaFiltro($event)"
+    (vPesquisa)="receberVeiculoPesquisa($event)" [paginator]="paginator"></app-filtro-veiculos>
 
 <!-- ANUNCIO -->
 <div class="container">
@@ -143,21 +146,11 @@
         <article class="anuncio">
             <p class="codigo-anuncio">Cod.{{ veiculo.id }}</p>
 
-
-            <!--
-            <div class="imagem-anuncio">
-                <img [src]="veiculo.picture?.fileDownloadUri || 'assets/images/car-default.png'"
-                    [alt]="veiculo.versao.nome">
-            </div>
-        -->
-
-
             <div *ngIf="veiculo.pictures.length == 0">
                 <div class="imagem-anuncio">
                     <img [src]="'assets/images/car-default.png'">
                 </div>
             </div>
-
 
             <div *ngIf="veiculo.pictures.length != 0">
                 <div class="imagem-anuncio">

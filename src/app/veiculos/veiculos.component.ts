@@ -22,10 +22,12 @@ export class VeiculosComponent implements OnInit {
   tamanhoLista: number;
   veiculoPesquisa: VeiculoPesquisa;
   @ViewChild(MatPaginator, null) paginator: MatPaginator;
+  exibirFiltro: boolean = false;
 
   constructor(
     private veiculoService: VeiculoService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+
   ) {
 
   }
@@ -66,30 +68,8 @@ export class VeiculosComponent implements OnInit {
       .subscribe((response) => {
         this.veiculos = response['content'];
         this.tamanhoLista = response['totalElements'];
-        //this.carregarImagensVeiculo();
       })
   }
-
-  /*
-  carregarImagensVeiculo() {
-    for (let veiculo of this.veiculos) {
-      if (veiculo.pictures.length > 0) {
-        for (let picture of veiculo.pictures) {
-          if (picture) {
-            picture.fileName = `${API_CONFIG.baseUrl}/veiculos/picture/${veiculo.id}/${picture.fileName}`;
-          }
-        }
-      }
-    }
-  }
-  */
-
-  /*
-  receberVeiculosFiltro(veiculos) {
-    this.veiculos = veiculos;
-    this.carregarImagensVeiculo();
-  }
-  */
 
   receberPesquisaVeiculo(veiculoPesquisa) {
     this.veiculoPesquisa = veiculoPesquisa;
@@ -102,4 +82,5 @@ export class VeiculosComponent implements OnInit {
   receberVeiculoPesquisa(veiculoPesquisa) {
     this.veiculoPesquisa = veiculoPesquisa;
   }
+
 }

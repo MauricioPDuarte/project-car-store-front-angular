@@ -91,11 +91,10 @@ mat-icon {
 	background-color: #D9043D;
 	height: 60px;
 	float: left;
-	line-height: 40px;
 	position: static;
 }
 
-.paginacao ul li a{
+.elementos ul li a{
 	color: white;
 	font-weight: 600;
 	line-height: 60px;
@@ -282,6 +281,8 @@ mat-icon {
 	padding: 2.3px 0 0 1.2px;
 }
 
+/* BREAKPOINTS */
+
 @media screen and (max-width: 480px) {
 
     /* ANUNCIO */
@@ -311,8 +312,24 @@ mat-icon {
 
 	/* MENU PAGINACAO */
 	.ordem-pesquisa select {
-		padding: 15px 25px;
+		width: 100%;
 	}
+
+	.ordem-pesquisa {
+		float: right;
+		width: 100%;
+		
+	}
+
+	.paginacao {
+		height: 80px;
+	}
+
+	.elementos ul li a{
+		line-height: 18px;
+		text-align: center;
+	}
+
 }
 
 /* Tablets, Ipad, Celulares maiores */
