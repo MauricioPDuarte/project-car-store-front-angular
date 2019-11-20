@@ -1,3 +1,4 @@
+<!--
 <app-menu-anuncio></app-menu-anuncio>
 <div class="container">
     <div class="menu-page">
@@ -6,7 +7,6 @@
     <div class="row">
         
         <div class="col-3">
-             <!--(veiculos)="receberVeiculosFiltro($event)"-->
             <app-filtro-veiculos
                 (tamanhoLista)="receberTamanhoListaFiltro($event)" (vPesquisa)="receberVeiculoPesquisa($event)"
                 [paginator]="paginator">
@@ -105,4 +105,118 @@
                 style="margin-top: 5px"></mat-paginator>
         </div>
     </div>
+</div>
+-->
+
+<!-- PAGINACAO -->
+<div class="container">
+    <div class="paginacao">
+        <ul>
+            <li>
+                <a class="next">
+                    PROXIMA PÁGINA
+                </a>
+            </li>
+            <li>
+                <a class="prev">
+                    PÁGINA ANTERIOR
+                </a>
+            </li>
+        </ul>
+        <div class="ordem-pesquisa">
+            <select name="ordem-pesquisa">
+                <option value="maior-preco">Maior Preço</option>
+                <option value="meno-preco">Menor Preço</option>
+                <option value="maior-ano">Maior Ano</option>
+                <option value="menor-ano">Menor Ano</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<app-filtro-veiculos (tamanhoLista)="receberTamanhoListaFiltro($event)" (vPesquisa)="receberVeiculoPesquisa($event)"
+[paginator]="paginator"></app-filtro-veiculos>
+
+<!-- ANUNCIO -->
+<div class="container">
+    <a href="#" *ngFor="let veiculo of veiculos; let i = index">
+        <article class="anuncio">
+            <p class="codigo-anuncio">Cod.{{ veiculo.id }}</p>
+
+
+            <!--
+            <div class="imagem-anuncio">
+                <img [src]="veiculo.picture?.fileDownloadUri || 'assets/images/car-default.png'"
+                    [alt]="veiculo.versao.nome">
+            </div>
+        -->
+
+
+            <div *ngIf="veiculo.pictures.length == 0">
+                <div class="imagem-anuncio">
+                    <img [src]="'assets/images/car-default.png'">
+                </div>
+            </div>
+
+
+            <div *ngIf="veiculo.pictures.length != 0">
+                <div class="imagem-anuncio">
+                    <div class="swiper-container" [swiper]="config">
+                        <div class="swiper-wrapper">
+                            <div *ngFor="let picture of veiculo.pictures" class="swiper-slide">
+                                <img [src]="picture?.fileDownloadUri">
+                            </div>
+                        </div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-anuncio">
+                <h2>{{ veiculo.versao.modelo.marca.nome }} {{ veiculo.versao.modelo.nome }}</h2>
+                <p>{{ veiculo.versao.nome }}</p>
+                <h3>{{ veiculo.preco | currency:'BRL'}}</h3>
+            </div>
+            <div class="info-anuncio">
+
+                <div class="info-icon">
+                    <i class="far fa-calendar-alt fa-lg"></i>
+                    <h4>Ano</h4>
+                    <p>{{ veiculo.ano }}</p>
+                </div>
+                <div class="info-icon">
+                    <i class="fas fa-cogs fa-lg"></i>
+                    <h4>Câmbio</h4>
+                    <p>{{ veiculo.cambio.nome }}</p>
+                </div>
+                <div class="info-icon">
+                    <i class="fas fa-tachometer-alt fa-lg"></i>
+                    <h4>KM</h4>
+                    <p>{{ veiculo.kmRodado }}</p>
+                </div>
+                <div class="info-icon">
+                    <i class="fas fa-gas-pump fa-lg"></i>
+                    <h4>Combustível</h4>
+                    <p>{{ veiculo.combustivel.nome}}</p>
+                </div>
+            </div>
+            <div class="opcionais">
+                <p class="opcionais-veiculo">
+                    <ng-container *ngFor="let opc of veiculo.opcionais | slice:0:5;">
+                        <i class="fas fa-angle-right"></i>
+                        {{ opc.nome }}
+                    </ng-container>
+                </p>
+            </div>
+            <button class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="btn-mail">
+                <i class="fas fa-envelope"></i>
+            </button>
+        </article>
+    </a>
+    <mat-paginator [length]="tamanhoLista" [pageSize]="pageSize" [pageSizeOptions]="[3, 5, 10, 24]"
+        style="margin-top: 5px; float: right;"></mat-paginator>
 </div>

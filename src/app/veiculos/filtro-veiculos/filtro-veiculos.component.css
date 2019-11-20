@@ -1,3 +1,5 @@
+
+/*
 .card-filtro-avancado {
     height: auto;
 }
@@ -20,4 +22,83 @@
     color: red;
     cursor: pointer;
     
+}
+*/
+
+/* FILTRO */
+
+.filtro label {
+	color: #2e2e37;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 600;
+	font-size: 0.8em;
+}
+
+.filtro {
+	width: 23%;
+	height: auto;
+	float: left;
+}
+
+.filtro select {
+	width: 100%;
+	margin: 10px 0 16px;
+	padding: 12px;
+	border-radius: 8px;
+	border: 2px solid #ECEDF2;
+	font-family: 'Poppins', sans-serif;
+	color: #4c4c59;
+	font-weight: 500;
+	font-size: 0.8em;
+}
+
+.filtro input {
+	font-family: 'Poppins', sans-serif;
+	width: calc(50% - 3px);
+	padding: 10px 16px;
+	border: 2px solid #ECEDF2; 
+	border-radius: 8px;
+	margin: 15px 1px;
+	font-weight: 500;
+	color: #ECEDF2;
+	font-size: 0.8em;
+}
+
+mat-select{
+	width: 100%;
+	margin: 10px 0 16px;
+	padding: 12px;
+	border-radius: 8px;
+	border: 2px solid #ECEDF2;
+	font-family: 'Poppins', sans-serif;
+	color: #4c4c59;
+	font-weight: 500;
+	font-size: 0.8em;
+}
+
+mat-label {
+	color: #2e2e37;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 600;
+	font-size: 0.8em;
+}
+
+.filtro input:focus {
+	border: 2px solid #4c4c59; 
+}
+
+.conjunto-form {
+	width: 100%;
+	border-top: 1px solid #dfe0e7;
+	padding: 20px 0;
+
+}
+
+@media screen and (max-width: 1200px) {
+
+    /* FILTRO */
+
+	.filtro {
+		width: 100%;
+	}
 }

@@ -1,3 +1,4 @@
+/*
 img {
     width: 400px;
     height: 300px;
@@ -78,6 +79,284 @@ mat-icon {
 
 .mat-list .mat-list-item {
     margin-top: 8px;
-    height: 43px; /* default is 72px */
+    height: 43px; default is 72px
     
   }
+*/
+
+/* BLOCO PAGINACAO*/
+
+.paginacao {
+	width: 100%;
+	background-color: #D9043D;
+	height: 60px;
+	float: left;
+	line-height: 40px;
+	position: static;
+}
+
+.paginacao ul li a{
+	color: white;
+	font-weight: 600;
+	line-height: 60px;
+	font-size: 0.6em;
+	font-family: 'Poppins', sans-serif;
+	padding: 0 12px;
+	float: right;
+}
+
+.next:after {
+	font-family: FontAwesome;
+	content: "\f061";
+}
+
+.prev:before {
+	font-family: FontAwesome;
+	content: "\f060";
+}
+
+/* ORDENACAO */
+
+.ordem-pesquisa {
+	float: left;
+	line-height: 60px;
+	padding: 0 20px;
+}
+
+.ordem-pesquisa select {
+	padding: 5px 15px;
+	border-radius: 7px;
+	font-family: 'Poppins', sans-serif;
+	font-size: 0.7em;
+}
+
+/* ANUNCIO */
+
+.anuncio {
+	width: 73%;
+	height: auto;
+	border-radius: 8px;
+	float: right;
+	margin-top: 20px;
+	padding: 10px 0;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.imagem-anuncio {
+	width: 50%;
+	height: auto;
+	float: left;
+	padding: 0 15px;
+}
+
+.swiper-container {
+	width: 400px;
+	float: left;
+}
+
+.anuncio img {
+	width: 400px;
+	height: auto;
+}
+
+.header-anuncio {
+	float: left;
+	color: black;
+	padding: 0 15px;
+}
+
+.header-anuncio h2 {
+	font-size: 1.3em;
+	font-weight: 500;
+   	font-family: 'Poppins', sans-serif;
+
+}
+
+.header-anuncio h3 {
+	font-size: 1.8em;
+	color: black;
+    font-weight: 600;
+    margin: 5px 0;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+.header-anuncio p {
+	font-size: 0.8em;
+	color: #8B8C99;
+	margin-top: -2px;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 400;
+}
+
+.codigo-anuncio {
+    float: right;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 0.8em;
+    color: #8B8C99;
+    padding: 0 10px;
+}
+
+.info-anuncio {
+	color: black;
+    width: 47%;
+	margin: 6px 0 0 0 0;
+	float: left;
+    padding: 0 15px;
+    
+}
+
+.info-icon {
+	width: 47%;
+	float: left;
+	padding: 8px 3px;
+	margin-left: 1%;
+}
+
+.info-icon i {
+	width: 20px;
+	float: left;
+	padding: 10.5px 0 0 0;
+	margin-right: 15px;
+	color: #D9043D;
+}
+
+.info-icon h4{
+	font-size: 0.8em;
+	font-family: 'Nunito', sans-serif;
+}
+
+.info-icon p{
+    max-width: 100px;
+	font-size: 0.8em;
+    font-family: 'Nunito', sans-serif;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.opcionais {
+	width: 45%;
+	font-size: 0.7em;
+	float: left;
+	padding: 0 15px;
+	margin-top: 12px;
+}
+
+.opcionais p {
+	color: #2e2e37;
+	font-weight: 500;
+	font-family: 'Poppins', sans-serif;
+}
+
+.opcionais i {
+	padding: 0 6px;
+	color: rosybrown;
+}
+
+.anuncio button {
+	width: 32px;
+	height: 32px;
+	float: right;
+	border-radius: 56px;
+	margin-right: 10px;
+	background-color: white;
+	box-shadow: 0 0.9px 1.7px black;
+}
+
+
+.btn-mail {
+	color: #ff00ff;
+}
+
+.btn-mail i {
+	padding: 2.3px 0 0 1.2px;
+}
+
+.btn-whatsapp {
+	color: #34af23;
+}
+
+.btn-whatsapp {
+	padding: 2.3px 0 0 1.2px;
+}
+
+@media screen and (max-width: 480px) {
+
+    /* ANUNCIO */
+
+	.info-anuncio {
+		width: 100%;
+	}
+
+	.opcionais {
+		width: 90%;
+
+	}
+
+	.anuncio button {
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+
+	.imagem-anuncio {
+		width: 100%;
+		margin: auto;
+	}
+	
+	.swiper-container{
+		width: 100%;
+	}
+
+	/* MENU PAGINACAO */
+	.ordem-pesquisa select {
+		padding: 15px 25px;
+	}
+}
+
+/* Tablets, Ipad, Celulares maiores */
+@media screen and (min-width: 481px) and (max-width: 960px){
+	/* ANUNCIO */
+
+	.info-anuncio {
+		width: 100%;
+	}
+
+	.opcionais {
+		width: 100%;
+	}
+
+	.imagem-anuncio {
+		width: 100%;
+		margin: auto;
+	}
+	
+	.swiper-container{
+		width: 400px;
+	}
+
+	/* MENU PAGINACAO */
+	.ordem-pesquisa select {
+		padding: 8px 30px;
+		font-size: 0.9em;
+		font-weight: 400;
+	}
+}
+
+@media screen and (min-width: 961px) and (max-width: 1199px){
+
+	.opcionais {
+		width: 46%;
+	}
+
+	.swiper-container{
+		width: 90%;
+	}
+
+}
+@media screen and (max-width: 1200px){
+    .anuncio {
+        width: 100%;
+	}
+}

@@ -157,23 +157,46 @@ export class FiltroVeiculosComponent implements OnInit {
       this.marcaService.findModeloPorMarca(marca.id).subscribe((response) => {
         this.modelos = response;
       }, error => { });
+    }else{
+      this.veiculoPesquisa.marca = null;
+      this.veiculoPesquisa.modelo = null;
+      this.veiculoPesquisa.versao = null;
+      this.modelos = null;
+      this.buscarVeiculosComFiltro();
     }
   }
 
   filtrarVeiculosPorMarca() {
-    this.veiculoPesquisa.marca = this.formGroup.value.marca.nome;
+    let marca =  this.formGroup.value.marca.nome
+    if(marca != null){
+      this.veiculoPesquisa.marca = marca;
+    }
+    this.versoes = null;
+    this.veiculoPesquisa.versao = null;
     this.veiculoPesquisa.modelo = null;
     this.buscarVeiculosComFiltro();
   }
 
   filtrarVeiculosPorModelo() {
-    this.carregarVersoes();
-    this.veiculoPesquisa.modelo = this.formGroup.value.modelo.nome;
+    let modelo = this.formGroup.value.modelo;
+    if(modelo != null){
+      this.carregarVersoes();
+      this.veiculoPesquisa.modelo = modelo.nome;
+    }else{
+      this.veiculoPesquisa.modelo = null;
+    }
+    this.versoes = null;
+    this.veiculoPesquisa.versao = null;
     this.buscarVeiculosComFiltro();
   }
 
   filtrarVeiculosPorVersao() {
-    this.veiculoPesquisa.versao = this.formGroup.value.versao.nome;
+    let versao = this.formGroup.value.versao;
+    if(versao != null){
+      this.veiculoPesquisa.versao = versao.nome;
+    }else{
+      this.veiculoPesquisa.versao = null;
+    }
     this.buscarVeiculosComFiltro();
   }
 

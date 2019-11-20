@@ -1,3 +1,4 @@
+<!--
 <form [formGroup]="formGroup">
     <div class="row">
         <div class="col">
@@ -211,3 +212,89 @@
         </div>
     </div>
 </form>
+-->
+
+<!-- FILTRO -->
+<div class="container">
+    <div class="filtro mt-2">
+        <form [formGroup]="formGroup">
+            <div class="conjunto-form">
+                <label for="select-marca">Marca</label>
+                <select id="select-marca" name="marca" formControlName="marca"
+                    (ngModelChange)="buscarVeiculosEModelosPorMarca()">
+                    <option selected [ngValue]="null">Todas as marcas</option>
+                    <option *ngFor="let marca of marcas" [ngValue]="marca">{{ marca.nome }}</option>
+                </select>
+
+                <label for="select-modelo">Modelo</label>
+                <select id="select-modelo" name="modelo" class="select" formControlName="modelo"
+                    (ngModelChange)="filtrarVeiculosPorModelo()">
+                    <option selected [ngValue]="null">Todos os modelos</option>
+                    <option *ngFor="let modelo of modelos" [ngValue]="modelo">{{ modelo.nome }}</option>
+                </select>
+
+                <label for="select-versao">Versão</label>
+                <select id="select-versao" name="versao" class="select" formControlName="versao"
+                (ngModelChange)="filtrarVeiculosPorVersao()">
+                    <option selected [ngValue]="null">Todas as versões</option>
+                    <option *ngFor="let versao of versoes" [ngValue]="versao">{{ versao.nome }}</option>
+                </select>
+            </div>
+
+            <div class="conjunto-form">
+                <label>Ano</label>
+                <br>
+                <input #deAno type="number" name="deAno" placeholder="de" (input)="filtrarDeAno(deAno.value)" maxlength="4">
+                <input #ateAno type="number" name="ateAno" placeholder="até" (input)="filtrarAteAno(ateAno.value)" maxlength="4">
+            </div>
+
+            <div class="conjunto-form">
+                <label>Preço</label>
+                <br>
+                <input #dePreco type="number" name="dePreco" placeholder="de" (input)="filtrarPorPrecoDe(dePreco.value)">
+                <input #atePreco type="number" name="atePreco" placeholder="até" (input)="filtrarPorPrecoAte(atePreco.value)">
+            </div>
+
+            <div class="conjunto-form">
+                <label>KM</label>
+                <br>
+                <input #deKm type="number" name="deKm" placeholder="de" (input)="filtrarDeKm(deKm.value)">
+                <input #ateKm type="number" name="atekm" placeholder="até" (input)="filtrarAteKm(ateKm.value)">
+            </div>
+
+            <div class="conjunto-form">
+                <mat-label>Cor</mat-label>
+                <mat-select multiple name="cores" placeholder="Selecione as cores" formControlName="cores"
+                 (ngModelChange)="filtrarPorCores()">
+                    <mat-option *ngFor="let cor of cores" [value]="cor">{{ cor.nome }}</mat-option>
+                </mat-select>
+
+                <mat-label>Câmbio</mat-label>
+                <mat-select multiple name="cambios" placeholder="Selecione os câmbios" formControlName="cambios"
+                (ngModelChange)="filtrarPorCambios()">
+                    <mat-option *ngFor="let cambio of cambios" [value]="cambio">{{ cambio.nome }}</mat-option>
+                </mat-select>
+
+                <mat-label>Combustível</mat-label>
+                <mat-select multiple name="combustiveis" placeholder="Selecione os combustíveis"
+                    formControlName="combustiveis" (ngModelChange)="filtrarPorCombustiveis()">
+                    <mat-option *ngFor="let combustivel of combustiveis" [value]="combustivel">{{ combustivel.nome }}
+                    </mat-option>
+                </mat-select>
+
+                <mat-label>Adicionais</mat-label>
+                <mat-select multiple name="adicionais" placeholder="Selecione os adicionais"
+                    formControlName="adicionais" (ngModelChange)="filtrarPorAdicionais()">
+                    <mat-option *ngFor="let adicional of adicionais" [value]="adicional">{{ adicional.nome }}
+                    </mat-option>
+                </mat-select>
+
+                <mat-label>Opcionais</mat-label>
+                <mat-select multiple name="opcionais" placeholder="Selecione os opcionais" formControlName="opcionais"
+                (ngModelChange)="filtrarPorOpcionais()">
+                    <mat-option *ngFor="let opcional of opcionais" [value]="opcional.nome">{{ opcional.nome }}</mat-option>
+                </mat-select>
+            </div>
+        </form>
+    </div>
+</div>
