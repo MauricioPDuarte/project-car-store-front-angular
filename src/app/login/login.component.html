@@ -1,3 +1,4 @@
+<!--
 <div class="container">
     <div class="row justify-content-center mt-5" style="float: left;">
         <mat-card>
@@ -27,5 +28,34 @@
                 </form>
             </mat-card-content>
         </mat-card>
+    </div>
+</div>
+-->
+
+<div class="clear"></div>
+<!-- LOGIN -->
+<div class="container-login clear-left">
+    <div class="login-imagem">
+        
+    </div>
+    <div class="login">
+        <h2>Entrar</h2>
+        
+        <mat-form-field>
+            <input matInput type="text" name="email" [(ngModel)]="creds.email"  placeholder="Email">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput type="password" name="senha" [(ngModel)]="creds.senha"  placeholder="Senha" >
+        </mat-form-field>
+
+        <p *ngIf="error" class="error">
+            {{ error }}
+        </p>
+
+        <div class="button">
+            <button type="submit" mat-button (click)="login()">Entrar</button>
+        </div>
+
     </div>
 </div>

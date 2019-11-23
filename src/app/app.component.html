@@ -3,6 +3,7 @@
     <nav class="menu">
         <div class="container">
             <ul>
+                <li *ngIf="userLogged | async" (click)="logout()"><a>Sair</a></li>
                 <li><a routerLink="/estoque"><i class="fas fa-th-list"></i>Estoque</a></li>
                 <li><a routerLink="/colaborador/login" ><i class="fas fa-sign-in-alt"></i>Colaborador</a></li>
             </ul>
