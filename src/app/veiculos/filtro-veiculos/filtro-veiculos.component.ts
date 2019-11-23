@@ -156,8 +156,8 @@ export class FiltroVeiculosComponent implements OnInit {
 
   //Buscar veiculos
   buscarVeiculosEModelosPorMarca() {
-    console.log("Busca de veiculos e modelos por MARCA")
     let marca = this.formGroup.value.marca;
+    console.log("Busca de veiculos e modelos por MARCA", marca.id)
     if (marca != null) {
       this.filtrarVeiculosPorMarca();
       this.marcaService.findModeloPorMarca(marca.id).subscribe((response) => {
@@ -176,9 +176,9 @@ export class FiltroVeiculosComponent implements OnInit {
 
   filtrarVeiculosPorMarca() {
     console.log("Busca de veiculos por MARCA")
-    let marca =  this.formGroup.value.marca.nome
+    let marca =  this.formGroup.value.marca;
     if(marca != null){
-      this.veiculoPesquisa.marca = marca;
+      this.veiculoPesquisa.marca = marca.nome;
     }
     this.versoes = null;
     this.veiculoPesquisa.versao = null;

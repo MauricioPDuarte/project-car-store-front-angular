@@ -33,5 +33,9 @@ export class MarcaService {
       .pipe(tap(() => this.marcaEvent.emit()));
   }
 
+  findMarcaById(id: string): Observable<MarcaDTO> {
+    return this.http.get<MarcaDTO>(`${API_CONFIG.baseUrl}/marcas/${id}`);
+  }
+
 }
  
