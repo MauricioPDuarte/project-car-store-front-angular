@@ -1,3 +1,5 @@
+import { ModeloDTO } from './../../models/modelo.dto';
+import { Veiculo } from './../../models/veiculo';
 import { ActivatedRoute } from '@angular/router';
 import { VeiculoPesquisa } from './../../models/pesquisa/veiculo-pesquisa';
 
@@ -20,10 +22,10 @@ export class VeiculosComponent implements OnInit {
   pageSize: number = 24;
   veiculos: VeiculoDTO[];
   tamanhoLista: number;
-  veiculoPesquisa: VeiculoPesquisa;
   @ViewChild(MatPaginator, null) paginator: MatPaginator;
   ultimaPagina: boolean;
   primeiraPagina: boolean;
+  veiculoPesquisa: VeiculoPesquisa = <VeiculoPesquisa>{};
 
 
   constructor(
@@ -44,8 +46,29 @@ export class VeiculosComponent implements OnInit {
   };
 
   ngOnInit() {
-   this.veiculoPesquisa = this.route.snapshot.queryParams as VeiculoPesquisa;
-   this.findAllVeiculosPage();
+    let veiculoPesquisaUrl = this.route.snapshot.queryParams as VeiculoPesquisa;
+    this.pegarParamsUrl(veiculoPesquisaUrl);
+    this.findAllVeiculosPage();
+  }
+
+  pegarParamsUrl(veiculoPesquisaUrl) {
+    this.veiculoPesquisa.marca = veiculoPesquisaUrl.marca;
+    this.veiculoPesquisa.modelo = veiculoPesquisaUrl.modelo;
+    this.veiculoPesquisa.versao =  veiculoPesquisaUrl.versao;
+    this.veiculoPesquisa.dePreco =  veiculoPesquisaUrl.dePreco;
+    this.veiculoPesquisa.atePreco =  veiculoPesquisaUrl.atePreco;
+    this.veiculoPesquisa.deAno =  veiculoPesquisaUrl.deAno;
+    this.veiculoPesquisa.ateAno =  veiculoPesquisaUrl.ateAno;
+    this.veiculoPesquisa.deKm =  veiculoPesquisaUrl.deKm;
+    this.veiculoPesquisa.ateKm =  veiculoPesquisaUrl.ateKm;
+    this.veiculoPesquisa.cores =  veiculoPesquisaUrl.cores;
+    this.veiculoPesquisa.tipos =  veiculoPesquisaUrl.tipos;
+    this.veiculoPesquisa.cambios =  veiculoPesquisaUrl.cambios;
+    this.veiculoPesquisa.combustiveis =  veiculoPesquisaUrl.combustiveis;
+    this.veiculoPesquisa.adicionais =  veiculoPesquisaUrl.adicionais;
+    this.veiculoPesquisa.opcionais =  veiculoPesquisaUrl.opcionais;
+    this.veiculoPesquisa.direction =  veiculoPesquisaUrl.direcion;
+    this.veiculoPesquisa.orderBy =  veiculoPesquisaUrl.orderBy;
   }
 
   ngAfterViewInit() {
@@ -96,10 +119,11 @@ export class VeiculosComponent implements OnInit {
   }
 
   mudarOrdenacao(event) {
+    console.log(this.veiculoPesquisa);
     switch (event.target.value) {
       case "menor-preco":
-        this.veiculoPesquisa.orderBy = 'preco';
-        this.veiculoPesquisa.direction = 'ASC';
+        this.veiculoPesquisa['orderBy'] = 'preco';
+        this.veiculoPesquisa['direction'] = 'ASC';
         break;
 
       case "maior-preco":

@@ -37,10 +37,12 @@ export class FiltroVeiculosComponent implements OnInit {
   @Output() vPesquisa = new EventEmitter<VeiculoPesquisa>();
   @Output() parametrosDePesquisa = new EventEmitter<VeiculoPesquisa>();
   @Input() paginator: MatPaginator;
+  @Input() veiculoPesquisa: VeiculoPesquisa;
+
   marcas: MarcaDTO[];
   modelos: ModeloDTO[];
   formGroup: FormGroup;
-  veiculoPesquisa: VeiculoPesquisa;
+  //veiculoPesquisa: VeiculoPesquisa;
   opcionais: OpcionalDTO[];
   adicionais: AdicionalDTO[];
   deAno = new Subject<string>();
@@ -67,7 +69,7 @@ export class FiltroVeiculosComponent implements OnInit {
     private tipoService: TipoService,
     private modeloService: ModeloService,
   ) {
-    this.veiculoPesquisa = new VeiculoPesquisa;
+    //this.veiculoPesquisa = new VeiculoPesquisa;
     this.formGroup = this.formBuilder.group({
       marca: [null, []],
       modelo: [null, []],
@@ -84,7 +86,9 @@ export class FiltroVeiculosComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.veiculoPesquisa = new VeiculoPesquisa;
+    console.log(this.veiculoPesquisa)
+   // this.veiculoPesquisa = new VeiculoPesquisa;
+   
     this.carregarMarcas();
     this.carregarOpcionais();
     this.carregarAdicionais();

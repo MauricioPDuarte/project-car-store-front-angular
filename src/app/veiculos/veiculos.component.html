@@ -137,7 +137,7 @@
     </div>
 </div>
 
-<app-filtro-veiculos #filtroVeiculos (tamanhoLista)="receberTamanhoListaFiltro($event)"
+<app-filtro-veiculos #filtroVeiculos [veiculoPesquisa]="veiculoPesquisa" (tamanhoLista)="receberTamanhoListaFiltro($event)"
     (vPesquisa)="receberVeiculoPesquisa($event)" [paginator]="paginator" (parametrosDePesquisa)="receberParametrosDePesquisa($event)"></app-filtro-veiculos>
 
 <!-- ANUNCIO -->

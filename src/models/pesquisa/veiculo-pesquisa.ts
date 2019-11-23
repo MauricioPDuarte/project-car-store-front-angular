@@ -3,7 +3,7 @@ import { Cor } from './../enum/cor';
 import { ModeloDTO } from '../modelo.dto';
 import { MarcaDTO } from '../marca.dto';
 
-export class VeiculoPesquisa {
+export interface VeiculoPesquisa {
     marca: string;
     modelo: string;
     versao: string;
