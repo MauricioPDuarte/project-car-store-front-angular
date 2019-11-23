@@ -113,22 +113,22 @@
 
     <div class="paginacao">
         <div class="ordem-pesquisa">
-            <select name="ordem-pesquisa">
+            <select name="ordem-pesquisa" (change)="mudarOrdenacao($event)">
+                <option value="menor-preco">Menor Preço</option>
                 <option value="maior-preco">Maior Preço</option>
-                <option value="meno-preco">Menor Preço</option>
-                <option value="maior-ano">Maior Ano</option>
                 <option value="menor-ano">Menor Ano</option>
+                <option value="maior-ano">Maior Ano</option>
             </select>
         </div>
         <div class="elementos">
             <ul>
                 <li>
-                    <a class="next">
+                    <a class="next" [ngClass]="{'isDisabled': ultimaPagina}" (click)="proximaPagina()">
                         PROXIMA PÁGINA
                     </a>
                 </li>
                 <li>
-                    <a class="prev">
+                    <a class="prev" [ngClass]="{'isDisabled': primeiraPagina}" (click)="paginaAnterior()">
                         PÁGINA ANTERIOR
                     </a>
                 </li>
@@ -138,7 +138,7 @@
 </div>
 
 <app-filtro-veiculos #filtroVeiculos (tamanhoLista)="receberTamanhoListaFiltro($event)"
-    (vPesquisa)="receberVeiculoPesquisa($event)" [paginator]="paginator"></app-filtro-veiculos>
+    (vPesquisa)="receberVeiculoPesquisa($event)" [paginator]="paginator" (parametrosDePesquisa)="receberParametrosDePesquisa($event)"></app-filtro-veiculos>
 
 <!-- ANUNCIO -->
 <div class="container">

@@ -19,4 +19,6 @@ export class VeiculoPesquisa {
     combustiveis: string;
     adicionais: string;
     opcionais: string;
+    direction: string;
+    orderBy: string;
 }

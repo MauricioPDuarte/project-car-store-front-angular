@@ -4,9 +4,9 @@ import { VeiculoPesquisa } from './../../models/pesquisa/veiculo-pesquisa';
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { VeiculoService } from 'src/services/domain/veiculo.service';
 import { VeiculoDTO } from 'src/models/veiculo.dto';
-import { API_CONFIG } from 'src/config/api.config';
+
 import { MatPaginator } from '@angular/material';
-import { merge, Observable } from 'rxjs';
+import { merge} from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
@@ -22,14 +22,15 @@ export class VeiculosComponent implements OnInit {
   tamanhoLista: number;
   veiculoPesquisa: VeiculoPesquisa;
   @ViewChild(MatPaginator, null) paginator: MatPaginator;
-  exibirFiltro: boolean = false;
+  ultimaPagina: boolean;
+  primeiraPagina: boolean;
+
 
   constructor(
     private veiculoService: VeiculoService,
     private route: ActivatedRoute,
 
   ) {
-
   }
 
   public config: SwiperConfigInterface = {
@@ -43,14 +44,8 @@ export class VeiculosComponent implements OnInit {
   };
 
   ngOnInit() {
-    this.veiculoPesquisa = new VeiculoPesquisa();
-    this.route.queryParams
-      .subscribe((response) => {
-        if (response) {
-          this.veiculoPesquisa = response as VeiculoPesquisa;
-        }
-        this.findAllVeiculosPage();
-      }, error => { })
+   this.veiculoPesquisa = this.route.snapshot.queryParams as VeiculoPesquisa;
+   this.findAllVeiculosPage();
   }
 
   ngAfterViewInit() {
@@ -64,11 +59,22 @@ export class VeiculosComponent implements OnInit {
   }
 
   findAllVeiculosPage() {
-    this.veiculoService.findVeiculosCustomPage(this.paginator.pageIndex, this.paginator.pageSize, 'ASC', this.veiculoPesquisa)
+    console.log("Busca todos por aqui")
+    this.veiculoService.findVeiculosCustomPage(this.paginator.pageIndex, this.paginator.pageSize, this.veiculoPesquisa)
       .subscribe((response) => {
         this.veiculos = response['content'];
         this.tamanhoLista = response['totalElements'];
+        this.primeiraPagina = response['first'];
+        this.ultimaPagina = response['last'];
       })
+  }
+
+  proximaPagina(){
+    this.paginator.nextPage();
+  }
+
+  paginaAnterior(){
+    this.paginator.previousPage();
   }
 
   receberPesquisaVeiculo(veiculoPesquisa) {
@@ -81,6 +87,38 @@ export class VeiculosComponent implements OnInit {
 
   receberVeiculoPesquisa(veiculoPesquisa) {
     this.veiculoPesquisa = veiculoPesquisa;
+  }
+
+  receberParametrosDePesquisa(parametrosVeiculoPesquisa){
+    console.log("RECEBEU PARAMETROS")
+    this.veiculoPesquisa = parametrosVeiculoPesquisa;
+    this.findAllVeiculosPage();
+  }
+
+  mudarOrdenacao(event) {
+    switch (event.target.value) {
+      case "menor-preco":
+        this.veiculoPesquisa.orderBy = 'preco';
+        this.veiculoPesquisa.direction = 'ASC';
+        break;
+
+      case "maior-preco":
+        this.veiculoPesquisa.orderBy  = 'preco';
+        this.veiculoPesquisa.direction  = 'DESC';
+        break;
+
+      case "menor-ano":
+        this.veiculoPesquisa.orderBy = 'ano';
+        this.veiculoPesquisa.direction = 'ASC';
+        break;
+
+      case "maior-ano":
+        console.log(this.veiculoPesquisa);
+        this.veiculoPesquisa.orderBy = 'ano';
+        this.veiculoPesquisa.direction = 'DESC';
+        break;
+    }
+    this.findAllVeiculosPage();
   }
 
 }

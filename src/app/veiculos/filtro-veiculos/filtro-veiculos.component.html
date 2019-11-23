@@ -285,7 +285,7 @@
                 <mat-label>Adicionais</mat-label>
                 <mat-select multiple name="adicionais" placeholder="Selecione os adicionais"
                     formControlName="adicionais" (ngModelChange)="filtrarPorAdicionais()">
-                    <mat-option *ngFor="let adicional of adicionais" [value]="adicional">{{ adicional.nome }}
+                    <mat-option *ngFor="let adicional of adicionais" [value]="adicional.nome">{{ adicional.nome }}
                     </mat-option>
                 </mat-select>
 
