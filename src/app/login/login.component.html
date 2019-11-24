@@ -35,27 +35,30 @@
 <div class="clear"></div>
 <!-- LOGIN -->
 <div class="container-login clear-left">
-    <div class="login-imagem">
-        
-    </div>
+    <div class="login-imagem"></div>
     <div class="login">
         <h2>Entrar</h2>
         
         <mat-form-field>
-            <input matInput type="text" name="email" [(ngModel)]="creds.email"  placeholder="Email">
+            <input matInput type="text" name="email" [(ngModel)]="creds.email"  placeholder="E-mail">
         </mat-form-field>
 
         <mat-form-field>
             <input matInput type="password" name="senha" [(ngModel)]="creds.senha"  placeholder="Senha" >
         </mat-form-field>
 
+        <p class="esqueci-senha">
+            Esqueceu a senha?
+        </p>
+
         <p *ngIf="error" class="error">
             {{ error }}
         </p>
 
-        <div class="button">
-            <button type="submit" mat-button (click)="login()">Entrar</button>
-        </div>
+        <p class="button-align">
+            <button type="submit" mat-flat-button color="primary" (click)="login()">Entrar</button>
+        </p>
+
 
     </div>
 </div>
