@@ -4,7 +4,8 @@ import { StorageService } from './../../services/storage.service';
 import { Router } from '@angular/router';
 import { ColaboradorService } from './../../services/domain/colaborador.service';
 import { ColaboradorDTO } from './../../models/colaborador.dto';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
+import { MatDrawer } from '@angular/material';
 
 @Component({
   selector: 'app-painel-colaborador',
@@ -16,7 +17,12 @@ export class PainelColaboradorComponent implements OnInit {
   colaboradores: ColaboradorDTO[];
   usuarioLogado: ColaboradorDTO;
   selecaoMenu: string = 'dashboard';
-  
+  public innerWidth: any;
+  modeDrawer: string = "side";
+
+  @ViewChild(MatDrawer, null) matDrawer: MatDrawer;
+
+
 
   constructor(
     private colaboradorService: ColaboradorService,
@@ -29,7 +35,32 @@ export class PainelColaboradorComponent implements OnInit {
   ngOnInit() {
     this.buscarPorEmail();
     this.buscarColaboradores();
-   
+    this.innerWidth = window.innerWidth;
+    this.changeModeDrawer();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
+    this.changeModeDrawer();
+  }
+
+  changeModeDrawer() {
+    if(this.innerWidth <= 1024) {
+      this.modeDrawer = "over";
+      this.matDrawer.close();
+    }else{
+      this.modeDrawer = "side";
+      this.matDrawer.open();
+    }
+  }
+
+  toggleMenuDrawer() {
+    if(this.matDrawer.opened){
+      this.matDrawer.close();
+    }else{
+      this.matDrawer.open();
+    }
   }
 
   trocarPagina(pagina) {

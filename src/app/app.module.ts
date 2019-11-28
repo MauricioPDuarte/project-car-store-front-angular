@@ -27,6 +27,7 @@ import { CadastroMarcaComponent } from './painel-colaborador/cadastro-marca/cada
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { DashboardComponent } from './painel-colaborador/dashboard/dashboard.component';
 import { CadastroModeloComponent } from './painel-colaborador/cadastro-modelo/cadastro-modelo.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CadastroModeloComponent } from './painel-colaborador/cadastro-modelo/ca
     CadastroMarcaComponent,
     DashboardComponent,
     CadastroModeloComponent,
+    MenuComponent,
 
   ],
   imports: [

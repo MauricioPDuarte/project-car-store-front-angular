@@ -71,7 +71,7 @@
         </div>
     </div>
 </div>
--->
+
 
 <div class="row" style="height: 100%;">
     <div class="col-2 container-menu-lateral">
@@ -208,3 +208,30 @@
     </div>
 
 </div>
+-->
+
+<mat-drawer-container class="drawer-container">
+    <mat-drawer [mode]="modeDrawer">
+        <div *ngIf="usuarioLogado">
+            <div class="user-info">
+                <h2>{{ usuarioLogado.nome }}</h2>
+                <p>{{ usuarioLogado.email }}</p>
+            </div>
+            <h2 class="user-img"><img [src]="'assets/images/layout/user.jpg'"></h2>
+        </div>
+    </mat-drawer>
+    <mat-drawer-content>
+        <nav class="menu">
+            <div class="btn-menu-lateral">
+                <button (click)="toggleMenuDrawer()"><i class="fas fa-bars"></i></button>
+            </div>
+            <div class="container">
+                <ul>
+                    <li><a routerLink="/estoque"><i class="fas fa-th-list"></i>Estoque</a></li>
+                    <li><a routerLink="/colaborador/login"><i class="fas fa-sign-in-alt"></i>Colaborador</a></li>
+                </ul>
+            </div>
+        </nav>
+       <app-cadastro-veiculo></app-cadastro-veiculo>
+    </mat-drawer-content>
+</mat-drawer-container>

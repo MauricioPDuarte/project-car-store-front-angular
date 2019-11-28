@@ -1,18 +1,1 @@
-<!-- CABECALHO -->
-<header>
-    <nav class="menu">
-        <div class="container">
-            <ul>
-                <li *ngIf="userLogged | async" (click)="logout()"><a><i class="fas fa-times"></i>Sair</a></li>
-                <li><a routerLink="/estoque"><i class="fas fa-th-list"></i>Estoque</a></li>
-                <li><a routerLink="/colaborador/login" ><i class="fas fa-sign-in-alt"></i>Colaborador</a></li>
-            </ul>
-        </div>
-    </nav>
-    <div class="container">
-        <a href="/estoque">
-            <h1 class="logo">Carstore - Acelereando seus sonhos</h1>
-        </a>
-    </div>
-</header>
 <router-outlet></router-outlet>

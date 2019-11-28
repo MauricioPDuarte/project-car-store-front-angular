@@ -1,3 +1,4 @@
+/*
 .mat-card-cadastro {
     width: 100%;
     margin-top: 20px;
@@ -34,4 +35,25 @@
 
 .card-input-element:checked + .card-input {
     box-shadow: 0 0 1px 1px #2ecc71;
+}
+*/
+
+.img-car {
+    width: 200px;
+    height: 155px;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.clear {
+	clear: both;
+}
+
+.mat-card-cadastro {
+    width: 95%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;
 }
